@@ -1,6 +1,6 @@
 package com.fernandocejas.android10.sample.data.disk;
 
-import android.content.Context;
+import android.content.res.AssetManager;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -10,11 +10,11 @@ import java.io.InputStream;
 
 public class AssetsReaderImpl implements AssetsReader {
 
-  private final Context context;
-  private final FileManagerImpl fileManager;
+  private final AssetManager assetManager;
+  private final StreamReader fileManager;
 
-  public AssetsReaderImpl(Context context, FileManagerImpl fileManager) {
-    this.context = context;
+  public AssetsReaderImpl(AssetManager assetManager, StreamReader fileManager) {
+    this.assetManager = assetManager;
     this.fileManager = fileManager;
   }
 
@@ -23,6 +23,6 @@ public class AssetsReaderImpl implements AssetsReader {
   }
 
   private InputStream getAssetInputStream(String fileName) throws IOException {
-    return context.getAssets().open(fileName);
+    return assetManager.open(fileName);
   }
 }

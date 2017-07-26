@@ -21,7 +21,6 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class) public class CityDataRepositoryTest {
 
-  //todo need instrument test with robolectric!!
   private static final String FAKE_CITY_NAME = "London";
   private static final String FAKE_CITY_ID = "1234";
 

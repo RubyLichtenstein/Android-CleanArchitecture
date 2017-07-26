@@ -12,25 +12,26 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created by Ruby on 7/26/2017.
  */
 
-public class FileManagerImplTest  {
-  private FileManagerImpl fileManager;
+public class StreamReaderTest {
+  private final String STREAM_DATA = "content";
+
+  private StreamReaderImpl fileManager;
 
   @Before public void setUp() {
-    fileManager = new FileManagerImpl();
+    fileManager = new StreamReaderImpl();
   }
 
   @Test public void testReadInputStream() {
-    String streamData = "content";
     String out = "";
-    InputStream inputStream = createInputStream(streamData);
+    InputStream inputStream = createInputStream(STREAM_DATA);
 
     try {
-      out = fileManager.readInputStream(inputStream);
+      out = fileManager.read(inputStream);
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-    assertThat(streamData).isEqualTo(out);
+    assertThat(STREAM_DATA).isEqualTo(out);
   }
 
   private InputStream createInputStream(String data) {

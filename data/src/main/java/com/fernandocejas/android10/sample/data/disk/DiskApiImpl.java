@@ -1,6 +1,5 @@
 package com.fernandocejas.android10.sample.data.disk;
 
-import android.content.Context;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityJsonMapper;
 import io.reactivex.Observable;
@@ -17,6 +16,7 @@ public class DiskApiImpl implements DiskApi {
 
   //todo @Inject
   public DiskApiImpl(AssetsReader assetsReader, CityEntityJsonMapper cityEntityJsonMapper) {
+    //todo test nulp
     // TODO: 7/26/2017 use predictions? or nonull
     if (cityEntityJsonMapper == null || assetsReader == null) {
       // TODO: 7/26/2017 to string resource!
@@ -29,8 +29,8 @@ public class DiskApiImpl implements DiskApi {
 
   @Override public Observable<List<CityEntity>> cityEntityList() {
     return Observable.create(e -> {
-      //todo check what haapen with the excption!
-      String citiesJson = assetsReader.readFromAssets(this.context, CITIES_FILE_NAME);
+      //todo check what haapen with the excption is rx handle it?!
+      String citiesJson = assetsReader.readFromAssets(CITIES_FILE_NAME);
       cityEntityJsonMapper.transformCityEntityCollection(citiesJson);
     });
   }
