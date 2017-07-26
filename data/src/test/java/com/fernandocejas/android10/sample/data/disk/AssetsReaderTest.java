@@ -24,6 +24,7 @@ import static org.mockito.Mockito.when;
   private static final String FAKE_FILE_CONTENT = "fake_file_content";
 
   private InputStream inputStream;
+
   @InjectMocks private AssetsReaderImpl assetsReader;
 
   @Mock private StreamReaderImpl mockFileManager;

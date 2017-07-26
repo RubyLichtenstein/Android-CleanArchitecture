@@ -9,6 +9,7 @@ import java.util.List;
  */
 
 public interface DiskApi {
+  //todo maby inject?
   String CITIES_FILE_NAME = "cities.txt";
 
   Observable<List<CityEntity>> cityEntityList();

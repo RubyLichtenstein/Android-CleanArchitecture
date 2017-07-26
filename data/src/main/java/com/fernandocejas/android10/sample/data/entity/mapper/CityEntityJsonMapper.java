@@ -20,10 +20,10 @@ public class CityEntityJsonMapper {
     this.gson = new Gson();
   }
 
-  public CityEntity transformUserEntity(String cityJson) throws JsonSyntaxException {
-    final Type cityEntityType = new TypeToken<CityEntity>() {}.getType();
-    return this.gson.fromJson(cityJson, cityEntityType);
-  }
+  //public CityEntity transformCityEntity(String cityJson) throws JsonSyntaxException {
+  //  final Type cityEntityType = new TypeToken<CityEntity>() {}.getType();
+  //  return this.gson.fromJson(cityJson, cityEntityType);
+  //}
 
   public List<CityEntity> transformCityEntityCollection(String citesJson)
       throws JsonSyntaxException {
