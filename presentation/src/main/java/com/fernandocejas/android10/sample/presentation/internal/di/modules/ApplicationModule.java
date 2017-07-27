@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,14 +18,18 @@ package com.fernandocejas.android10.sample.presentation.internal.di.modules;
 import android.content.Context;
 import com.fernandocejas.android10.sample.data.cache.UserCache;
 import com.fernandocejas.android10.sample.data.cache.UserCacheImpl;
+import com.fernandocejas.android10.sample.data.entity.mapper.WeatherEntityDataMapper;
 import com.fernandocejas.android10.sample.data.executor.JobExecutor;
+import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
 import com.fernandocejas.android10.sample.data.repository.UserDataRepository;
+import com.fernandocejas.android10.sample.data.repository.WeatherDataRepository;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.repository.UserRepository;
+import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
 import com.fernandocejas.android10.sample.presentation.UIThread;
-import com.fernandocejas.android10.sample.presentation.navigation.Navigator;
+import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -33,8 +37,7 @@ import javax.inject.Singleton;
 /**
  * Dagger module that provides objects which will live during the application lifecycle.
  */
-@Module
-public class ApplicationModule {
+@Module public class ApplicationModule {
   private final AndroidApplication application;
 
   public ApplicationModule(AndroidApplication application) {
@@ -59,5 +62,14 @@ public class ApplicationModule {
 
   @Provides @Singleton UserRepository provideUserRepository(UserDataRepository userDataRepository) {
     return userDataRepository;
+  }
+
+  @Provides @Singleton UserRepository provideUserRepository(UserDataRepository userDataRepository) {
+    return userDataRepository;
+  }
+
+  @Provides @Singleton WeatherRepository provideWeatherRepository(WeatherRestApi weatherRestApi,
+      WeatherEntityDataMapper weatherEntityDataMapper) {
+    return new WeatherDataRepository(weatherRestApi, weatherEntityDataMapper);
   }
 }
