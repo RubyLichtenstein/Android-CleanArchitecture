@@ -13,12 +13,23 @@ public class CityEntity {
     this.id = id;
   }
 
+  public CityEntity() {
+  }
+
   public String getCity() {
     return city;
   }
 
   public String getId() {
     return id;
+  }
+
+  public void setCity(String city) {
+    this.city = city;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   @Override public String toString() {

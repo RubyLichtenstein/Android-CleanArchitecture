@@ -20,11 +20,11 @@ import static org.hamcrest.Matchers.is;
 
 public class CityEntityJsonMapperTest {
 
-  private final String LONDON_ID = "2643743";
-  private final String PARIS_ID = "2988507";
-
   private final String LONDON = "London";
+  private final String LONDON_ID = "2643743";
+
   private final String PARIS = "Paris";
+  private final String PARIS_ID = "2988507";
 
   private final int NUM_OF_CITIES = 5;
 
