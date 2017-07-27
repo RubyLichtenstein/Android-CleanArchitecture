@@ -31,11 +31,11 @@ import static org.mockito.Mockito.when;
   @Mock private AssetsReader mockAssetsReader;
   @Mock private CityEntityJsonMapper mockCityEntityJsonMapper;
 
-  //todo to rule
-  IOException ioException = new IOException();
+  private IOException ioException;
 
   @Before public void setUp() throws IOException {
     diskApi = new DiskApiImpl(FAKE_FILE_NAME, mockAssetsReader, mockCityEntityJsonMapper);
+    ioException = new IOException();
   }
 
   //todo test null pointer exception

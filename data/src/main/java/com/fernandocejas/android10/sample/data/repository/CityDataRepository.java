@@ -1,7 +1,7 @@
 package com.fernandocejas.android10.sample.data.repository;
 
+import com.fernandocejas.android10.sample.data.disk.DiskApi;
 import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityDataMapper;
-import com.fernandocejas.android10.sample.data.repository.datasource.CityDataStore;
 import com.fernandocejas.android10.sample.domain.City;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import io.reactivex.Observable;
@@ -15,17 +15,16 @@ import javax.inject.Singleton;
 
 @Singleton public class CityDataRepository implements CityRepository {
 
-  private final CityDataStore cityDataStore;
+  private final DiskApi diskApi;
   private final CityEntityDataMapper cityEntityDataMapper;
 
-  @Inject public CityDataRepository(CityEntityDataMapper cityEntityDataMapper,
-      CityDataStore cityDataStore) {
+  @Inject public CityDataRepository(DiskApi diskApi, CityEntityDataMapper cityEntityDataMapper) {
     //todo null check or nonull
+    this.diskApi = diskApi;
     this.cityEntityDataMapper = cityEntityDataMapper;
-    this.cityDataStore = cityDataStore;
   }
 
   @Override public Observable<List<City>> cites() {
-    return cityDataStore.cityEntityList().map(cityEntityDataMapper::transform);
+    return diskApi.cityEntityList().map(cityEntityDataMapper::transform);
   }
 }

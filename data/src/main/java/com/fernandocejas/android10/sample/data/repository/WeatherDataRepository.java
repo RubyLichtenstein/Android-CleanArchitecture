@@ -5,6 +5,7 @@ import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
 import com.fernandocejas.android10.sample.domain.Weather;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import io.reactivex.Observable;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
@@ -16,7 +17,7 @@ import javax.inject.Singleton;
   private final WeatherRestApi weatherRestApi;
   private final WeatherEntityDataMapper weatherEntityDataMapper;
 
-  public WeatherDataRepository(WeatherRestApi weatherRestApi,
+  @Inject public WeatherDataRepository(WeatherRestApi weatherRestApi,
       WeatherEntityDataMapper weatherEntityDataMapper) {
     this.weatherRestApi = weatherRestApi;
     this.weatherEntityDataMapper = weatherEntityDataMapper;
