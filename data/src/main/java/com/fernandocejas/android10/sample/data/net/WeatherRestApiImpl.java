@@ -8,17 +8,12 @@ import io.reactivex.Observable;
  */
 
 public class WeatherRestApiImpl implements WeatherRestApi {
-  private final String baseUrl;
-  private WeatherRestApi weatherRestApi;
+  private final WeatherRestApi weatherRestApi;
 
-  public WeatherRestApiImpl(String baseUrl) {
-    this.baseUrl = baseUrl;
-
+  public WeatherRestApiImpl(WeatherRestApi weatherRestApi) {
+    this.weatherRestApi = weatherRestApi;
     //todo inject?
-    HttpClient<WeatherRestApi> httpClient =
-        new HttpClient<>(baseUrl, WeatherRestApi.class);
-
-    weatherRestApi = httpClient.get();
+    //HttpClient<WeatherRestApi> httpClient = new HttpClient<>(baseUrl, WeatherRestApi.class);
   }
 
   @Override public Observable<WeatherEntity> WeatherEntityByCityId(int cityId) {
