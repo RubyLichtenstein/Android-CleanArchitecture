@@ -7,16 +7,16 @@ import io.reactivex.Observable;
  * Created by Ruby on 7/27/2017.
  */
 
-public class WeatherRestApiImpl implements WeatherRestApiInterface {
+public class WeatherRestApiImpl implements WeatherRestApi {
   private final String baseUrl;
-  private WeatherRestApiInterface weatherRestApi;
+  private WeatherRestApi weatherRestApi;
 
   public WeatherRestApiImpl(String baseUrl) {
     this.baseUrl = baseUrl;
 
     //todo inject?
-    HttpClient<WeatherRestApiInterface> httpClient =
-        new HttpClient<>(baseUrl, WeatherRestApiInterface.class);
+    HttpClient<WeatherRestApi> httpClient =
+        new HttpClient<>(baseUrl, WeatherRestApi.class);
 
     weatherRestApi = httpClient.get();
   }

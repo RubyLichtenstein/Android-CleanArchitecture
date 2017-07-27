@@ -22,7 +22,7 @@ import retrofit2.http.GET;
 /**
  * RestApi for retrieving data from the network.
  */
-public interface WeatherRestApiInterface {
+public interface WeatherRestApi {
   /**
    * Retrieves an {@link Observable} which will emit a {@link WeatherEntity}.
    *
