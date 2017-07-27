@@ -1,14 +1,15 @@
 package com.fernandocejas.android10.sample.data.entity.weather;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Main {
   public Float temp;
-  public Integer pressure;
-  public Integer humidity;
-  public Integer tempMin;
-  public Integer tempMax;
+  public Float pressure;
+  public Float humidity;
+  @SerializedName("temp_min") public Float tempMin;
+  @SerializedName("temp_max") public Float tempMax;
 
   public Float getTemp() {
-
     return temp;
   }
 
@@ -16,35 +17,35 @@ public class Main {
     this.temp = temp;
   }
 
-  public Integer getPressure() {
+  public Float getPressure() {
     return pressure;
   }
 
-  public void setPressure(Integer pressure) {
+  public void setPressure(Float pressure) {
     this.pressure = pressure;
   }
 
-  public Integer getHumidity() {
+  public Float getHumidity() {
     return humidity;
   }
 
-  public void setHumidity(Integer humidity) {
+  public void setHumidity(Float humidity) {
     this.humidity = humidity;
   }
 
-  public Integer getTempMin() {
+  public Float getTempMin() {
     return tempMin;
   }
 
-  public void setTempMin(Integer tempMin) {
+  public void setTempMin(Float tempMin) {
     this.tempMin = tempMin;
   }
 
-  public Integer getTempMax() {
+  public Float getTempMax() {
     return tempMax;
   }
 
-  public void setTempMax(Integer tempMax) {
+  public void setTempMax(Float tempMax) {
     this.tempMax = tempMax;
   }
 }
