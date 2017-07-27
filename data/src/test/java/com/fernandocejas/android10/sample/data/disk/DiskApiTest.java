@@ -3,6 +3,8 @@ package com.fernandocejas.android10.sample.data.disk;
 import com.fernandocejas.android10.sample.data.ApplicationTestCase;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityJsonMapper;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,21 +31,51 @@ import static org.mockito.Mockito.when;
   @Mock private AssetsReader mockAssetsReader;
   @Mock private CityEntityJsonMapper mockCityEntityJsonMapper;
 
+  //todo to rule
+  IOException ioException = new IOException();
+
   @Before public void setUp() throws IOException {
     diskApi = new DiskApiImpl(FAKE_FILE_NAME, mockAssetsReader, mockCityEntityJsonMapper);
-    List<CityEntity> cityEntityList = new ArrayList<>();
+  }
 
+  //todo test null pointer exception
+  @Test public void cityEntityListHappyCase() throws IOException {
+    List<CityEntity> cityEntityList = new ArrayList<>();
     when(mockAssetsReader.readFromAssets(FAKE_FILE_NAME)).thenReturn(FAKE_FILE_CONTENT);
     when(mockCityEntityJsonMapper.transformCityEntityCollection(FAKE_FILE_CONTENT)).thenReturn(
         cityEntityList);
-  }
 
-  @Test public void cityEntityListHappyCase() throws IOException {
     diskApi.cityEntityList().subscribe(cityEntities -> {
 
     });
 
     verify(mockAssetsReader).readFromAssets(FAKE_FILE_NAME);
     verify(mockCityEntityJsonMapper).transformCityEntityCollection(FAKE_FILE_CONTENT);
+  }
+
+  @Test public void cityEntityListThrowExceptionCase() throws IOException {
+
+    when(mockAssetsReader.readFromAssets(FAKE_FILE_NAME)).thenThrow(ioException);
+
+    diskApi.cityEntityList().subscribe(new Observer<List<CityEntity>>() {
+      @Override public void onSubscribe(Disposable d) {
+
+      }
+
+      @Override public void onNext(List<CityEntity> value) {
+        //todo assert not emit??
+      }
+
+      @Override public void onError(Throwable e) {
+        assertThat(e).isEqualTo(ioException);
+      }
+
+      @Override public void onComplete() {
+
+      }
+    });
+
+    //verify(mockAssetsReader).readFromAssets(FAKE_FILE_NAME).th;
+    //verify(mockCityEntityJsonMapper).transformCityEntityCollection(FAKE_FILE_CONTENT);
   }
 }
