@@ -20,9 +20,10 @@ ext {
   javaxAnnotationVersion = '1.0'
   javaxInjectVersion = '1'
   gsonVersion = '2.3'
-  okHttpVersion = '2.5.0'
+  okHttpVersion = '3.7.0'
   androidAnnotationsVersion = '21.0.3'
   arrowVersion = '1.0.0'
+  retrofitVersion = '2.3.0'
 
   //Testing
   robolectricVersion = '3.1.1'
@@ -70,13 +71,18 @@ ext {
   dataDependencies = [
       daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
       dagger:             "com.google.dagger:dagger:${daggerVersion}",
-      okHttp:             "com.squareup.okhttp:okhttp:${okHttpVersion}",
+      okHttp3:            "com.squareup.okhttp3:okhttp:${okHttpVersion}",
       gson:               "com.google.code.gson:gson:${gsonVersion}",
       rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
       rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
       javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
       javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
-      androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}"
+      androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
+      retrofit2:          "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+      retrofit2ConverterGson:  "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+      retrofit2AdapterRxjava2: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+
+
   ]
 
   dataTestDependencies = [

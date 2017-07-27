@@ -55,11 +55,14 @@ dependencies {
   compile project(':domain')
   provided dataDependencies.javaxAnnotation
   compile dataDependencies.javaxInject
-  compile dataDependencies.okHttp
+  compile dataDependencies.okHttp3
   compile dataDependencies.gson
   compile dataDependencies.rxJava
   compile dataDependencies.rxAndroid
   compile dataDependencies.androidAnnotations
+  compile dataDependencies.retrofit2
+  compile dataDependencies.retrofit2ConverterGson
+  compile dataDependencies.retrofit2AdapterRxjava2
 
   testCompile testDependencies.junit
   testCompile testDependencies.assertj
