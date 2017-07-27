@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string city="app_name">Android Clean Architecture</string>
-  <string city="url">http://www.android10.org/</string>
+  <string name="app_name">Android Clean Architecture</string>
+  <string name="url">http://www.android10.org/</string>
 
-  <string city="activity_title_user_list">Users List</string>
-  <string city="activity_title_user_details">User Details</string>
+  <string name="activity_title_user_list">Users List</string>
+  <string name="activity_title_user_details">User Details</string>
 
-  <string city="btn_text_load_data">Load Sample Data</string>
-  <string city="btn_text_retry">Retry</string>
+  <string name="btn_text_load_data">Load Sample Data</string>
+  <string name="btn_text_retry">Retry</string>
 
-  <string city="view_text_email">Email:</string>
-  <string city="view_text_followers">Followers:</string>
-  <string city="view_text_description">Description:</string>
+  <string name="view_text_email">Email:</string>
+  <string name="view_text_followers">Followers:</string>
+  <string name="view_text_description">Description:</string>
 
-  <string city="string_content_description">Non accessible view</string>
+  <string name="string_content_description">Non accessible view</string>
 
   //Exception messages
-  <string city="exception_message_generic">There was an application error</string>
-  <string city="exception_message_no_connection">There is no internet connection</string>
-  <string city="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
+  <string name="exception_message_generic">There was an application error</string>
+  <string name="exception_message_no_connection">There is no internet connection</string>
+  <string name="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
 </resources>
