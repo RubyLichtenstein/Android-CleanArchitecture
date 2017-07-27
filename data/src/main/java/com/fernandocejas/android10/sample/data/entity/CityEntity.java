@@ -5,19 +5,23 @@ package com.fernandocejas.android10.sample.data.entity;
  */
 
 public class CityEntity {
-  private String name;
+  private String city;
   private String id;
 
-  public CityEntity(String name, String id) {
-    this.name = name;
+  public CityEntity(String city, String id) {
+    this.city = city;
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getCity() {
+    return city;
   }
 
   public String getId() {
     return id;
+  }
+
+  @Override public String toString() {
+    return "CityEntity{" + "city='" + city + '\'' + ", id='" + id + '\'' + '}';
   }
 }

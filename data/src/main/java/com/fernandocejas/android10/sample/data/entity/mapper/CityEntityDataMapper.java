@@ -20,7 +20,7 @@ import javax.inject.Singleton;
   public City transform(CityEntity cityEntity) {
     City city = null;
     if (cityEntity != null) {
-      city = new City(cityEntity.getName(), cityEntity.getId());
+      city = new City(cityEntity.getCity(), cityEntity.getId());
     }
     return city;
   }

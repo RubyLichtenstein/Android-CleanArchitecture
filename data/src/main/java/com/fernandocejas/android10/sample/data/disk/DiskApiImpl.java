@@ -35,7 +35,7 @@ public class DiskApiImpl implements DiskApi {
     return Observable.create(e -> {
       //todo check what haapen with the excption is rx handle it?!
       String citiesJson = assetsReader.readFromAssets(fileName);
-      cityEntityJsonMapper.transformCityEntityCollection(citiesJson);
+      cityEntityJsonMapper.transformCitiesEntity(citiesJson);
     });
   }
 }

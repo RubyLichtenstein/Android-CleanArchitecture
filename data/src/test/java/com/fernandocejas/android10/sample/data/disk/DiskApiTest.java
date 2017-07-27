@@ -42,7 +42,7 @@ import static org.mockito.Mockito.when;
   @Test public void cityEntityListHappyCase() throws IOException {
     List<CityEntity> cityEntityList = new ArrayList<>();
     when(mockAssetsReader.readFromAssets(FAKE_FILE_NAME)).thenReturn(FAKE_FILE_CONTENT);
-    when(mockCityEntityJsonMapper.transformCityEntityCollection(FAKE_FILE_CONTENT)).thenReturn(
+    when(mockCityEntityJsonMapper.transformCitiesEntity(FAKE_FILE_CONTENT)).thenReturn(
         cityEntityList);
 
     diskApi.cityEntityList().subscribe(cityEntities -> {
@@ -50,7 +50,7 @@ import static org.mockito.Mockito.when;
     });
 
     verify(mockAssetsReader).readFromAssets(FAKE_FILE_NAME);
-    verify(mockCityEntityJsonMapper).transformCityEntityCollection(FAKE_FILE_CONTENT);
+    verify(mockCityEntityJsonMapper).transformCitiesEntity(FAKE_FILE_CONTENT);
   }
 
   @Test public void cityEntityListThrowExceptionCase() throws IOException {
