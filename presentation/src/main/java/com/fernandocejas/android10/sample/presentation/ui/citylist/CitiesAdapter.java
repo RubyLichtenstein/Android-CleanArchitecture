@@ -19,8 +19,8 @@ import com.jakewharton.rxbinding2.view.RxView;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.PublishSubject;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -38,7 +38,7 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityViewHo
   @Inject CitiesAdapter(Context context) {
     this.layoutInflater =
         (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    this.citiesCollection = Collections.emptyList();
+    this.citiesCollection = new ArrayList<>();
     onItemClickSubject = PublishSubject.create();
   }
 
@@ -70,6 +70,12 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityViewHo
     this.validateCitiesCollection(citiesCollection);
     this.citiesCollection = (List<CityModel>) citiesCollection;
     this.notifyDataSetChanged();
+  }
+
+  public void addCityModel(CityModel cityModel) {
+    //todo validate ?
+    this.citiesCollection.add(cityModel);
+    this.notifyItemInserted(getItemCount() - 1);
   }
 
   private void validateCitiesCollection(Collection<CityModel> cityModelCollection) {

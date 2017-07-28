@@ -33,7 +33,7 @@ import javax.inject.Singleton;
     this.cityEntityJsonMapper = cityEntityJsonMapper;
   }
 
-  @Override public Observable<List<CityEntity>> cityEntityList() {
+  @Override public Observable<CityEntity> cityEntityList() {
     return Observable.create(e -> {
       String citiesJson = null;
       try {
@@ -42,7 +42,9 @@ import javax.inject.Singleton;
         e.onError(exc);
       }
       List<CityEntity> cityEntities = cityEntityJsonMapper.transformCitiesEntity(citiesJson);
-      e.onNext(cityEntities);
+      for (CityEntity cityEntity : cityEntities) {
+        e.onNext(cityEntity);
+      }
       e.onComplete();
     });
   }

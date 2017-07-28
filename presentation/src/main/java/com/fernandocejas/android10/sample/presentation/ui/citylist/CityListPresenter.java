@@ -13,7 +13,6 @@ import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.presenter.Presenter;
 import io.reactivex.functions.Consumer;
 import java.util.Collection;
-import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -106,11 +105,16 @@ import javax.inject.Inject;
     this.cityListView.renderCityList(cityModelsCollection);
   }
 
+  private void showCityInView(City city) {
+    final CityModel cityModels = this.cityModelDataMapper.transform(city);
+    this.cityListView.renderCity(cityModels);
+  }
+
   private void getCityList() {
     this.getCityListUseCase.execute(new CityListObserver(), null);
   }
 
-  private final class CityListObserver extends DefaultObserver<List<City>> {
+  private final class CityListObserver extends DefaultObserver<City> {
 
     @Override public void onComplete() {
       CityListPresenter.this.hideViewLoading();
@@ -122,8 +126,8 @@ import javax.inject.Inject;
       CityListPresenter.this.showViewRetry();
     }
 
-    @Override public void onNext(List<City> cities) {
-      CityListPresenter.this.showCityCollectionInView(cities);
+    @Override public void onNext(City city) {
+      CityListPresenter.this.showCityInView(city);
     }
   }
 }

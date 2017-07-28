@@ -7,14 +7,13 @@ import com.fernandocejas.android10.sample.domain.logic.CitySorter;
 import com.fernandocejas.android10.sample.domain.logic.CitySorterImpl;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import io.reactivex.Observable;
-import java.util.List;
 import javax.inject.Inject;
 
 /**
  * Created by Ruby on 7/26/2017.
  */
 
-public class GetCityList extends UseCase<List<City>, Void> {
+public class GetCityList extends UseCase<City, Void> {
 
   private final CityRepository cityRepository;
   private final CitySorter citySorter;
@@ -27,7 +26,7 @@ public class GetCityList extends UseCase<List<City>, Void> {
     this.citySorter = new CitySorterImpl();
   }
 
-  @Override Observable<List<City>> buildUseCaseObservable(Void unused) {
-    return this.cityRepository.cites().compose(citySorter.applyListSort());
+  @Override Observable<City> buildUseCaseObservable(Void unused) {
+    return this.cityRepository.cites().compose(citySorter.applySort());
   }
 }

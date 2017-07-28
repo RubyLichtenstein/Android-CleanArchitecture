@@ -117,6 +117,12 @@ public class CityListFragment extends BaseFragment implements CityListView {
     }
   }
 
+  @Override public void renderCity(CityModel cityModel) {
+    if (cityModel != null) {
+      this.citiesAdapter.addCityModel(cityModel);
+    }
+  }
+
   @Override public void viewWeather(CityModel cityModel) {
 
   }

@@ -17,6 +17,8 @@ public interface CityListView extends LoadDataView {
    */
   void renderCityList(Collection<CityModel> cityModelCollection);
 
+  void renderCity(CityModel cityModel);
+
   /**
    * View a {@link CityModel} name.
    *
