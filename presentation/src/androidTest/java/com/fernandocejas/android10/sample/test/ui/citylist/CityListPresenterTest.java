@@ -2,7 +2,7 @@ package com.fernandocejas.android10.sample.test.ui.citylist;
 
 import android.content.Context;
 import com.fernandocejas.android10.sample.domain.interactor.GetCityList;
-import com.fernandocejas.android10.sample.presentation.mapper.UserModelDataMapper;
+import com.fernandocejas.android10.sample.presentation.mapper.CityModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.ui.citylist.CityListPresenter;
 import com.fernandocejas.android10.sample.presentation.ui.citylist.CityListView;
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.verify;
   @Mock private Context mockContext;
   @Mock private CityListView mockCityListView;
   @Mock private GetCityList mockGetCityList;
-  @Mock private UserModelDataMapper mockUserModelDataMapper;
+  @Mock private CityModelDataMapper mockCityModelDataMapper;
 
   @Before
   public void setUp() {
