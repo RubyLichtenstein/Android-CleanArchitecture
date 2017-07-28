@@ -1,4 +1,4 @@
-package com.fernandocejas.android10.sample.data.net;
+package com.fernandocejas.android10.sample.data.net.retrofit;
 
 /**
  * Created by Ruby on 7/27/2017.

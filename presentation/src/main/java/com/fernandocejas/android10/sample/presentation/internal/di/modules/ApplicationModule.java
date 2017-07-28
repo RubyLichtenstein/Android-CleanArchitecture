@@ -16,7 +16,16 @@
 package com.fernandocejas.android10.sample.presentation.internal.di.modules;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import com.fernandocejas.android10.sample.data.disk.AssetsReaderImpl;
+import com.fernandocejas.android10.sample.data.disk.DiskApi;
+import com.fernandocejas.android10.sample.data.disk.DiskApiImpl;
+import com.fernandocejas.android10.sample.data.disk.StreamReader;
+import com.fernandocejas.android10.sample.data.disk.StreamReaderImpl;
+import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityJsonMapper;
 import com.fernandocejas.android10.sample.data.executor.JobExecutor;
+import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
+import com.fernandocejas.android10.sample.data.net.WeatherRestApiImpl;
 import com.fernandocejas.android10.sample.data.repository.CityDataRepository;
 import com.fernandocejas.android10.sample.data.repository.WeatherDataRepository;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
@@ -33,6 +42,7 @@ import javax.inject.Singleton;
  * Dagger module that provides objects which will live during the application lifecycle.
  */
 @Module public class ApplicationModule {
+  public static final String CITIES_FILE_NAME = "cities.txt";
   private final AndroidApplication application;
 
   public ApplicationModule(AndroidApplication application) {
@@ -65,8 +75,24 @@ import javax.inject.Singleton;
     return weatherDataRepository;
   }
 
-  @Provides @Singleton CityRepository provideCityRepository(
-      CityDataRepository cityDataRepository) {
+  @Provides @Singleton CityRepository provideCityRepository(CityDataRepository cityDataRepository) {
     return cityDataRepository;
+  }
+
+  @Provides @Singleton WeatherRestApi provideWeatherRestApi(WeatherRestApiImpl weatherRestApi) {
+    return weatherRestApi;
+  }
+
+  @Provides @Singleton DiskApi provideDiskApi(AssetsReaderImpl assetsReader,
+      CityEntityJsonMapper cityEntityJsonMapper) {
+    return new DiskApiImpl(CITIES_FILE_NAME, assetsReader, cityEntityJsonMapper);
+  }
+
+  @Provides @Singleton StreamReader provideStreamReader(StreamReaderImpl streamReader) {
+    return streamReader;
+  }
+
+  @Provides @Singleton AssetManager provideAssetManager() {
+    return application.getAssets();
   }
 }

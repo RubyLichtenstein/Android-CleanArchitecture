@@ -1,4 +1,4 @@
-package com.fernandocejas.android10.sample.data.net;
+package com.fernandocejas.android10.sample.data.net.retrofit;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

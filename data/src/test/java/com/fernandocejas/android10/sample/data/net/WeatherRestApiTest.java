@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.data.net;
 
+import com.fernandocejas.android10.sample.data.net.retrofit.WeatherRestApiI;
 import org.mockito.InjectMocks;
 
 /**
@@ -8,7 +9,7 @@ import org.mockito.InjectMocks;
 
 public class WeatherRestApiTest {
 
-  @InjectMocks private WeatherRestApi weatherRestApi;
+  @InjectMocks private WeatherRestApiI weatherRestApi;
 
   //@Mock private final WeatherRestApi weatherRestApi;
 }

@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.view.Window;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
- import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUserComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
 import com.fernandocejas.android10.sample.presentation.view.activity.BaseActivity;
 
 /**
