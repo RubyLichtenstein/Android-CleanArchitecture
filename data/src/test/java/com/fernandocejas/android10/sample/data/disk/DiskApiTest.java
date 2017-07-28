@@ -1,10 +1,10 @@
 package com.fernandocejas.android10.sample.data.disk;
 
+import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.data.ApplicationTestCase;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityJsonMapper;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.TestObserver;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,9 @@ import static org.mockito.Mockito.when;
   final String FAKE_FILE_NAME = "fake_name";
   final String FAKE_FILE_CONTENT = "";
 
+  private final String CITY = "London";
+  private final String CITY_ID = "1234";
+
   private DiskApiImpl diskApi;
 
   @Mock private AssetsReader mockAssetsReader;
@@ -40,42 +43,37 @@ import static org.mockito.Mockito.when;
 
   //todo test null pointer exception
   @Test public void cityEntityListHappyCase() throws IOException {
-    List<CityEntity> cityEntityList = new ArrayList<>();
+    List<CityEntity> cityEntityToEmit = createCityEntities();
     when(mockAssetsReader.readFromAssets(FAKE_FILE_NAME)).thenReturn(FAKE_FILE_CONTENT);
     when(mockCityEntityJsonMapper.transformCitiesEntity(FAKE_FILE_CONTENT)).thenReturn(
-        cityEntityList);
+        cityEntityToEmit);
 
-    diskApi.cityEntityList().subscribe(cityEntities -> {
+    TestObserver<List<CityEntity>> testObserver = new TestObserver<>();
+    diskApi.cityEntityList().subscribe(testObserver);
+    testObserver.assertComplete();
+    testObserver.assertNoErrors();
 
-    });
+    assertThat(testObserver.values().get(0)).isEqualTo(cityEntityToEmit);
+    assertThat(testObserver.valueCount()).isEqualTo(1);
 
     verify(mockAssetsReader).readFromAssets(FAKE_FILE_NAME);
     verify(mockCityEntityJsonMapper).transformCitiesEntity(FAKE_FILE_CONTENT);
+  }
+
+  @NonNull private List<CityEntity> createCityEntities() {
+    return new ArrayList<CityEntity>() {{
+      add(new CityEntity(CITY, CITY_ID));
+    }};
   }
 
   @Test public void cityEntityListThrowExceptionCase() throws IOException {
 
     when(mockAssetsReader.readFromAssets(FAKE_FILE_NAME)).thenThrow(ioException);
 
-    diskApi.cityEntityList().subscribe(new Observer<List<CityEntity>>() {
-      @Override public void onSubscribe(Disposable d) {
+    TestObserver<List<CityEntity>> testObserver = new TestObserver<>();
+    diskApi.cityEntityList().subscribe(testObserver);
 
-      }
-
-      @Override public void onNext(List<CityEntity> value) {
-        //todo assert not emit??
-      }
-
-      @Override public void onError(Throwable e) {
-        assertThat(e).isEqualTo(ioException);
-      }
-
-      @Override public void onComplete() {
-
-      }
-    });
-
-    //verify(mockAssetsReader).readFromAssets(FAKE_FILE_NAME).th;
-    //verify(mockCityEntityJsonMapper).transformCityEntityCollection(FAKE_FILE_CONTENT);
+    testObserver.assertError(ioException);
+    testObserver.assertNotComplete();
   }
 }

@@ -3,6 +3,7 @@ package com.fernandocejas.android10.sample.data.disk;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityJsonMapper;
 import io.reactivex.Observable;
+import java.io.IOException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -11,15 +12,14 @@ import javax.inject.Singleton;
  * Created by Ruby on 7/26/2017.
  */
 
-@Singleton
-public class DiskApiImpl implements DiskApi {
+@Singleton public class DiskApiImpl implements DiskApi {
 
   private final String fileName;
   private final AssetsReader assetsReader;
   private final CityEntityJsonMapper cityEntityJsonMapper;
 
-  @Inject
-  public DiskApiImpl(String fileName, AssetsReader assetsReader, CityEntityJsonMapper cityEntityJsonMapper) {
+  @Inject public DiskApiImpl(String fileName, AssetsReader assetsReader,
+      CityEntityJsonMapper cityEntityJsonMapper) {
 
     //todo test nulp
     // TODO: 7/26/2017 use predictions? or nonull
@@ -35,9 +35,15 @@ public class DiskApiImpl implements DiskApi {
 
   @Override public Observable<List<CityEntity>> cityEntityList() {
     return Observable.create(e -> {
-      //todo check what haapen with the excption is rx handle it?!
-      String citiesJson = assetsReader.readFromAssets(fileName);
-      cityEntityJsonMapper.transformCitiesEntity(citiesJson);
+      String citiesJson = null;
+      try {
+        citiesJson = assetsReader.readFromAssets(fileName);
+      } catch (IOException exc) {
+        e.onError(exc);
+      }
+      List<CityEntity> cityEntities = cityEntityJsonMapper.transformCitiesEntity(citiesJson);
+      e.onNext(cityEntities);
+      e.onComplete();
     });
   }
 }

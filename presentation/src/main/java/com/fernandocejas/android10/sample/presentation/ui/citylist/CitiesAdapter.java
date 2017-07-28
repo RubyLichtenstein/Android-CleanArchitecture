@@ -29,7 +29,7 @@ import javax.inject.Inject;
  */
 public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityViewHolder> {
 
-  //todo deispose!
+  //todo dispose!
   private PublishSubject<CityModel> onItemClickSubject;
 
   private List<CityModel> citiesCollection;

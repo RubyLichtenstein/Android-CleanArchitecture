@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.data.entity.mapper;
 
+import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.data.entity.CitiesEntity;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.google.gson.Gson;
@@ -22,7 +23,7 @@ public class CityEntityJsonMapper {
     this.gson = new Gson();
   }
 
-  public List<CityEntity> transformCitiesEntity(String citiesJson) throws JsonSyntaxException {
+  public List<CityEntity> transformCitiesEntity(@NonNull String citiesJson) throws JsonSyntaxException {
     final Type citiesEntityType = new TypeToken<CitiesEntity>() {
     }.getType();
     CitiesEntity citiesEntity = this.gson.fromJson(citiesJson, citiesEntityType);
