@@ -95,4 +95,33 @@ public class WeatherModel {
   public void setTempMaxFahrenheit(float tempMaxFahrenheit) {
     this.tempMaxFahrenheit = tempMaxFahrenheit;
   }
+
+  @Override public String toString() {
+    return "WeatherModel{"
+        + "cityName='"
+        + cityName
+        + '\''
+        + ", main='"
+        + main
+        + '\''
+        + ", description='"
+        + description
+        + '\''
+        + ", icon='"
+        + icon
+        + '\''
+        + ", tempCelsius="
+        + tempCelsius
+        + ", tempMinCelsius="
+        + tempMinCelsius
+        + ", tempMaxCelsius="
+        + tempMaxCelsius
+        + ", tempFahrenheit="
+        + tempFahrenheit
+        + ", tempMinFahrenheit="
+        + tempMinFahrenheit
+        + ", tempMaxFahrenheit="
+        + tempMaxFahrenheit
+        + '}';
+  }
 }

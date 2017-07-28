@@ -16,6 +16,7 @@ import com.fernandocejas.android10.sample.presentation.view.activity.BaseActivit
 
 public class CityListActivity extends BaseActivity implements HasComponent<UserComponent> {
 
+
   public static Intent getCallingIntent(Context context) {
     return new Intent(context, CityListActivity.class);
   }
@@ -28,6 +29,7 @@ public class CityListActivity extends BaseActivity implements HasComponent<UserC
     setContentView(R.layout.activity_layout);
 
     this.initializeInjector();
+
     if (savedInstanceState == null) {
       addFragment(R.id.fragmentContainer, new CityListFragment());
     }

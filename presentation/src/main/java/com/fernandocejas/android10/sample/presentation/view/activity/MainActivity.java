@@ -8,6 +8,7 @@ import com.fernandocejas.android10.sample.presentation.R;
  */
 public class MainActivity extends BaseActivity {
 
+
   //todo to nice welcome screen
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

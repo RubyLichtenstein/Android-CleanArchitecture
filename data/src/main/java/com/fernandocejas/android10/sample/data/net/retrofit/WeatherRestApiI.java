@@ -18,6 +18,7 @@ package com.fernandocejas.android10.sample.data.net.retrofit;
 import com.fernandocejas.android10.sample.data.entity.WeatherEntity;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * RestApi for retrieving data from the network.
@@ -28,6 +29,6 @@ public interface WeatherRestApiI {
    *
    * @param cityId The city id used to get weather data.
    */
-  @GET(Config.GET_WEATHER_PATH)
-  Observable<WeatherEntity> WeatherEntityByCityId(final int cityId);
+  @GET(Config.GET_WEATHER_PATH) Observable<WeatherEntity> WeatherEntityByCityId(
+      @Query("id") int cityId, @Query("units") String units, @Query("APPID") String appId);
 }

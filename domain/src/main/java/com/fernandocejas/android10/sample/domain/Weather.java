@@ -69,4 +69,27 @@ public class Weather {
   public void setTempMax(float tempMax) {
     this.tempMax = tempMax;
   }
+
+  @Override public String toString() {
+    return "Weather{"
+        + "name='"
+        + name
+        + '\''
+        + ", main='"
+        + main
+        + '\''
+        + ", description='"
+        + description
+        + '\''
+        + ", icon='"
+        + icon
+        + '\''
+        + ", temp="
+        + temp
+        + ", tempMin="
+        + tempMin
+        + ", tempMax="
+        + tempMax
+        + '}';
+  }
 }

@@ -16,8 +16,6 @@
 package com.fernandocejas.android10.sample.presentation.internal.di.components;
 
 import android.content.Context;
-import com.fernandocejas.android10.sample.data.entity.mapper.WeatherEntityDataMapper;
-import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
@@ -41,6 +39,4 @@ public interface ApplicationComponent {
   WeatherRepository weatherRepository();
   PostExecutionThread postExecutionThread();
   CityRepository cityRepository();
-  WeatherRestApi weatherRestApi();
-  WeatherEntityDataMapper weatherEntityDataMapper();
 }

@@ -2,7 +2,7 @@ package com.fernandocejas.android10.sample.data.repository;
 
 import com.fernandocejas.android10.sample.data.entity.WeatherEntity;
 import com.fernandocejas.android10.sample.data.entity.mapper.WeatherEntityDataMapper;
-import com.fernandocejas.android10.sample.data.net.retrofit.WeatherRestApiI;
+import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
 import com.fernandocejas.android10.sample.domain.Weather;
 import io.reactivex.Observable;
 import org.junit.Before;
@@ -25,7 +25,7 @@ import static org.mockito.Mockito.verify;
 
   @InjectMocks private WeatherDataRepository weatherDataRepository;
 
-  @Mock private WeatherRestApiI mockWeatherRestApi;
+  @Mock private WeatherRestApi mockWeatherRestApi;
   @Mock private WeatherEntityDataMapper mockWeatherEntityDataMapper;
 
   @Before public void setUp() {
