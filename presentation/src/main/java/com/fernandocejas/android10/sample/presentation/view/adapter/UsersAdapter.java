@@ -13,6 +13,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
+import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.model.UserModel;
 import java.util.Collection;
 import java.util.Collections;
@@ -20,7 +21,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Adaptar that manages a collection of {@link UserModel}.
+ * Adaptar that manages a collection of {@link CityModel}.
  */
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 

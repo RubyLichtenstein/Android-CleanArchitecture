@@ -23,7 +23,7 @@ import com.fernandocejas.android10.sample.presentation.model.UserModel;
 import com.fernandocejas.android10.sample.presentation.presenter.UserListPresenter;
 import com.fernandocejas.android10.sample.presentation.view.UserListView;
 import com.fernandocejas.android10.sample.presentation.view.adapter.UsersAdapter;
-import com.fernandocejas.android10.sample.presentation.view.adapter.UsersLayoutManager;
+import com.fernandocejas.android10.sample.presentation.view.adapter.CitiesLayoutManager;
 import java.util.Collection;
 import javax.inject.Inject;
 
@@ -67,7 +67,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    final View fragmentView = inflater.inflate(R.layout.fragment_user_list, container, false);
+    final View fragmentView = inflater.inflate(R.layout.city_list_fragment, container, false);
     ButterKnife.bind(this, fragmentView);
     setupRecyclerView();
     return fragmentView;
@@ -147,7 +147,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
 
   private void setupRecyclerView() {
     this.usersAdapter.setOnItemClickListener(onItemClickListener);
-    this.rv_users.setLayoutManager(new UsersLayoutManager(context()));
+    this.rv_users.setLayoutManager(new CitiesLayoutManager(context()));
     this.rv_users.setAdapter(usersAdapter);
   }
 

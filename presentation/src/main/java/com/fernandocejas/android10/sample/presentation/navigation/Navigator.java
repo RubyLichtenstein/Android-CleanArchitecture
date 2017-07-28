@@ -17,6 +17,7 @@ package com.fernandocejas.android10.sample.presentation.navigation;
 
 import android.content.Context;
 import android.content.Intent;
+import com.fernandocejas.android10.sample.presentation.ui.citylist.CityListActivity;
 import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserDetailsActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserListActivity;
@@ -42,6 +43,13 @@ public class Navigator {
   public void navigateToUserList(Context context) {
     if (context != null) {
       Intent intentToLaunch = UserListActivity.getCallingIntent(context);
+      context.startActivity(intentToLaunch);
+    }
+  }
+
+  public void navigateToCityList(Context context) {
+    if (context != null) {
+      Intent intentToLaunch = CityListActivity.getCallingIntent(context);
       context.startActivity(intentToLaunch);
     }
   }

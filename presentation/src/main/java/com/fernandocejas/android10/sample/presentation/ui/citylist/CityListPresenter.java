@@ -11,6 +11,7 @@ import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.CityModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.presenter.Presenter;
+import io.reactivex.functions.Consumer;
 import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
@@ -54,6 +55,12 @@ import javax.inject.Inject;
    */
   public void initialize() {
     this.loadCityList();
+    //todo dispose
+    this.cityListView.viewWeather().subscribe(new Consumer<CityModel>() {
+      @Override public void accept(CityModel cityModel) throws Exception {
+        CityListPresenter.this.cityListView.viewWeather(cityModel);
+      }
+    });
   }
 
   private void loadCityList() {
@@ -63,7 +70,7 @@ import javax.inject.Inject;
   }
 
   public void onCityClicked(CityModel cityModel) {
-    this.cityListView.viewCity(cityModel);
+    this.cityListView.viewWeather(cityModel);
   }
 
   private void showViewLoading() {

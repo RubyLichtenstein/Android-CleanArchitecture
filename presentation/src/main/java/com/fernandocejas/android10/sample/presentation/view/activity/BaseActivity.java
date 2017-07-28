@@ -15,10 +15,9 @@ import javax.inject.Inject;
  */
 public abstract class BaseActivity extends Activity {
 
-  @Inject Navigator navigator;
+  @Inject protected Navigator navigator;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.getApplicationComponent().inject(this);
   }

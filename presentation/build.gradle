@@ -72,6 +72,7 @@ dependencies {
   compile presentationDependencies.recyclerView
   compile presentationDependencies.rxJava
   compile presentationDependencies.rxAndroid
+  compile presentationDependencies.rxBinding
   compile presentationDependencies.constraintLayout
   provided presentationDependencies.javaxAnnotation
 

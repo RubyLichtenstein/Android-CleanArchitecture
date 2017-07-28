@@ -10,8 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 /**
  * Layout manager to position items inside a {@link android.support.v7.widget.RecyclerView}.
  */
-public class UsersLayoutManager extends LinearLayoutManager {
-  public UsersLayoutManager(Context context) {
+public class CitiesLayoutManager extends LinearLayoutManager {
+  public CitiesLayoutManager(Context context) {
     super(context);
   }
 }

@@ -2,6 +2,7 @@ package com.fernandocejas.android10.sample.presentation.ui.citylist;
 
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.view.LoadDataView;
+import io.reactivex.Observable;
 import java.util.Collection;
 
 /**
@@ -21,5 +22,7 @@ public interface CityListView extends LoadDataView {
    *
    * @param cityModel The city that will be shown.
    */
-  void viewCity(CityModel cityModel);
+  void viewWeather(CityModel cityModel);
+
+  Observable<CityModel> viewWeather();
 }
