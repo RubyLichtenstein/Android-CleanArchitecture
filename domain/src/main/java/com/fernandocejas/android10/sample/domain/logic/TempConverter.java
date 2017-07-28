@@ -5,7 +5,7 @@ package com.fernandocejas.android10.sample.domain.logic;
  */
 
 public interface TempConverter {
-  float fahrenheitToCelsius(float fahrenheit);
+  float toCelsius(float fahrenheit);
 
-  float celsiusToFahrenheit(float Celsius);
+  float toFahrenheit(float Celsius);
 }

@@ -32,6 +32,10 @@ import com.fernandocejas.android10.sample.data.repository.CityDataRepository;
 import com.fernandocejas.android10.sample.data.repository.WeatherDataRepository;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
+import com.fernandocejas.android10.sample.domain.interactor.GetCityList;
+import com.fernandocejas.android10.sample.domain.logic.CitySorter;
+import com.fernandocejas.android10.sample.domain.logic.CitySorterImpl;
+import com.fernandocejas.android10.sample.domain.logic.WeatherTempCalc;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
@@ -63,14 +67,18 @@ import javax.inject.Singleton;
     return uiThread;
   }
 
-  //@Provides @Singleton UserCache provideUserCache(UserCacheImpl userCache) {
-  //  return userCache;
-  //}
+  //todo bug!
+  @Provides CitySorter provideCitySorter(CitySorterImpl citySorter) {
+    return citySorter;
+  }
 
-  //@Provides @Singleton UserRepository provideUserRepository(UserDataRepository userDataRepository) {
-  //  return userDataRepository;
-  //}
-  //
+  @Provides WeatherTempCalc provideWeatherTempCalc(WeatherTempCalc weatherTempCalc) {
+    return weatherTempCalc;
+  }
+
+  @Provides GetCityList provideGetCityList(GetCityList getCityList) {
+    return getCityList;
+  }
 
   @Provides @Singleton WeatherRepository provideWeatherRepository(
       WeatherDataRepository weatherDataRepository) {
@@ -85,7 +93,7 @@ import javax.inject.Singleton;
     return new WeatherRestApiFactory(Config.API_BASE_URL);
   }
 
- @Provides @Singleton WeatherRestApi provideWeatherRestApi(WeatherRestApiImpl weatherRestApi) {
+  @Provides @Singleton WeatherRestApi provideWeatherRestApi(WeatherRestApiImpl weatherRestApi) {
     return weatherRestApi;
   }
 

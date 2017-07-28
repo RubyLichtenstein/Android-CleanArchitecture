@@ -2,12 +2,15 @@ package com.fernandocejas.android10.sample.data.entity.mapper;
 
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.fernandocejas.android10.sample.domain.City;
+import com.fernandocejas.android10.sample.domain.logic.CitySorter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,10 +26,13 @@ import static org.mockito.Mockito.mock;
   private final String LONDON = "London";
   private final String LONDON_ID = "2643743";
 
-  private CityEntityDataMapper cityEntityDataMapper;
+  @InjectMocks private CityEntityDataMapper cityEntityDataMapper;
+
+  //todo
+  @Mock CitySorter mockCitySorter;
 
   @Before public void setUp() throws Exception {
-    cityEntityDataMapper = new CityEntityDataMapper();
+
   }
 
   @Test public void testTransformCityEntity() {

@@ -91,9 +91,9 @@ import static org.hamcrest.Matchers.is;
     assertThat(weather.getDescription(), is(weatherEntity.getWeather().get(0).getDescription()));
     assertThat(weather.getIcon(), is(weatherEntity.getWeather().get(0).getIcon()));
     assertThat(weather.getName(), is(weatherEntity.getName()));
-    assertThat(weather.getTemp(), is(weatherEntity.getMain().getTemp()));
-    assertThat(weather.getTempMax(), is(weatherEntity.getMain().getTempMax()));
-    assertThat(weather.getTempMin(), is(weatherEntity.getMain().getTempMin()));
+    assertThat(weather.getTempCelsius(), is(weatherEntity.getMain().getTemp()));
+    assertThat(weather.getTempCelsiusMax(), is(weatherEntity.getMain().getTempMax()));
+    assertThat(weather.getTempCelsiusMin(), is(weatherEntity.getMain().getTempMin()));
   }
 
   private WeatherEntity createWeatherEntity() {

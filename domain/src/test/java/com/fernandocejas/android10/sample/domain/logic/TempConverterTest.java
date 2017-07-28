@@ -22,13 +22,13 @@ public class TempConverterTest {
 
   @Test public void testFahrenheitToCelsius() {
     for (int i = 0; i < tempCelsius.length; i++) {
-      assertThat(tempCelsius[i]).isEqualTo(tempConverter.fahrenheitToCelsius(tempFahrenheit[i]));
+      assertThat(tempCelsius[i]).isEqualTo(tempConverter.toCelsius(tempFahrenheit[i]));
     }
   }
 
   @Test public void testCelsiusToFahrenheit() {
     for (int i = 0; i < tempCelsius.length; i++) {
-      assertThat(tempFahrenheit[i]).isEqualTo(tempConverter.celsiusToFahrenheit(tempCelsius[i]));
+      assertThat(tempFahrenheit[i]).isEqualTo(tempConverter.toFahrenheit(tempCelsius[i]));
     }
   }
 }

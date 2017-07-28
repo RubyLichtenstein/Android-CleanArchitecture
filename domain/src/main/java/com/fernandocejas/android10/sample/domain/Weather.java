@@ -10,9 +10,12 @@ public class Weather {
   private String main;
   private String description;
   private String icon;
-  private float temp;
-  private float tempMin;
-  private float tempMax;
+  private float tempCelsius;
+  private float tempCelsiusMin;
+  private float tempCelsiusMax;
+  private float tempFahrenheit;
+  private float tempFahrenheitMin;
+  private float tempFahrenheitMax;
 
   public String getName() {
     return name;
@@ -46,50 +49,51 @@ public class Weather {
     this.icon = icon;
   }
 
-  public float getTemp() {
-    return temp;
+  public float getTempCelsius() {
+    return tempCelsius;
   }
 
-  public void setTemp(float temp) {
-    this.temp = temp;
+  public void setTempCelsius(float tempCelsius) {
+    this.tempCelsius = tempCelsius;
   }
 
-  public float getTempMin() {
-    return tempMin;
+  public float getTempCelsiusMin() {
+    return tempCelsiusMin;
   }
 
-  public void setTempMin(float tempMin) {
-    this.tempMin = tempMin;
+  public void setTempCelsiusMin(float tempCelsiusMin) {
+    this.tempCelsiusMin = tempCelsiusMin;
   }
 
-  public float getTempMax() {
-    return tempMax;
+  public float getTempCelsiusMax() {
+    return tempCelsiusMax;
   }
 
-  public void setTempMax(float tempMax) {
-    this.tempMax = tempMax;
+  public void setTempCelsiusMax(float tempCelsiusMax) {
+    this.tempCelsiusMax = tempCelsiusMax;
   }
 
-  @Override public String toString() {
-    return "Weather{"
-        + "name='"
-        + name
-        + '\''
-        + ", main='"
-        + main
-        + '\''
-        + ", description='"
-        + description
-        + '\''
-        + ", icon='"
-        + icon
-        + '\''
-        + ", temp="
-        + temp
-        + ", tempMin="
-        + tempMin
-        + ", tempMax="
-        + tempMax
-        + '}';
+  public float getTempFahrenheit() {
+    return tempFahrenheit;
+  }
+
+  public void setTempFahrenheit(float tempFahrenheit) {
+    this.tempFahrenheit = tempFahrenheit;
+  }
+
+  public float getTempFahrenheitMin() {
+    return tempFahrenheitMin;
+  }
+
+  public void setTempFahrenheitMin(float tempFahrenheitMin) {
+    this.tempFahrenheitMin = tempFahrenheitMin;
+  }
+
+  public float getTempFahrenheitMax() {
+    return tempFahrenheitMax;
+  }
+
+  public void setTempFahrenheitMax(float tempFahrenheitMax) {
+    this.tempFahrenheitMax = tempFahrenheitMax;
   }
 }

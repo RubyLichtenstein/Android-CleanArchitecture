@@ -2,7 +2,6 @@ package com.fernandocejas.android10.sample.data.disk;
 
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import io.reactivex.Observable;
-import java.util.List;
 
 /**
  * Created by Ruby on 7/26/2017.
@@ -10,5 +9,5 @@ import java.util.List;
 
 public interface DiskApi {
 
-  Observable<List<CityEntity>> cityEntityList();
+  Observable<CityEntity> cityEntityList();
 }

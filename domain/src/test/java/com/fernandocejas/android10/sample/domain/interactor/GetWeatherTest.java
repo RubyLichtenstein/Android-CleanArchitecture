@@ -32,7 +32,8 @@ import static org.mockito.Mockito.verifyZeroInteractions;
   @Rule public ExpectedException expectedException = ExpectedException.none();
 
   @Before public void setUp() {
-    getWeather = new GetWeather(mockWeatherRepository, mockThreadExecutor, mockPostExecutionThread);
+    getWeather = new GetWeather(mockWeatherRepository, mockThreadExecutor, mockPostExecutionThread,
+        weatherTempCalc);
   }
 
   @Test public void testGetUserDetailsUseCaseObservableHappyCase() {

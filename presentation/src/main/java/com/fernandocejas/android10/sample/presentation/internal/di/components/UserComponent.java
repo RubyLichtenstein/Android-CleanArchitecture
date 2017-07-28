@@ -32,5 +32,4 @@ public interface UserComponent extends ActivityComponent {
   //todo rename component name
   void inject(CityListFragment cityListFragment);
   void inject(WeatherFragment weatherFragment);
-  //void inject(UserDetailsFragment userDetailsFragment);
 }

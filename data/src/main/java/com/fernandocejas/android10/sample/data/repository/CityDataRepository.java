@@ -24,7 +24,7 @@ import javax.inject.Singleton;
     this.cityEntityDataMapper = cityEntityDataMapper;
   }
 
-  @Override public Observable<List<City>> cites() {
+  @Override public Observable<City> cites() {
     return diskApi.cityEntityList().map(cityEntityDataMapper::transform);
   }
 }

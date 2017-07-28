@@ -2,10 +2,12 @@ package com.fernandocejas.android10.sample.domain.interactor;
 
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
+import com.fernandocejas.android10.sample.domain.logic.CitySorter;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -18,16 +20,17 @@ import static org.mockito.Mockito.verifyZeroInteractions;
  */
 @RunWith(MockitoJUnitRunner.class) public class GetCityListTest {
 
-  private GetCityList getCityList;
+  @InjectMocks private GetCityList getCityList;
 
   @Mock private ThreadExecutor mockThreadExecutor;
   @Mock private PostExecutionThread mockPostExecutionThread;
   @Mock private CityRepository mockCityRepository;
+  @Mock private CitySorter mockCitySorter;
 
   @Before public void setUp() {
-    getCityList = new GetCityList(mockCityRepository, mockThreadExecutor, mockPostExecutionThread);
   }
 
+  //todo!!! add verify mockCitySorter
   @Test public void testGetUserListUseCaseObservableHappyCase() {
     getCityList.buildUseCaseObservable(null);
 
