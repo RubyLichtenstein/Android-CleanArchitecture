@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
@@ -27,14 +27,14 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
 
   @Inject WeatherPresenter weatherPresenter;
 
-  @Bind(R.id.tv_city_name) TextView tvCityName;
-  @Bind(R.id.tv_description) TextView tvDescription;
-  @Bind(R.id.imv_icon) ImageView imvIcon;
-  @Bind(R.id.tv_temp) TextView tvTemp;
-  @Bind(R.id.tv_temp_min_max) TextView tvTempMinMax;
-  @Bind(R.id.btn_celsius) Button btnCelsius;
-  @Bind(R.id.btn_fahrenheit) Button btnFahrenheit;
-  @Bind(R.id.progress_bar) ProgressBar progressBar;
+  @BindView(R.id.tv_city_name) TextView tvCityName;
+  @BindView(R.id.tv_description) TextView tvDescription;
+  @BindView(R.id.imv_icon) ImageView imvIcon;
+  @BindView(R.id.tv_temp) TextView tvTemp;
+  @BindView(R.id.tv_temp_min_max) TextView tvTempMinMax;
+  @BindView(R.id.btn_celsius) Button btnCelsius;
+  @BindView(R.id.btn_fahrenheit) Button btnFahrenheit;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
 
   public static WeatherFragment forCity(int cityId) {
     final WeatherFragment weatherFragment = new WeatherFragment();
@@ -81,7 +81,6 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
 
   @Override public void onDestroyView() {
     super.onDestroyView();
-    ButterKnife.unbind(this);
   }
 
   @Override public void onDestroy() {

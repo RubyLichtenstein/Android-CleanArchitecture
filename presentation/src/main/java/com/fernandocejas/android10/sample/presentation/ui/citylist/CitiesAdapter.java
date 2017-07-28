@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
@@ -79,7 +79,7 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityViewHo
   }
 
   static class CityViewHolder extends RecyclerView.ViewHolder {
-    @Bind(R.id.title) TextView textViewTitle;
+    @BindView(R.id.title) TextView textViewTitle;
 
     CityViewHolder(View itemView) {
       super(itemView);

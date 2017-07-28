@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.domain.Weather;
 import com.fernandocejas.android10.sample.domain.interactor.GetWeather;
@@ -32,8 +32,8 @@ public class CityListFragment extends BaseFragment implements CityListView {
   @Inject CityListPresenter cityListPresenter;
   @Inject CitiesAdapter citiesAdapter;
 
-  @Bind(R.id.rv_cities) RecyclerView rvCities;
-  @Bind(R.id.progress_bar) ProgressBar progressBar;
+  @BindView(R.id.rv_cities) RecyclerView rvCities;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
 
   public CityListFragment() {
     setRetainInstance(true);
@@ -88,7 +88,6 @@ public class CityListFragment extends BaseFragment implements CityListView {
   @Override public void onDestroyView() {
     super.onDestroyView();
     rvCities.setAdapter(null);
-    ButterKnife.unbind(this);
   }
 
   @Override public void onDestroy() {

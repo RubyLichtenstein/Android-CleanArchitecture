@@ -55,7 +55,7 @@ android {
       signingConfig signingConfigs.debug
     }
   }
-  buildToolsVersion '25.0.0'
+  buildToolsVersion '25.0.3'
 }
 
 dependencies {
@@ -66,6 +66,7 @@ dependencies {
   compile project(':domain')
   compile project(':data')
 
+  apt presentationDependencies.butterKnifeCompiler
   apt presentationDependencies.daggerCompiler
   compile presentationDependencies.dagger
   compile presentationDependencies.butterKnife

@@ -16,9 +16,9 @@ ext {
 
   //Libraries
   daggerVersion = '2.11'
-  butterKnifeVersion = '7.0.1'
-  recyclerViewVersion = '21.0.3'
-  rxJavaVersion = '2.0.2'
+  butterKnifeVersion = '8.7.0'
+  recyclerViewVersion = '25.1.1'
+  rxJavaVersion = '2.1.2'
   rxAndroidVersion = '2.0.1'
   javaxAnnotationVersion = '1.0'
   javaxInjectVersion = '1'
@@ -34,9 +34,9 @@ ext {
   robolectricVersion = '3.1.1'
   jUnitVersion = '4.12'
   assertJVersion = '1.7.1'
-  mockitoVersion = '1.9.5'
-  dexmakerVersion = '1.0'
-  espressoVersion = '2.0'
+  mockitoVersion = '2.+'
+  dexmakerVersion = '1.2'
+  espressoVersion = '3.0.0'
   testingSupportLibVersion = '0.1'
 
   //Development
@@ -45,8 +45,9 @@ ext {
   presentationDependencies = [
       daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
       dagger:             "com.google.dagger:dagger:${daggerVersion}",
-      butterKnife:        "com.jakewharton:butterknife:${butterKnifeVersion}",
-      recyclerView:       "com.android.support:recyclerview-v7:${recyclerViewVersion}",
+      butterKnife:         "com.jakewharton:butterknife:${butterKnifeVersion}",
+      butterKnifeCompiler: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+      recyclerView:        "com.android.support:recyclerview-v7:${recyclerViewVersion}",
       rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
       rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
       rxBinding:          "com.jakewharton.rxbinding2:rxbinding:${rxBindingVersion}",
@@ -88,8 +89,6 @@ ext {
       retrofit2:          "com.squareup.retrofit2:retrofit:${retrofitVersion}",
       retrofit2ConverterGson:  "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
       retrofit2AdapterRxjava2: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
-
-
   ]
 
   dataTestDependencies = [
