@@ -9,10 +9,10 @@ allprojects {
 
 ext {
   //Android
-  androidBuildToolsVersion = "24.0.1"
-  androidMinSdkVersion = 15
-  androidTargetSdkVersion = 21
-  androidCompileSdkVersion = 21
+  androidBuildToolsVersion = "26.0.1"
+  androidMinSdkVersion = 21
+  androidTargetSdkVersion = 25
+  androidCompileSdkVersion = 25
 
   //Libraries
   daggerVersion = '2.11'
@@ -36,7 +36,7 @@ ext {
   assertJVersion = '1.7.1'
   mockitoVersion = '2.+'
   dexmakerVersion = '1.2'
-  espressoVersion = '3.0.0'
+  espressoVersion = '2.0' /*3.0.0*/
   testingSupportLibVersion = '0.1'
 
   //Development
