@@ -17,6 +17,7 @@ package com.fernandocejas.android10.sample.presentation.navigation;
 
 import android.content.Context;
 import android.content.Intent;
+import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserDetailsActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserListActivity;
 import javax.inject.Inject;
@@ -53,6 +54,18 @@ public class Navigator {
   public void navigateToUserDetails(Context context, int userId) {
     if (context != null) {
       Intent intentToLaunch = UserDetailsActivity.getCallingIntent(context, userId);
+      context.startActivity(intentToLaunch);
+    }
+  }
+
+  /**
+   * Goes to the weather screen.
+   *
+   * @param context A Context needed to open the destiny activity.
+   */
+  public void navigateToWeather(Context context, int cityId) {
+    if (context != null) {
+      Intent intentToLaunch = WeatherActivity.getCallingIntent(context, cityId);
       context.startActivity(intentToLaunch);
     }
   }

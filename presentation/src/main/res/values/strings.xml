@@ -19,4 +19,11 @@
   <string name="exception_message_generic">There was an application error</string>
   <string name="exception_message_no_connection">There is no internet connection</string>
   <string name="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
+  <string name="london">London</string>
+  <string name="clear_sky">Clear sky</string>
+  <string name="currently_19">Currently 19°</string>
+  <string name="today_15_22">Today 15°-22°</string>
+  <string name="celsius">Celsius</string>
+  <string name="fahrenheit">Fahrenheit</string>
+  <string name="fragment_args_cannot_be_null">Fragment arguments cannot be null</string>
 </resources>

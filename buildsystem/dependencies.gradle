@@ -1,6 +1,9 @@
 allprojects {
   repositories {
     jcenter()
+    maven {
+      url 'https://maven.google.com'
+    }
   }
 }
 
@@ -24,6 +27,7 @@ ext {
   androidAnnotationsVersion = '21.0.3'
   arrowVersion = '1.0.0'
   retrofitVersion = '2.3.0'
+  constraintLayoutVersion = '1.0.2'
 
   //Testing
   robolectricVersion = '3.1.1'
@@ -44,7 +48,8 @@ ext {
       recyclerView:       "com.android.support:recyclerview-v7:${recyclerViewVersion}",
       rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
       rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-      javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+      javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+      constraintLayout:   "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
   ]
 
   presentationTestDependencies = [

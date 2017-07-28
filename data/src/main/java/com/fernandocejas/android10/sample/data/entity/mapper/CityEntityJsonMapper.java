@@ -8,11 +8,13 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Created by Ruby on 7/26/2017.
  */
 
+@Singleton
 public class CityEntityJsonMapper {
   private final Gson gson;
 

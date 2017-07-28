@@ -14,11 +14,6 @@ public class Weather {
   private float tempMin;
   private float tempMax;
 
-  //not include here only in presentation layer
-  //private float tempFahrenheit;
-  //private float tempMinFahrenheit;
-  //private float tempMaxFahrenheit;
-
   public String getName() {
     return name;
   }

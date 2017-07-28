@@ -3,17 +3,19 @@ package com.fernandocejas.android10.sample.data.disk;
 import android.content.res.AssetManager;
 import java.io.IOException;
 import java.io.InputStream;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Created by Ruby on 7/26/2017.
  */
 
-public class AssetsReaderImpl implements AssetsReader {
+@Singleton public class AssetsReaderImpl implements AssetsReader {
 
   private final AssetManager assetManager;
   private final StreamReader fileManager;
 
-  public AssetsReaderImpl(AssetManager assetManager, StreamReader fileManager) {
+  @Inject public AssetsReaderImpl(AssetManager assetManager, StreamReader fileManager) {
     this.assetManager = assetManager;
     this.fileManager = fileManager;
   }

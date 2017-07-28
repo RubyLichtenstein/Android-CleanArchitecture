@@ -4,12 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Created by Ruby on 7/26/2017.
  */
 
-public class StreamReaderImpl implements StreamReader {
+@Singleton public class StreamReaderImpl implements StreamReader {
+
+  @Inject public StreamReaderImpl() {
+  }
+
   public String read(InputStream in) throws IOException {
     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 

@@ -4,12 +4,17 @@ import android.support.annotation.Nullable;
 import com.fernandocejas.android10.sample.data.entity.WeatherEntity;
 import com.fernandocejas.android10.sample.domain.Weather;
 import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Created by Ruby on 7/26/2017.
  */
 
-public class WeatherEntityDataMapper {
+@Singleton public class WeatherEntityDataMapper {
+
+  @Inject public WeatherEntityDataMapper() {
+  }
 
   @Nullable public Weather transform(WeatherEntity weatherEntity) {
     Weather weather = null;

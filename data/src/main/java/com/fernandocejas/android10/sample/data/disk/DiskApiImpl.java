@@ -5,11 +5,13 @@ import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityJsonMappe
 import io.reactivex.Observable;
 import java.util.List;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Created by Ruby on 7/26/2017.
  */
 
+@Singleton
 public class DiskApiImpl implements DiskApi {
 
   private final String fileName;
