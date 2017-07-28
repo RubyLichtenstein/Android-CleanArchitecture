@@ -5,7 +5,7 @@ import com.fernandocejas.android10.sample.domain.City;
 import com.fernandocejas.android10.sample.domain.exception.DefaultErrorBundle;
 import com.fernandocejas.android10.sample.domain.exception.ErrorBundle;
 import com.fernandocejas.android10.sample.domain.interactor.DefaultObserver;
-import com.fernandocejas.android10.sample.domain.interactor.GetCites;
+import com.fernandocejas.android10.sample.domain.interactor.GetCityList;
 import com.fernandocejas.android10.sample.presentation.exception.ErrorMessageFactory;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.CityModelDataMapper;
@@ -24,12 +24,12 @@ import javax.inject.Inject;
 
   private CityListView cityListView;
 
-  private final GetCites getCitesUseCase;
+  private final GetCityList getCityListUseCase;
   private final CityModelDataMapper cityModelDataMapper;
 
-  @Inject
-  public CityListPresenter(GetCites getCitesUseCase, CityModelDataMapper cityModelDataMapper) {
-    this.getCitesUseCase = getCitesUseCase;
+  @Inject public CityListPresenter(GetCityList getCityListUseCase,
+      CityModelDataMapper cityModelDataMapper) {
+    this.getCityListUseCase = getCityListUseCase;
     this.cityModelDataMapper = cityModelDataMapper;
   }
 
@@ -46,7 +46,7 @@ import javax.inject.Inject;
   }
 
   @Override public void destroy() {
-    this.getCitesUseCase.dispose();
+    this.getCityListUseCase.dispose();
     this.cityListView = null;
   }
 
@@ -55,6 +55,11 @@ import javax.inject.Inject;
    */
   public void initialize() {
     this.loadCityList();
+    this.subscribeToViewWeather();
+  }
+
+  //todo rename
+  private void subscribeToViewWeather() {
     //todo dispose
     this.cityListView.viewWeather().subscribe(new Consumer<CityModel>() {
       @Override public void accept(CityModel cityModel) throws Exception {
@@ -102,7 +107,7 @@ import javax.inject.Inject;
   }
 
   private void getCityList() {
-    this.getCitesUseCase.execute(new CityListObserver(), null);
+    this.getCityListUseCase.execute(new CityListObserver(), null);
   }
 
   private final class CityListObserver extends DefaultObserver<List<City>> {

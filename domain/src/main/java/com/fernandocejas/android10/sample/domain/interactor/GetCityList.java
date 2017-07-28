@@ -12,11 +12,11 @@ import javax.inject.Inject;
  * Created by Ruby on 7/26/2017.
  */
 
-public class GetCites extends UseCase<List<City>, Void> {
+public class GetCityList extends UseCase<List<City>, Void> {
 
   private final CityRepository cityRepository;
 
-  @Inject GetCites(CityRepository cityRepository, ThreadExecutor threadExecutor,
+  @Inject GetCityList(CityRepository cityRepository, ThreadExecutor threadExecutor,
       PostExecutionThread postExecutionThread) {
     super(threadExecutor, postExecutionThread);
     this.cityRepository = cityRepository;

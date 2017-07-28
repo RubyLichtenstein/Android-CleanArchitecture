@@ -16,20 +16,20 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 /**
  * Created by Ruby on 7/26/2017.
  */
-@RunWith(MockitoJUnitRunner.class) public class GetCitesTest {
+@RunWith(MockitoJUnitRunner.class) public class GetCityListTest {
 
-  private GetCites getCites;
+  private GetCityList getCityList;
 
   @Mock private ThreadExecutor mockThreadExecutor;
   @Mock private PostExecutionThread mockPostExecutionThread;
   @Mock private CityRepository mockCityRepository;
 
   @Before public void setUp() {
-    getCites = new GetCites(mockCityRepository, mockThreadExecutor, mockPostExecutionThread);
+    getCityList = new GetCityList(mockCityRepository, mockThreadExecutor, mockPostExecutionThread);
   }
 
   @Test public void testGetUserListUseCaseObservableHappyCase() {
-    getCites.buildUseCaseObservable(null);
+    getCityList.buildUseCaseObservable(null);
 
     verify(mockCityRepository).cites();
     verifyNoMoreInteractions(mockCityRepository);
