@@ -11,11 +11,11 @@ public class Weather {
   private String description;
   private String icon;
   private float tempCelsius;
-  private float tempCelsiusMin;
-  private float tempCelsiusMax;
+  private float tempCelsiusLow;
+  private float tempCelsiusHigh;
   private float tempFahrenheit;
-  private float tempFahrenheitMin;
-  private float tempFahrenheitMax;
+  private float tempFahrenheitLow;
+  private float tempFahrenheitHigh;
 
   public String getName() {
     return name;
@@ -57,20 +57,20 @@ public class Weather {
     this.tempCelsius = tempCelsius;
   }
 
-  public float getTempCelsiusMin() {
-    return tempCelsiusMin;
+  public float getTempCelsiusLow() {
+    return tempCelsiusLow;
   }
 
-  public void setTempCelsiusMin(float tempCelsiusMin) {
-    this.tempCelsiusMin = tempCelsiusMin;
+  public void setTempCelsiusLow(float tempCelsiusLow) {
+    this.tempCelsiusLow = tempCelsiusLow;
   }
 
-  public float getTempCelsiusMax() {
-    return tempCelsiusMax;
+  public float getTempCelsiusHigh() {
+    return tempCelsiusHigh;
   }
 
-  public void setTempCelsiusMax(float tempCelsiusMax) {
-    this.tempCelsiusMax = tempCelsiusMax;
+  public void setTempCelsiusHigh(float tempCelsiusHigh) {
+    this.tempCelsiusHigh = tempCelsiusHigh;
   }
 
   public float getTempFahrenheit() {
@@ -81,19 +81,19 @@ public class Weather {
     this.tempFahrenheit = tempFahrenheit;
   }
 
-  public float getTempFahrenheitMin() {
-    return tempFahrenheitMin;
+  public float getTempFahrenheitLow() {
+    return tempFahrenheitLow;
   }
 
-  public void setTempFahrenheitMin(float tempFahrenheitMin) {
-    this.tempFahrenheitMin = tempFahrenheitMin;
+  public void setTempFahrenheitLow(float tempFahrenheitLow) {
+    this.tempFahrenheitLow = tempFahrenheitLow;
   }
 
-  public float getTempFahrenheitMax() {
-    return tempFahrenheitMax;
+  public float getTempFahrenheitHigh() {
+    return tempFahrenheitHigh;
   }
 
-  public void setTempFahrenheitMax(float tempFahrenheitMax) {
-    this.tempFahrenheitMax = tempFahrenheitMax;
+  public void setTempFahrenheitHigh(float tempFahrenheitHigh) {
+    this.tempFahrenheitHigh = tempFahrenheitHigh;
   }
 }

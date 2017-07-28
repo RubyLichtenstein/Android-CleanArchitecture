@@ -10,21 +10,46 @@ import javax.inject.Inject;
  */
 @PerActivity public class WeatherModelDataMapper {
 
+  public static final String DEGREES = "°";
+
   @Inject public WeatherModelDataMapper() {
   }
 
   public WeatherModel transform(Weather weather) {
-    //todo...
-    //if (user == null) {
-    //  throw new IllegalArgumentException("Cannot transform a null value");
-    //}
-    //final UserModel userModel = new UserModel(user.getUserId());
-    //userModel.setCoverUrl(user.getCoverUrl());
-    //userModel.setFullName(user.getFullName());
-    //userModel.setEmail(user.getEmail());
-    //userModel.setDescription(user.getDescription());
-    //userModel.setFollowers(user.getFollowers());
+    if (weather == null) {
+      throw new IllegalArgumentException("Cannot transform a null value");
+    }
+    final WeatherModel weatherModel = new WeatherModel();
+    weatherModel.setCityName(weather.getName());
+    weatherModel.setDescription(weather.getDescription());
+    weatherModel.setIconUrl(prepareIconUrl(weather.getIcon()));
+    weatherModel.setCurrentlyTempCelsius(prepareCurrentlyTemp(weather.getTempCelsius()));
+    weatherModel.setCurrentlyTempFahrenheit(prepareCurrentlyTemp(weather.getTempCelsius()));
+    weatherModel.setTodayTempRangeCelsius(
+        prepareTempRange(weather.getTempCelsiusLow(), weather.getTempCelsiusHigh()));
+    weatherModel.setTodayTempRangeFahrenheit(
+        prepareTempRange(weather.getTempFahrenheitLow(), weather.getTempFahrenheitHigh()));
+    return weatherModel;
+  }
 
-    return new WeatherModel();
+  private String prepareIconUrl(String icon) {
+    return String.format("http://openweathermap.org/img/w/%s", icon);
+  }
+
+  private String prepareCurrentlyTemp(float temp) {
+    return new StringBuilder().append("Currently ")
+        .append(String.valueOf(temp))
+        .append(DEGREES)
+        .toString();
+  }
+
+  private String prepareTempRange(float low, float high) {
+    return new StringBuilder().append("Today ")
+        .append(String.valueOf(low))
+        .append(DEGREES)
+        .append("-")
+        .append(String.valueOf(high))
+        .append(DEGREES)
+        .toString();
   }
 }

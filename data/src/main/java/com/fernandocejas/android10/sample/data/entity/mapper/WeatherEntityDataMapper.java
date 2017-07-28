@@ -22,8 +22,8 @@ import javax.inject.Singleton;
       weather = new Weather();
       weather.setName(weatherEntity.getName());
       weather.setTempCelsius(weatherEntity.getMain().getTemp());
-      weather.setTempCelsiusMax(weatherEntity.getMain().getTempMax());
-      weather.setTempCelsiusMin(weatherEntity.getMain().getTempMin());
+      weather.setTempCelsiusHigh(weatherEntity.getMain().getTempMax());
+      weather.setTempCelsiusLow(weatherEntity.getMain().getTempMin());
 
       //todo find solution for long ref
       List<com.fernandocejas.android10.sample.data.entity.weather.Weather> weathers =

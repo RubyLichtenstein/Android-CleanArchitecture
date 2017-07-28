@@ -22,8 +22,8 @@ public class WeatherTempCalcImpl implements WeatherTempCalc {
     weatherTempCalc = new Function<Weather, Weather>() {
       @Override public Weather apply(@NonNull Weather weather) throws Exception {
         weather.setTempFahrenheit(tempConverter.toFahrenheit(weather.getTempCelsius()));
-        weather.setTempFahrenheitMax(tempConverter.toFahrenheit(weather.getTempCelsiusMax()));
-        weather.setTempFahrenheitMin(tempConverter.toFahrenheit(weather.getTempCelsiusMin()));
+        weather.setTempFahrenheitHigh(tempConverter.toFahrenheit(weather.getTempCelsiusHigh()));
+        weather.setTempFahrenheitLow(tempConverter.toFahrenheit(weather.getTempCelsiusLow()));
         return weather;
       }
     };

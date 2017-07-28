@@ -6,15 +6,12 @@ package com.fernandocejas.android10.sample.presentation.model;
 
 public class WeatherModel {
   private String cityName;
-  private String main;
   private String description;
-  private String icon;
-  private float tempCelsius;
-  private float tempMinCelsius;
-  private float tempMaxCelsius;
-  private float tempFahrenheit;
-  private float tempMinFahrenheit;
-  private float tempMaxFahrenheit;
+  private String iconUrl;
+  private String currentlyTempCelsius;
+  private String currentlyTempFahrenheit;
+  private String todayTempRangeCelsius;
+  private String todayTempRangeFahrenheit;
 
   public String getCityName() {
     return cityName;
@@ -22,14 +19,6 @@ public class WeatherModel {
 
   public void setCityName(String cityName) {
     this.cityName = cityName;
-  }
-
-  public String getMain() {
-    return main;
-  }
-
-  public void setMain(String main) {
-    this.main = main;
   }
 
   public String getDescription() {
@@ -40,88 +29,43 @@ public class WeatherModel {
     this.description = description;
   }
 
-  public String getIcon() {
-    return icon;
+  public String getIconUrl() {
+    return iconUrl;
   }
 
-  public void setIcon(String icon) {
-    this.icon = icon;
+  public void setIconUrl(String iconUrl) {
+    this.iconUrl = iconUrl;
   }
 
-  public float getTempCelsius() {
-    return tempCelsius;
+  public String getCurrentlyTempCelsius() {
+    return currentlyTempCelsius;
   }
 
-  public void setTempCelsius(float tempCelsius) {
-    this.tempCelsius = tempCelsius;
+  public void setCurrentlyTempCelsius(String currentlyTempCelsius) {
+    this.currentlyTempCelsius = currentlyTempCelsius;
   }
 
-  public float getTempMinCelsius() {
-    return tempMinCelsius;
+  public String getCurrentlyTempFahrenheit() {
+    return currentlyTempFahrenheit;
   }
 
-  public void setTempMinCelsius(float tempMinCelsius) {
-    this.tempMinCelsius = tempMinCelsius;
+  public void setCurrentlyTempFahrenheit(String currentlyTempFahrenheit) {
+    this.currentlyTempFahrenheit = currentlyTempFahrenheit;
   }
 
-  public float getTempMaxCelsius() {
-    return tempMaxCelsius;
+  public String getTodayTempRangeCelsius() {
+    return todayTempRangeCelsius;
   }
 
-  public void setTempMaxCelsius(float tempMaxCelsius) {
-    this.tempMaxCelsius = tempMaxCelsius;
+  public void setTodayTempRangeCelsius(String todayTempRangeCelsius) {
+    this.todayTempRangeCelsius = todayTempRangeCelsius;
   }
 
-  public float getTempFahrenheit() {
-    return tempFahrenheit;
+  public String getTodayTempRangeFahrenheit() {
+    return todayTempRangeFahrenheit;
   }
 
-  public void setTempFahrenheit(float tempFahrenheit) {
-    this.tempFahrenheit = tempFahrenheit;
-  }
-
-  public float getTempMinFahrenheit() {
-    return tempMinFahrenheit;
-  }
-
-  public void setTempMinFahrenheit(float tempMinFahrenheit) {
-    this.tempMinFahrenheit = tempMinFahrenheit;
-  }
-
-  public float getTempMaxFahrenheit() {
-    return tempMaxFahrenheit;
-  }
-
-  public void setTempMaxFahrenheit(float tempMaxFahrenheit) {
-    this.tempMaxFahrenheit = tempMaxFahrenheit;
-  }
-
-  @Override public String toString() {
-    return "WeatherModel{"
-        + "cityName='"
-        + cityName
-        + '\''
-        + ", main='"
-        + main
-        + '\''
-        + ", description='"
-        + description
-        + '\''
-        + ", icon='"
-        + icon
-        + '\''
-        + ", tempCelsius="
-        + tempCelsius
-        + ", tempMinCelsius="
-        + tempMinCelsius
-        + ", tempMaxCelsius="
-        + tempMaxCelsius
-        + ", tempFahrenheit="
-        + tempFahrenheit
-        + ", tempMinFahrenheit="
-        + tempMinFahrenheit
-        + ", tempMaxFahrenheit="
-        + tempMaxFahrenheit
-        + '}';
+  public void setTodayTempRangeFahrenheit(String todayTempRangeFahrenheit) {
+    this.todayTempRangeFahrenheit = todayTempRangeFahrenheit;
   }
 }
