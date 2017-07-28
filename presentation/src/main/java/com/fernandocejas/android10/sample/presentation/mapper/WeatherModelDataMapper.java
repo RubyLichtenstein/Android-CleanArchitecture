@@ -1,13 +1,17 @@
 package com.fernandocejas.android10.sample.presentation.mapper;
 
 import com.fernandocejas.android10.sample.domain.Weather;
+import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
+import javax.inject.Inject;
 
 /**
  * Created by Ruby on 7/28/2017.
  */
+@PerActivity public class WeatherModelDataMapper {
 
-public class WeatherModelDataMapper {
+  @Inject public WeatherModelDataMapper() {
+  }
 
   public WeatherModel transform(Weather weather) {
     //todo...
@@ -23,5 +27,4 @@ public class WeatherModelDataMapper {
 
     return new WeatherModel();
   }
-
 }
