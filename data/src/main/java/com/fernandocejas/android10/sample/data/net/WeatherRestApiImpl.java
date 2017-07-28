@@ -19,7 +19,7 @@ import javax.inject.Singleton;
     this.weatherRestApiFactory = weatherRestApiFactory;
   }
 
-  @Override public Observable<WeatherEntity> WeatherEntityByCityId(int cityId) {
+  @Override public Observable<WeatherEntity> WeatherEntityByCityId(String cityId) {
     return weatherRestApiFactory.get().WeatherEntityByCityId(cityId, Config.UNITS, Config.APP_ID);
   }
 }

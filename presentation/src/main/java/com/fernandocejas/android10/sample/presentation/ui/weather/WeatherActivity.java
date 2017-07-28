@@ -16,16 +16,17 @@ import com.fernandocejas.android10.sample.presentation.view.activity.BaseActivit
 
 public class WeatherActivity extends BaseActivity implements HasComponent<UserComponent> {
 
+  //todo rename
   private static final String INTENT_EXTRA_PARAM_CITY_ID = "org.android10.INTENT_PARAM_CITY_ID";
   private static final String INSTANCE_STATE_PARAM_CITY_ID = "org.android10.STATE_PARAM_CITY_ID";
 
-  public static Intent getCallingIntent(Context context, int cityId) {
+  public static Intent getCallingIntent(Context context, String cityId) {
     Intent callingIntent = new Intent(context, WeatherActivity.class);
     callingIntent.putExtra(INTENT_EXTRA_PARAM_CITY_ID, cityId);
     return callingIntent;
   }
 
-  private int cityId;
+  private String cityId;
   private UserComponent userComponent;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class WeatherActivity extends BaseActivity implements HasComponent<UserCo
 
   @Override protected void onSaveInstanceState(Bundle outState) {
     if (outState != null) {
-      outState.putInt(INSTANCE_STATE_PARAM_CITY_ID, this.cityId);
+      outState.putString(INSTANCE_STATE_PARAM_CITY_ID, this.cityId);
     }
     super.onSaveInstanceState(outState);
   }
@@ -49,10 +50,10 @@ public class WeatherActivity extends BaseActivity implements HasComponent<UserCo
    */
   private void initializeActivity(Bundle savedInstanceState) {
     if (savedInstanceState == null) {
-      this.cityId = getIntent().getIntExtra(INTENT_EXTRA_PARAM_CITY_ID, -1);
+      this.cityId = getIntent().getStringExtra(INTENT_EXTRA_PARAM_CITY_ID);
       addFragment(R.id.fragmentContainer, WeatherFragment.forCity(cityId));
     } else {
-      this.cityId = savedInstanceState.getInt(INSTANCE_STATE_PARAM_CITY_ID);
+      this.cityId = savedInstanceState.getString(INSTANCE_STATE_PARAM_CITY_ID);
     }
   }
 

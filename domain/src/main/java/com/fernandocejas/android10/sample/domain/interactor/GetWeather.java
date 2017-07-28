@@ -34,13 +34,13 @@ public class GetWeather extends UseCase<Weather, GetWeather.Params> {
 
   public static final class Params {
 
-    private final int cityId;
+    private final String cityId;
 
-    private Params(int cityId) {
+    private Params(String cityId) {
       this.cityId = cityId;
     }
 
-    public static Params forCity(int cityId) {
+    public static Params forCity(String cityId) {
       return new Params(cityId);
     }
   }

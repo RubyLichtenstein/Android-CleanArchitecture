@@ -8,5 +8,5 @@ import io.reactivex.Observable;
  */
 
 public interface WeatherRepository {
-  Observable<Weather> weather(final int cityId);
+  Observable<Weather> weather(final String cityId);
 }

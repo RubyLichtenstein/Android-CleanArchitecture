@@ -36,12 +36,20 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
   @BindView(R.id.btn_fahrenheit) Button btnFahrenheit;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
 
-  public static WeatherFragment forCity(int cityId) {
+  public static WeatherFragment forCity(String cityId) {
     final WeatherFragment weatherFragment = new WeatherFragment();
     final Bundle arguments = new Bundle();
-    arguments.putInt(PARAM_CITY_ID, cityId);
+    arguments.putString(PARAM_CITY_ID, cityId);
     weatherFragment.setArguments(arguments);
     return weatherFragment;
+  }
+
+  @Override public void onAttach(Context context) {
+    super.onAttach(context);
+  }
+
+  @Override public void onDetach() {
+    super.onDetach();
   }
 
   public WeatherFragment() {
@@ -100,10 +108,10 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
   /**
    * Get current city id from fragments arguments.
    */
-  private int currentCityId() {
+  private String currentCityId() {
     final Bundle arguments = getArguments();
     Preconditions.checkNotNull(arguments, getString(R.string.fragment_args_cannot_be_null));
-    return arguments.getInt(PARAM_CITY_ID);
+    return arguments.getString(PARAM_CITY_ID);
   }
 
   /**
@@ -120,14 +128,6 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
   }
 
   @Override public void hideLoading() {
-
-  }
-
-  @Override public void showRetry() {
-
-  }
-
-  @Override public void hideRetry() {
 
   }
 

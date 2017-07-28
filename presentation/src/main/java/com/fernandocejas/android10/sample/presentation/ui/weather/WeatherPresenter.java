@@ -37,7 +37,7 @@ public class WeatherPresenter implements Presenter {
    * Initializes the presenter by showing/hiding proper views
    * and retrieving user details.
    */
-  public void initialize(int cityId) {
+  public void initialize(String cityId) {
     this.hideViewRetry();
     this.showViewLoading();
     this.getWeather(cityId);
@@ -51,7 +51,7 @@ public class WeatherPresenter implements Presenter {
     //todo
   }
 
-  private void getWeather(int cityId) {
+  private void getWeather(String cityId) {
     this.getWeatherUseCase.execute(new WeatherObserver(), GetWeather.Params.forCity(cityId));
   }
   

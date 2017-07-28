@@ -42,7 +42,7 @@ import javax.inject.Singleton;
    *
    * @param context A Context needed to open the destiny activity.
    */
-  public void navigateToWeather(Context context, int cityId) {
+  public void navigateToWeather(Context context, String cityId) {
     if (context != null) {
       Intent intentToLaunch = WeatherActivity.getCallingIntent(context, cityId);
       context.startActivity(intentToLaunch);

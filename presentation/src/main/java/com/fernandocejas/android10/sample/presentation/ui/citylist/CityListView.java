@@ -24,7 +24,7 @@ public interface CityListView extends LoadDataView {
    *
    * @param cityModel The city that will be shown.
    */
-  void viewWeather(CityModel cityModel);
+  void getCityClickObs(CityModel cityModel);
 
-  Observable<CityModel> viewWeather();
+  Observable<CityModel> getCityClickObs();
 }

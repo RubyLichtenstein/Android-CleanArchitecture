@@ -30,5 +30,5 @@ public interface WeatherRestApiI {
    * @param cityId The city id used to get weather data.
    */
   @GET(Config.GET_WEATHER_PATH) Observable<WeatherEntity> WeatherEntityByCityId(
-      @Query("id") int cityId, @Query("units") String units, @Query("APPID") String appId);
+      @Query("id") String cityId, @Query("units") String units, @Query("APPID") String appId);
 }

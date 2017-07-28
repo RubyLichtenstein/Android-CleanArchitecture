@@ -29,8 +29,7 @@ import javax.inject.Inject;
  */
 public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityViewHolder> {
 
-  //todo dispose!
-  private PublishSubject<CityModel> onItemClickSubject;
+  private PublishSubject<CityModel> onItemClickSubject = PublishSubject.create();
 
   private List<CityModel> citiesCollection;
   private final LayoutInflater layoutInflater;
@@ -39,7 +38,6 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityViewHo
     this.layoutInflater =
         (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     this.citiesCollection = new ArrayList<>();
-    onItemClickSubject = PublishSubject.create();
   }
 
   @Override public int getItemCount() {

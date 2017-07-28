@@ -15,6 +15,8 @@ import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.view.adapter.CitiesLayoutManager;
 import com.fernandocejas.android10.sample.presentation.view.fragment.BaseFragment;
 import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import java.util.Collection;
 import javax.inject.Inject;
 
@@ -29,6 +31,8 @@ public class CityListFragment extends BaseFragment implements CityListView {
 
   @BindView(R.id.rv_cities) RecyclerView rvCities;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
+
+  private Disposable cityClickDisposable;
 
   public CityListFragment() {
     setRetainInstance(true);
@@ -45,6 +49,24 @@ public class CityListFragment extends BaseFragment implements CityListView {
     ButterKnife.bind(this, fragmentView);
     setupRecyclerView();
     return fragmentView;
+  }
+
+  @Override public void onAttach(Context context) {
+    super.onAttach(context);
+  }
+
+  void setActivityObserveCityClick(Context context) {
+    if (context instanceof CityListActivity) {
+      Consumer<CityModel> cityClickObs = ((CityListActivity) context).getOnCityClickObserver();
+      cityClickDisposable = getCityClickObs().subscribe(cityClickObs);
+    }
+  }
+
+  @Override public void onDetach() {
+    super.onDetach();
+    if (cityClickDisposable != null) {
+      cityClickDisposable.dispose();
+    }
   }
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -77,18 +99,10 @@ public class CityListFragment extends BaseFragment implements CityListView {
 
   @Override public void showLoading() {
     this.progressBar.setVisibility(View.VISIBLE);
-    this.getActivity().setProgressBarIndeterminateVisibility(true);
   }
 
   @Override public void hideLoading() {
     this.progressBar.setVisibility(View.GONE);
-    this.getActivity().setProgressBarIndeterminateVisibility(false);
-  }
-
-  @Override public void showRetry() {
-  }
-
-  @Override public void hideRetry() {
   }
 
   @Override public void showError(String message) {
@@ -109,6 +123,7 @@ public class CityListFragment extends BaseFragment implements CityListView {
    */
   private void loadCityList() {
     this.cityListPresenter.initialize();
+    setActivityObserveCityClick(getActivity());
   }
 
   @Override public void renderCityList(Collection<CityModel> cityModelCollection) {
@@ -123,11 +138,11 @@ public class CityListFragment extends BaseFragment implements CityListView {
     }
   }
 
-  @Override public void viewWeather(CityModel cityModel) {
+  @Override public void getCityClickObs(CityModel cityModel) {
 
   }
 
-  @Override public Observable<CityModel> viewWeather() {
+  @Override public Observable<CityModel> getCityClickObs() {
     return citiesAdapter.getCityClickObs();
   }
 }

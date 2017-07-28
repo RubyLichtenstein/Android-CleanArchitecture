@@ -8,14 +8,15 @@ import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUserComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
+import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.view.activity.BaseActivity;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by Ruby on 7/28/2017.
  */
 
 public class CityListActivity extends BaseActivity implements HasComponent<UserComponent> {
-
 
   public static Intent getCallingIntent(Context context) {
     return new Intent(context, CityListActivity.class);
@@ -46,7 +47,17 @@ public class CityListActivity extends BaseActivity implements HasComponent<UserC
     return userComponent;
   }
 
-  //public void onCityClicked(CityModel cityModel) {
-  //  this.navigator.navigateToWeather(this, cityModel.getId());
-  //}
+  public void onCityClicked(CityModel cityModel) {
+    this.navigator.navigateToWeather(this, cityModel.getId());
+  }
+
+  private Consumer<CityModel> onCityClickObs = new Consumer<CityModel>() {
+    @Override public void accept(CityModel cityModel) throws Exception {
+      onCityClicked(cityModel);
+    }
+  };
+
+  public Consumer<CityModel> getOnCityClickObserver() {
+    return onCityClickObs;
+  }
 }

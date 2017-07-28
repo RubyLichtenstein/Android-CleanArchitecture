@@ -23,7 +23,7 @@ import javax.inject.Singleton;
     this.weatherEntityDataMapper = weatherEntityDataMapper;
   }
 
-  @Override public Observable<Weather> weather(int cityId) {
+  @Override public Observable<Weather> weather(String cityId) {
     return weatherRestApi.WeatherEntityByCityId(cityId).map(weatherEntityDataMapper::transform);
   }
 }

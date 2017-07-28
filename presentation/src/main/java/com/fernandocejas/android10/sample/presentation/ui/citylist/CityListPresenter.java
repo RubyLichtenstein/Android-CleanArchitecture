@@ -60,21 +60,20 @@ import javax.inject.Inject;
   //todo rename
   private void subscribeToViewWeather() {
     //todo dispose
-    this.cityListView.viewWeather().subscribe(new Consumer<CityModel>() {
+    this.cityListView.getCityClickObs().subscribe(new Consumer<CityModel>() {
       @Override public void accept(CityModel cityModel) throws Exception {
-        CityListPresenter.this.cityListView.viewWeather(cityModel);
+        CityListPresenter.this.cityListView.getCityClickObs(cityModel);
       }
     });
   }
 
   private void loadCityList() {
-    this.hideViewRetry();
     this.showViewLoading();
     this.getCityList();
   }
 
   public void onCityClicked(CityModel cityModel) {
-    this.cityListView.viewWeather(cityModel);
+    this.cityListView.getCityClickObs(cityModel);
   }
 
   private void showViewLoading() {
@@ -83,14 +82,6 @@ import javax.inject.Inject;
 
   private void hideViewLoading() {
     this.cityListView.hideLoading();
-  }
-
-  private void showViewRetry() {
-    this.cityListView.showRetry();
-  }
-
-  private void hideViewRetry() {
-    this.cityListView.hideRetry();
   }
 
   private void showErrorMessage(ErrorBundle errorBundle) {
@@ -123,7 +114,6 @@ import javax.inject.Inject;
     @Override public void onError(Throwable e) {
       CityListPresenter.this.hideViewLoading();
       CityListPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
-      CityListPresenter.this.showViewRetry();
     }
 
     @Override public void onNext(City city) {
