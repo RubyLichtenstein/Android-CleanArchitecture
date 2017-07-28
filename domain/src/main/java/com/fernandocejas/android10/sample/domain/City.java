@@ -5,8 +5,8 @@ package com.fernandocejas.android10.sample.domain;
  */
 
 public class City {
-  String name;
-  String id;
+  private String name;
+  private String id;
 
   public City(String name, String id) {
     this.name = name;
