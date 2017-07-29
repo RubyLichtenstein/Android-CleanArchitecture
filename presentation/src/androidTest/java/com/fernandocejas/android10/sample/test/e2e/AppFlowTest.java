@@ -33,8 +33,14 @@ import static org.hamcrest.Matchers.startsWith;
       new IntentsTestRule<>(CityListActivity.class);
 
   @Test public void testFlow() {
+    for (int i = 0; i < 1; i++) {
+      flow(i);
+    }
+  }
+
+  private void flow(int i) {
     //click on first rv item
-    onView(withId(R.id.rv_cities)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+    onView(withId(R.id.rv_cities)).perform(RecyclerViewActions.actionOnItemAtPosition(i, click()));
 
     //verify WeatherActivity opened
     intended(hasComponent(WeatherActivity.class.getName()));
