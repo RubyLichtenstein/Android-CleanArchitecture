@@ -16,6 +16,7 @@ android {
     versionName globalConfiguration.getAt("androidVersionName")
     testInstrumentationRunner globalConfiguration.getAt("testInstrumentationRunner")
     testApplicationId globalConfiguration.getAt("testApplicationId")
+    multiDexEnabled true
   }
 
   compileOptions {
@@ -55,7 +56,7 @@ android {
       signingConfig signingConfigs.debug
     }
   }
-  buildToolsVersion '25.0.3'
+  buildToolsVersion '26.0.1'
 }
 
 dependencies {
@@ -84,6 +85,11 @@ dependencies {
   androidTestCompile presentationTestDependencies.dexmaker
   androidTestCompile presentationTestDependencies.dexmakerMockito
   androidTestCompile presentationTestDependencies.espresso
+  androidTestCompile presentationTestDependencies.espressoContrib
+  androidTestCompile presentationTestDependencies.espressoIntents
+  compile            presentationTestDependencies.espressoIdlingResource
+  androidTestCompile presentationTestDependencies.testRunner
+  androidTestCompile presentationTestDependencies.testRules
   androidTestCompile presentationTestDependencies.testingSupportLib
 
   //Development

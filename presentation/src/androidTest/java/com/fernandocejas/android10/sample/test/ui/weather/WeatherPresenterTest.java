@@ -2,6 +2,7 @@ package com.fernandocejas.android10.sample.test.ui.weather;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.test.filters.SmallTest;
 import com.fernandocejas.android10.sample.domain.Weather;
 import com.fernandocejas.android10.sample.domain.interactor.GetWeather;
 import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMapper;
@@ -23,7 +24,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by Ruby on 7/29/2017.
  */
-
+@SmallTest
 @RunWith(MockitoJUnitRunner.class) public class WeatherPresenterTest {
 
   private static final String FAKE_CITY_ID = "1234";
