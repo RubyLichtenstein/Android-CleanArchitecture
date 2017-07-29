@@ -1,8 +1,6 @@
-package com.fernandocejas.android10.sample.data.logic;
+package com.fernandocejas.android10.sample.domain.logic;
 
 import com.fernandocejas.android10.sample.domain.Weather;
-import com.fernandocejas.android10.sample.domain.logic.TempConverter;
-import com.fernandocejas.android10.sample.domain.logic.WeatherTempCalc;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
@@ -22,7 +20,7 @@ import javax.inject.Singleton;
   private final Function<Weather, Weather> weatherTempCalc;
 
   @Inject
-  public WeatherTempCalcImpl(@NonNull TempConverter tempConverter) {
+  public WeatherTempCalcImpl(@NonNull final TempConverter tempConverter) {
     this.tempConverter = tempConverter;
     weatherTempCalc = new Function<Weather, Weather>() {
       @Override public Weather apply(@NonNull Weather weather) throws Exception {

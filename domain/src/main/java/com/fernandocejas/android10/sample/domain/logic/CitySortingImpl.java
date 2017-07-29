@@ -1,4 +1,4 @@
-package com.fernandocejas.android10.sample.data.logic;
+package com.fernandocejas.android10.sample.domain.logic;
 
 import com.fernandocejas.android10.sample.domain.City;
 import com.fernandocejas.android10.sample.domain.logic.CitySorting;
