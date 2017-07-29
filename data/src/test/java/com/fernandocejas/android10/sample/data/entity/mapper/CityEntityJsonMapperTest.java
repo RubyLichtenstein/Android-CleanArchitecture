@@ -1,6 +1,6 @@
 package com.fernandocejas.android10.sample.data.entity.mapper;
 
-import com.fernandocejas.android10.sample.data.entity.CitiesEntity;
+import com.fernandocejas.android10.sample.data.entity.CityListEntity;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.google.gson.JsonSyntaxException;
 import java.util.ArrayList;
@@ -59,14 +59,14 @@ public class CityEntityJsonMapperTest {
   }
 
   @Test public void testMapCitiesEntityToCityEntityListHappyCase() {
-    CitiesEntity citiesEntity = new CitiesEntity();
+    CityListEntity cityListEntity = new CityListEntity();
     ArrayList<CityEntity> cityEntities = new ArrayList<>();
     cityEntities.add(new CityEntity(LONDON, LONDON_ID));
     cityEntities.add(new CityEntity(PARIS, PARIS_ID));
-    citiesEntity.setCities(cityEntities);
+    cityListEntity.setCities(cityEntities);
 
     List<CityEntity> mappedCityEntities =
-        cityEntityJsonMapper.mapCitiesEntityToCityEntityList(citiesEntity);
+        cityEntityJsonMapper.mapCitiesEntityToCityEntityList(cityListEntity);
 
     assertThat(mappedCityEntities, is(cityEntities));
   }

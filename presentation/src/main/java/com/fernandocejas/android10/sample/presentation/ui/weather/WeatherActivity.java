@@ -3,7 +3,6 @@ package com.fernandocejas.android10.sample.presentation.ui.weather;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUserComponent;
@@ -16,7 +15,6 @@ import com.fernandocejas.android10.sample.presentation.ui.base.BaseActivity;
 
 public class WeatherActivity extends BaseActivity implements HasComponent<UserComponent> {
 
-  //todo rename
   private static final String INTENT_EXTRA_PARAM_CITY_ID = "org.android10.INTENT_PARAM_CITY_ID";
   private static final String INSTANCE_STATE_PARAM_CITY_ID = "org.android10.STATE_PARAM_CITY_ID";
 
@@ -31,11 +29,11 @@ public class WeatherActivity extends BaseActivity implements HasComponent<UserCo
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.activity_layout);
 
-    this.initializeActivity(savedInstanceState);
     this.initializeInjector();
+    this.initializeActivity(savedInstanceState);
+
   }
 
   @Override protected void onSaveInstanceState(Bundle outState) {

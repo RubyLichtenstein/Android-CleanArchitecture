@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Ruby on 7/27/2017.
  */
 
-public class CitiesEntity {
+public class CityListEntity {
   private List<CityEntity> cities;
 
   public List<CityEntity> getCities() {

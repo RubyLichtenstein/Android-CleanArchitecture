@@ -21,7 +21,7 @@ import io.reactivex.Observable;
 import javax.inject.Inject;
 
 /**
- * Created by Ruby on 7/28/2017.
+ * Created by Ruby on 7/28/2017
  */
 
 public class WeatherFragment extends BaseFragment implements WeatherView {
@@ -50,8 +50,14 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
     setRetainInstance(true);
   }
 
+  public void onActivityCreated(Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
+    setRetainInstance(true);
+  }
+
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    setRetainInstance(true);
     this.getComponent(UserComponent.class).inject(this);
   }
 
@@ -116,9 +122,6 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
     return arguments.getString(PARAM_CITY_ID);
   }
 
-  /**
-   * Load user details.
-   */
   private void loadWeather() {
     if (this.weatherPresenter != null) {
       this.weatherPresenter.initialize(currentCityId());
@@ -130,10 +133,10 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
   }
 
   @Override public void showError(String message) {
-
+    this.showToastMessage(message);
   }
 
   @Override public Context context() {
-    return null;
+    return getActivity().getApplicationContext();
   }
 }

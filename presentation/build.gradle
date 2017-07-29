@@ -78,7 +78,7 @@ dependencies {
   compile presentationDependencies.constraintLayout
   provided presentationDependencies.javaxAnnotation
   compile presentationDependencies.glide
-  apt presentationDependencies.glideCompiler
+  annotationProcessor presentationDependencies.glideCompiler
   compile presentationDependencies.androidSupportV4
 
   androidTestCompile presentationTestDependencies.mockito

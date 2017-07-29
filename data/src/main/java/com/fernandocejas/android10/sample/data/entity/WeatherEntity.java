@@ -17,10 +17,10 @@ public class WeatherEntity {
   public List<Weather> weather = null;
   public String base;
   public Main main;
-  public Integer visibility;
+  public float visibility;
   public Wind wind;
   public Clouds clouds;
-  public Integer dt;
+  public float dt;
   public Sys sys;
   public Integer id;
   public String name;
@@ -58,7 +58,7 @@ public class WeatherEntity {
     this.main = main;
   }
 
-  public Integer getVisibility() {
+  public float getVisibility() {
     return visibility;
   }
 
@@ -82,7 +82,7 @@ public class WeatherEntity {
     this.clouds = clouds;
   }
 
-  public Integer getDt() {
+  public float getDt() {
     return dt;
   }
 

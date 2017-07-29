@@ -1,7 +1,7 @@
 package com.fernandocejas.android10.sample.data.entity.mapper;
 
 import android.support.annotation.NonNull;
-import com.fernandocejas.android10.sample.data.entity.CitiesEntity;
+import com.fernandocejas.android10.sample.data.entity.CityListEntity;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -24,13 +24,13 @@ public class CityEntityJsonMapper {
   }
 
   public List<CityEntity> transformCitiesEntity(@NonNull String citiesJson) throws JsonSyntaxException {
-    final Type citiesEntityType = new TypeToken<CitiesEntity>() {
+    final Type citiesEntityType = new TypeToken<CityListEntity>() {
     }.getType();
-    CitiesEntity citiesEntity = this.gson.fromJson(citiesJson, citiesEntityType);
-    return mapCitiesEntityToCityEntityList(citiesEntity);
+    CityListEntity cityListEntity = this.gson.fromJson(citiesJson, citiesEntityType);
+    return mapCitiesEntityToCityEntityList(cityListEntity);
   }
 
-  public List<CityEntity> mapCitiesEntityToCityEntityList(CitiesEntity citiesEntity) {
-    return citiesEntity.getCities();
+  public List<CityEntity> mapCitiesEntityToCityEntityList(CityListEntity cityListEntity) {
+    return cityListEntity.getCities();
   }
 }

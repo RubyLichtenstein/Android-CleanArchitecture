@@ -88,15 +88,21 @@ import javax.inject.Inject;
   }
 
   public void showWeatherInView(boolean celsius, WeatherModel weatherModel) {
-    this.weatherView.renderWeather(weatherModelDataMapper.transform(celsius, weatherModel));
+    if (weatherModel != null) {
+      this.weatherView.renderWeather(weatherModelDataMapper.transform(celsius, weatherModel));
+    }
   }
 
   public void setWeatherModel(Weather weather) {
-    this.weatherModel = this.weatherModelDataMapper.transform(weather);
+    if (weather != null) {
+      this.weatherModel = this.weatherModelDataMapper.transform(weather);
+    }
   }
 
   public void onCelsiusClick() {
-    showWeatherInView(this.celsius = true, this.weatherModel);
+    if (this.weatherModel != null) {
+      showWeatherInView(this.celsius = true, this.weatherModel);
+    }
   }
 
   public void onFahrenheitClick() {

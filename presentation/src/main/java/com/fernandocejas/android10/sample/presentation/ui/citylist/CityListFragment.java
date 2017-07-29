@@ -2,6 +2,7 @@ package com.fernandocejas.android10.sample.presentation.ui.citylist;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +21,13 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 /**
- * Created by Ruby on 7/28/2017.
+ * Created by Ruby on 7/28/2017
  */
 
 public class CityListFragment extends BaseFragment implements CityListView {
 
   @Inject CityListPresenter cityListPresenter;
-  @Inject CitiesAdapter citiesAdapter;
+  @Inject CityListAdapter cityListAdapter;
 
   @BindView(R.id.rv_cities) RecyclerView rvCities;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
@@ -113,8 +114,8 @@ public class CityListFragment extends BaseFragment implements CityListView {
   }
 
   private void setupRecyclerView() {
-    this.rvCities.setLayoutManager(new CitiesLayoutManager(context()));
-    this.rvCities.setAdapter(citiesAdapter);
+    this.rvCities.setLayoutManager(new LinearLayoutManager(context()));
+    this.rvCities.setAdapter(cityListAdapter);
   }
 
   /**
@@ -126,13 +127,13 @@ public class CityListFragment extends BaseFragment implements CityListView {
 
   @Override public void renderCityList(Collection<CityModel> cityModelCollection) {
     if (cityModelCollection != null) {
-      this.citiesAdapter.setCitiesCollection(cityModelCollection);
+      this.cityListAdapter.setCitiesCollection(cityModelCollection);
     }
   }
 
   @Override public void renderCity(CityModel cityModel) {
     if (cityModel != null) {
-      this.citiesAdapter.addCityModel(cityModel);
+      this.cityListAdapter.addCityModel(cityModel);
     }
   }
 
@@ -141,6 +142,6 @@ public class CityListFragment extends BaseFragment implements CityListView {
   }
 
   @Override public Observable<CityModel> getCityClickObs() {
-    return citiesAdapter.getCityClickObs();
+    return cityListAdapter.getCityClickObs();
   }
 }

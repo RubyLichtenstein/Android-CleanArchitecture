@@ -35,6 +35,9 @@ import javax.inject.Inject;
 
   //todo test
   public WeatherViewModel transform(boolean celsius, final WeatherModel wm) {
+    if (wm == null) {
+      throw new IllegalArgumentException("Cannot transform a null value");
+    }
     WeatherViewModel wvm = new WeatherViewModel();
     wvm.setCityName(wm.getCityName());
     wvm.setDescription(wm.getDescription());

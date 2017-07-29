@@ -12,7 +12,6 @@ import com.fernandocejas.android10.sample.presentation.mapper.CityModelDataMappe
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.ui.base.Presenter;
 import io.reactivex.functions.Consumer;
-import java.util.Collection;
 import javax.inject.Inject;
 
 /**
@@ -83,12 +82,6 @@ import javax.inject.Inject;
     String errorMessage =
         ErrorMessageFactory.create(this.cityListView.context(), errorBundle.getException());
     this.cityListView.showError(errorMessage);
-  }
-
-  private void showCityCollectionInView(Collection<City> citysCollection) {
-    final Collection<CityModel> cityModelsCollection =
-        this.cityModelDataMapper.transform(citysCollection);
-    this.cityListView.renderCityList(cityModelsCollection);
   }
 
   private void showCityInView(City city) {

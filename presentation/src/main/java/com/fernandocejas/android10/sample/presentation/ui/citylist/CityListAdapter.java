@@ -27,14 +27,14 @@ import javax.inject.Inject;
 /**
  * Adaptar that manages a collection of {@link CityModel}.
  */
-public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityViewHolder> {
+public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityViewHolder> {
 
   private PublishSubject<CityModel> onItemClickSubject = PublishSubject.create();
 
   private List<CityModel> citiesCollection;
   private final LayoutInflater layoutInflater;
 
-  @Inject CitiesAdapter(Context context) {
+  @Inject CityListAdapter(Context context) {
     this.layoutInflater =
         (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     this.citiesCollection = new ArrayList<>();
@@ -52,10 +52,9 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityViewHo
   @Override public void onBindViewHolder(CityViewHolder holder, final int position) {
     final CityModel cityModel = this.citiesCollection.get(position);
     holder.textViewTitle.setText(cityModel.getName());
-    //todo dispose!?
     RxView.clicks(holder.itemView).subscribe(new Consumer<Object>() {
       @Override public void accept(Object o) throws Exception {
-        CitiesAdapter.this.onItemClickSubject.onNext(cityModel);
+        CityListAdapter.this.onItemClickSubject.onNext(cityModel);
       }
     });
   }
