@@ -52,17 +52,20 @@ public class CityListFragment extends BaseFragment implements CityListView {
 
   @Override public void onAttach(Context context) {
     super.onAttach(context);
+    setActivityConsumerCityClick(context);
   }
 
-  void setActivityObserveCityClick(Context context) {
+  private Consumer<CityModel> cityClickObs;
+
+  void setActivityConsumerCityClick(Context context) {
     if (context instanceof CityListActivity) {
-      Consumer<CityModel> cityClickObs = ((CityListActivity) context).getOnCityClickObserver();
-      cityClickDisposable = getCityClickObs().subscribe(cityClickObs);
+      cityClickObs = ((CityListActivity) context).getOnCityClickObserver();
     }
   }
 
   @Override public void onDetach() {
     super.onDetach();
+    cityClickObs = null;
     if (cityClickDisposable != null) {
       cityClickDisposable.dispose();
     }
@@ -71,6 +74,7 @@ public class CityListFragment extends BaseFragment implements CityListView {
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     this.cityListPresenter.setView(this);
+    this.cityClickDisposable = getCityClickObs().subscribe(cityClickObs);
     if (savedInstanceState == null) {
       this.loadCityList();
     }
@@ -118,7 +122,6 @@ public class CityListFragment extends BaseFragment implements CityListView {
    */
   private void loadCityList() {
     this.cityListPresenter.initialize();
-    setActivityObserveCityClick(getActivity());
   }
 
   @Override public void renderCityList(Collection<CityModel> cityModelCollection) {
