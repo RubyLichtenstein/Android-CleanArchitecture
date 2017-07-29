@@ -15,10 +15,10 @@ import java.util.List;
  */
 
 //todo move to its won module!!
-public class CitySorterImpl implements CitySorter {
+public class CitySortingImpl implements CitySorting {
   private final Comparator<City> sortFunction;
 
-  public CitySorterImpl() {
+  public CitySortingImpl() {
     this.sortFunction = new Comparator<City>() {
       @Override public int compare(City t, City t1) {
         return t.getName().compareTo(t1.getName());
@@ -26,7 +26,7 @@ public class CitySorterImpl implements CitySorter {
     };
   }
 
-  @Override public ObservableTransformer<City, City> applySort() {
+  @Override public ObservableTransformer<City, City> apply() {
     return new ObservableTransformer<City, City>() {
       @Override public ObservableSource<City> apply(@NonNull Observable<City> upstream) {
         return upstream.sorted(sortFunction);
@@ -34,7 +34,7 @@ public class CitySorterImpl implements CitySorter {
     };
   }
 
-  @Override public ObservableTransformer<List<City>, List<City>> applyListSort() {
+  @Override public ObservableTransformer<List<City>, List<City>> applyList() {
     return new ObservableTransformer<List<City>, List<City>>() {
       @Override
       public ObservableSource<List<City>> apply(@NonNull Observable<List<City>> upstream) {

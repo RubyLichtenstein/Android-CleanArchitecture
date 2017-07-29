@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created by Ruby on 7/28/2017.
  */
 
-public class CitySorterTest {
+public class CitySortingTest {
 
   private static final String LONDON = "London";
   private static final String PARIS = "Paris";
@@ -23,17 +23,17 @@ public class CitySorterTest {
 
   private static final String ID = "1234";
 
-  private CitySorter citySorter;
+  private CitySorting citySorting;
 
   @Before public void setUp() {
-    citySorter = new CitySorterImpl();
+    citySorting = new CitySortingImpl();
   }
 
   @Test public void testApplySort() {
     List<City> cities = createCityList();
 
     TestObserver<City> testObserver = new TestObserver<>();
-    Observable.fromIterable(cities).compose(citySorter.applySort()).subscribe(testObserver);
+    Observable.fromIterable(cities).compose(citySorting.apply()).subscribe(testObserver);
 
     testObserver.assertComplete();
     assertThat(testObserver.values().get(0).getName()).isEqualTo(BERLIN);
@@ -46,7 +46,7 @@ public class CitySorterTest {
     List<City> cities = createCityList();
 
     TestObserver<List<City>> testObserver = new TestObserver<>();
-    Observable.just(cities).compose(citySorter.applyListSort()).subscribe(testObserver);
+    Observable.just(cities).compose(citySorting.applyList()).subscribe(testObserver);
 
     testObserver.assertComplete();
 

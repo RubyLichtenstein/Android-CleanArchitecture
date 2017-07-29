@@ -8,8 +8,8 @@ import java.util.List;
  * Created by Ruby on 7/28/2017.
  */
 
-public interface CitySorter {
-  ObservableTransformer<City, City> applySort();
+public interface CitySorting {
+  ObservableTransformer<City, City> apply();
 
-  ObservableTransformer<List<City>, List<City>> applyListSort();
+  ObservableTransformer<List<City>, List<City>> applyList();
 }

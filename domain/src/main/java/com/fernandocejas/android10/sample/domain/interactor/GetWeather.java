@@ -23,13 +23,16 @@ public class GetWeather extends UseCase<Weather, GetWeather.Params> {
   @Inject GetWeather(WeatherRepository weatherRepository, ThreadExecutor threadExecutor,
       PostExecutionThread postExecutionThread) {
     super(threadExecutor, postExecutionThread);
+    Preconditions.checkNotNull(weatherRepository);
+    Preconditions.checkNotNull(threadExecutor);
+    Preconditions.checkNotNull(postExecutionThread);
     this.weatherRepository = weatherRepository;
     this.weatherTempCalc = new WeatherTempCalcImpl(new TempConverterImpl());
   }
 
   @Override Observable<Weather> buildUseCaseObservable(Params params) {
     Preconditions.checkNotNull(params);
-    return weatherRepository.weather(params.cityId).compose(weatherTempCalc.applyTempCalc());
+    return weatherRepository.weather(params.cityId).compose(weatherTempCalc.apply());
   }
 
   public static final class Params {

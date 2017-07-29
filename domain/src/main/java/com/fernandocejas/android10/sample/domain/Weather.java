@@ -5,7 +5,6 @@ package com.fernandocejas.android10.sample.domain;
  */
 
 public class Weather {
-  /*city name*/
   private String name;
   private String main;
   private String description;

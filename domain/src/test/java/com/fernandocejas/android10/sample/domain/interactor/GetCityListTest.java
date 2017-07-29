@@ -2,7 +2,7 @@ package com.fernandocejas.android10.sample.domain.interactor;
 
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
-import com.fernandocejas.android10.sample.domain.logic.CitySorter;
+import com.fernandocejas.android10.sample.domain.logic.CitySorting;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +25,7 @@ import static org.mockito.Mockito.verifyZeroInteractions;
   @Mock private ThreadExecutor mockThreadExecutor;
   @Mock private PostExecutionThread mockPostExecutionThread;
   @Mock private CityRepository mockCityRepository;
-  @Mock private CitySorter mockCitySorter;
+  @Mock private CitySorting mockCitySorting;
 
   @Before public void setUp() {
   }

@@ -29,7 +29,7 @@ public class WeatherTempCalcImpl implements WeatherTempCalc {
     };
   }
 
-  @Override public ObservableTransformer<Weather, Weather> applyTempCalc() {
+  @Override public ObservableTransformer<Weather, Weather> apply() {
     return new ObservableTransformer<Weather, Weather>() {
       @Override public ObservableSource<Weather> apply(@NonNull Observable<Weather> upstream) {
         return upstream.map(weatherTempCalc);

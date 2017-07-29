@@ -8,5 +8,5 @@ import io.reactivex.ObservableTransformer;
  */
 
 public interface WeatherTempCalc {
-  ObservableTransformer<Weather, Weather> applyTempCalc();
+  ObservableTransformer<Weather, Weather> apply();
 }
