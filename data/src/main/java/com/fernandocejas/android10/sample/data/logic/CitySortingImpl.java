@@ -1,6 +1,7 @@
-package com.fernandocejas.android10.sample.domain.logic;
+package com.fernandocejas.android10.sample.data.logic;
 
 import com.fernandocejas.android10.sample.domain.City;
+import com.fernandocejas.android10.sample.domain.logic.CitySorting;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
@@ -9,16 +10,18 @@ import io.reactivex.functions.Consumer;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Created by Ruby on 7/28/2017.
  */
 
 //todo move to its won module!!
-public class CitySortingImpl implements CitySorting {
+@Singleton public class CitySortingImpl implements CitySorting {
   private final Comparator<City> sortFunction;
 
-  public CitySortingImpl() {
+  @Inject public CitySortingImpl() {
     this.sortFunction = new Comparator<City>() {
       @Override public int compare(City t, City t1) {
         return t.getName().compareTo(t1.getName());

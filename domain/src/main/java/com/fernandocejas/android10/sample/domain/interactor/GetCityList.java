@@ -4,7 +4,6 @@ import com.fernandocejas.android10.sample.domain.City;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.logic.CitySorting;
-import com.fernandocejas.android10.sample.domain.logic.CitySortingImpl;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import com.fernandocejas.arrow.checks.Preconditions;
 import io.reactivex.Observable;
@@ -20,13 +19,13 @@ public class GetCityList extends UseCase<City, Void> {
   private final CitySorting citySorting;
 
   @Inject GetCityList(CityRepository cityRepository, ThreadExecutor threadExecutor,
-      PostExecutionThread postExecutionThread) {
+      PostExecutionThread postExecutionThread, CitySorting citySorting) {
     super(threadExecutor, postExecutionThread);
     Preconditions.checkNotNull(cityRepository);
     Preconditions.checkNotNull(threadExecutor);
     Preconditions.checkNotNull(postExecutionThread);
+    this.citySorting = citySorting;
     this.cityRepository = cityRepository;
-    this.citySorting = new CitySortingImpl();
   }
 
   @Override Observable<City> buildUseCaseObservable(Void unused) {

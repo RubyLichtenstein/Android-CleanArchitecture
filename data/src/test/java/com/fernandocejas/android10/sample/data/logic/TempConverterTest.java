@@ -1,5 +1,6 @@
-package com.fernandocejas.android10.sample.domain.logic;
+package com.fernandocejas.android10.sample.data.logic;
 
+import com.fernandocejas.android10.sample.domain.logic.TempConverter;
 import org.junit.Before;
 import org.junit.Test;
 

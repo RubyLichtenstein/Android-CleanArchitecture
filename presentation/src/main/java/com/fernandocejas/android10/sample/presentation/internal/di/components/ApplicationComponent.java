@@ -18,6 +18,9 @@ package com.fernandocejas.android10.sample.presentation.internal.di.components;
 import android.content.Context;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
+import com.fernandocejas.android10.sample.domain.logic.CitySorting;
+import com.fernandocejas.android10.sample.domain.logic.TempConverter;
+import com.fernandocejas.android10.sample.domain.logic.WeatherTempCalc;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ApplicationModule;
@@ -39,4 +42,7 @@ public interface ApplicationComponent {
   WeatherRepository weatherRepository();
   PostExecutionThread postExecutionThread();
   CityRepository cityRepository();
+  CitySorting citySorting();
+  TempConverter tempConverter();
+  WeatherTempCalc weatherTempCalc();
 }

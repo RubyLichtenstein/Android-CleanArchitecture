@@ -24,6 +24,9 @@ import com.fernandocejas.android10.sample.data.disk.StreamReader;
 import com.fernandocejas.android10.sample.data.disk.StreamReaderImpl;
 import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityJsonMapper;
 import com.fernandocejas.android10.sample.data.executor.JobExecutor;
+import com.fernandocejas.android10.sample.data.logic.CitySortingImpl;
+import com.fernandocejas.android10.sample.data.logic.TempConverterImpl;
+import com.fernandocejas.android10.sample.data.logic.WeatherTempCalcImpl;
 import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
 import com.fernandocejas.android10.sample.data.net.WeatherRestApiImpl;
 import com.fernandocejas.android10.sample.data.net.retrofit.Config;
@@ -34,6 +37,9 @@ import com.fernandocejas.android10.sample.data.repository.WeatherDataRepository;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.interactor.GetCityList;
+import com.fernandocejas.android10.sample.domain.logic.CitySorting;
+import com.fernandocejas.android10.sample.domain.logic.TempConverter;
+import com.fernandocejas.android10.sample.domain.logic.WeatherTempCalc;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
@@ -65,15 +71,17 @@ import javax.inject.Singleton;
     return uiThread;
   }
 
-  ////todo bug!
-  //@Provides CitySorter provideCitySorter(CitySorterImpl citySorter) {
-  //  return citySorter;
-  //}
-  //
-  ////todo bug!
-  //@Provides WeatherTempCalc provideWeatherTempCalc(WeatherTempCalc weatherTempCalc) {
-  //  return weatherTempCalc;
-  //}
+  @Provides CitySorting provideCitySorting(CitySortingImpl citySorter) {
+    return citySorter;
+  }
+
+  @Provides TempConverter provideTempConverter(TempConverterImpl tempConverter) {
+    return tempConverter;
+  }
+
+  @Provides WeatherTempCalc provideWeatherTempCalc(WeatherTempCalcImpl weatherTempCalc) {
+    return weatherTempCalc;
+  }
 
   @Provides GetCityList provideGetCityList(GetCityList getCityList) {
     return getCityList;

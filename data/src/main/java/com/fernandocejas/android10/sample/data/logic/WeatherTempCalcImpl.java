@@ -1,23 +1,28 @@
-package com.fernandocejas.android10.sample.domain.logic;
+package com.fernandocejas.android10.sample.data.logic;
 
 import com.fernandocejas.android10.sample.domain.Weather;
+import com.fernandocejas.android10.sample.domain.logic.TempConverter;
+import com.fernandocejas.android10.sample.domain.logic.WeatherTempCalc;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Created by Ruby on 7/29/2017.
  */
 
 //todo test
-public class WeatherTempCalcImpl implements WeatherTempCalc {
+@Singleton public class WeatherTempCalcImpl implements WeatherTempCalc {
 
   private final TempConverter tempConverter;
   private final Function<Weather, Weather> weatherTempCalc;
 
-  public WeatherTempCalcImpl(final TempConverter tempConverter) {
+  @Inject
+  public WeatherTempCalcImpl(@NonNull TempConverter tempConverter) {
     this.tempConverter = tempConverter;
     weatherTempCalc = new Function<Weather, Weather>() {
       @Override public Weather apply(@NonNull Weather weather) throws Exception {
