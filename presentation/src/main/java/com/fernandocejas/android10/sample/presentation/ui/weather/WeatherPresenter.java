@@ -87,23 +87,20 @@ import javax.inject.Inject;
     this.weatherView.showError(defaultErrorBundle.getErrorMessage());
   }
 
-  private void showWeatherInView(boolean celsius, WeatherModel weatherModel) {
+  public void showWeatherInView(boolean celsius, WeatherModel weatherModel) {
     this.weatherView.renderWeather(weatherModelDataMapper.transform(celsius, weatherModel));
   }
 
-  private void setWeatherModel(Weather weather) {
+  public void setWeatherModel(Weather weather) {
     this.weatherModel = this.weatherModelDataMapper.transform(weather);
-    showWeatherInView(celsius, this.weatherModel);
   }
 
-  private void onCelsiusClick() {
-    this.celsius = true;
-    showWeatherInView(this.celsius, this.weatherModel);
+  public void onCelsiusClick() {
+    showWeatherInView(this.celsius = true, this.weatherModel);
   }
 
-  private void onFahrenheitClick() {
-    this.celsius = false;
-    showWeatherInView(this.celsius, this.weatherModel);
+  public void onFahrenheitClick() {
+    showWeatherInView(this.celsius = false, this.weatherModel);
   }
 
   private final class WeatherObserver extends DefaultObserver<Weather> {
@@ -118,6 +115,7 @@ import javax.inject.Inject;
 
     @Override public void onNext(Weather weather) {
       setWeatherModel(weather);
+      showWeatherInView(celsius, weatherModel);
     }
   }
 }

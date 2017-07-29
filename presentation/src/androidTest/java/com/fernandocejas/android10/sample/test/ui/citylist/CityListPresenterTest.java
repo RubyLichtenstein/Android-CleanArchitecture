@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
@@ -32,6 +32,9 @@ import static org.mockito.Mockito.verify;
   @Mock private CityListView mockCityListView;
   @Mock private GetCityList mockGetCityList;
   @Mock private CityModelDataMapper mockCityModelDataMapper;
+
+  public CityListPresenterTest() {
+  }
 
   @Before public void setUp() {
     cityListPresenter.setView(mockCityListView);
