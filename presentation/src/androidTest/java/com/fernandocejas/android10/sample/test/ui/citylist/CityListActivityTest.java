@@ -1,7 +1,6 @@
 package com.fernandocejas.android10.sample.test.ui.citylist;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -34,11 +33,5 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
     assertThat(actualTitle,
         is(mActivityRule.getActivity().getString(R.string.activity_title_city_list)));
-  }
-
-  private Intent createTargetIntent() {
-    Intent intentLaunchActivity = CityListActivity.getCallingIntent(mActivityRule.getActivity());
-
-    return intentLaunchActivity;
   }
 }

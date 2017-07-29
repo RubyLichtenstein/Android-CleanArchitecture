@@ -6,6 +6,6 @@ import java.io.IOException;
  * Created by Ruby on 7/26/2017.
  */
 
-public interface AssetsReader {
+interface AssetsReader {
   String readFromAssets(String fileName) throws IOException;
 }

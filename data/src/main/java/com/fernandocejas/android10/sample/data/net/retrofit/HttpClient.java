@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Ruby on 7/27/2017
  */
 
-public class HttpClient<T> {
+class HttpClient<T> {
   private T client;
 
   public HttpClient(String baseUrl, final Class<T> service) {

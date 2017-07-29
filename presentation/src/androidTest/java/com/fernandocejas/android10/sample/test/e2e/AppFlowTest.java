@@ -26,8 +26,8 @@ import static org.hamcrest.Matchers.startsWith;
  */
 
 @RunWith(AndroidJUnit4.class) @LargeTest public class AppFlowTest {
-  public static final String CURRENTLY = "Currently ";
-  public static final String TODAY = "Today ";
+  private static final String CURRENTLY = "Currently ";
+  private static final String TODAY = "Today ";
 
   @Rule public IntentsTestRule<CityListActivity> mIntentActivityRule =
       new IntentsTestRule<>(CityListActivity.class);

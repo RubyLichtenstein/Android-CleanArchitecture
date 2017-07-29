@@ -76,10 +76,10 @@ dependencies {
   compile presentationDependencies.rxAndroid
   compile presentationDependencies.rxBinding
   compile presentationDependencies.constraintLayout
-  provided presentationDependencies.javaxAnnotation
   compile presentationDependencies.glide
-  annotationProcessor presentationDependencies.glideCompiler
   compile presentationDependencies.androidSupportV4
+  provided presentationDependencies.javaxAnnotation
+  annotationProcessor presentationDependencies.glideCompiler
 
   androidTestCompile presentationTestDependencies.mockito
   androidTestCompile presentationTestDependencies.dexmaker

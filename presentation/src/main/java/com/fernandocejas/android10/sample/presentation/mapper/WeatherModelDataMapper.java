@@ -11,7 +11,7 @@ import javax.inject.Inject;
  */
 @PerActivity public class WeatherModelDataMapper {
 
-  public static final String DEGREES = "°";
+  private static final String DEGREES = "°";
 
   @Inject public WeatherModelDataMapper() {
   }
@@ -53,19 +53,10 @@ import javax.inject.Inject;
   }
 
   private String prepareCurrentlyTemp(float temp) {
-    return new StringBuilder().append("Currently ")
-        .append(String.valueOf(temp))
-        .append(DEGREES)
-        .toString();
+    return "Currently " + String.valueOf(temp) + DEGREES;
   }
 
   private String prepareTempRange(float low, float high) {
-    return new StringBuilder().append("Today ")
-        .append(String.valueOf(low))
-        .append(DEGREES)
-        .append("-")
-        .append(String.valueOf(high))
-        .append(DEGREES)
-        .toString();
+    return "Today " + String.valueOf(low) + DEGREES + "-" + String.valueOf(high) + DEGREES;
   }
 }

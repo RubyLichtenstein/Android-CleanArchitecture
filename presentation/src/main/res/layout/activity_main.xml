@@ -9,26 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ui.main.MainActivity"
     >
-  <!--todo delete-->
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:gravity="center"
-      android:text="@string/url"
-      />
 
-  <ImageView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:contentDescription="@string/string_content_description"
-      android:src="@drawable/logo"
-      />
-
-  <Button
-      android:id="@+id/btn_LoadData"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/btn_text_load_data"
-      />
 
 </LinearLayout>

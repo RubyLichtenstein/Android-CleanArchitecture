@@ -27,7 +27,7 @@ import javax.inject.Inject;
 public class WeatherFragment extends BaseFragment implements WeatherView {
   private static final String PARAM_CITY_ID = "param_city_id";
 
-  @Inject WeatherPresenter weatherPresenter;
+  @Inject   WeatherPresenter weatherPresenter;
 
   @BindView(R.id.tv_city_name) TextView tvCityName;
   @BindView(R.id.tv_weather_description) TextView tvWeatherDescription;

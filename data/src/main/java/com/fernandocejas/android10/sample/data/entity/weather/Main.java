@@ -3,11 +3,11 @@ package com.fernandocejas.android10.sample.data.entity.weather;
 import com.google.gson.annotations.SerializedName;
 
 public class Main {
-  public float temp;
-  public float pressure;
-  public float humidity;
-  @SerializedName("temp_min") public float tempMin;
-  @SerializedName("temp_max") public float tempMax;
+  private float temp;
+  private float pressure;
+  private float humidity;
+  @SerializedName("temp_min") private float tempMin;
+  @SerializedName("temp_max") private float tempMax;
 
   public float getTemp() {
     return temp;

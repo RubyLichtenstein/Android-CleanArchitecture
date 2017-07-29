@@ -5,8 +5,8 @@ package com.fernandocejas.android10.sample.presentation.model;
  */
 
 public class CityModel {
-  String name;
-  String id;
+  private String name;
+  private String id;
 
   public CityModel(String name, String id) {
     this.name = name;

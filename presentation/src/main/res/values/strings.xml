@@ -6,9 +6,6 @@
   <string name="activity_title_city_list">Cities List</string>
   <string name="activity_title_weather">Weather</string>
 
-  <string name="btn_text_load_data">Load Sample Data</string>
-  <string name="btn_text_retry">Retry</string>
-
   <string name="view_text_email">Email:</string>
   <string name="view_text_followers">Followers:</string>
   <string name="view_text_description">Description:</string>

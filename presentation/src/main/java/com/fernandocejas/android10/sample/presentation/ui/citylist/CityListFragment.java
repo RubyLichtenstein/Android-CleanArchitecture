@@ -26,11 +26,11 @@ import javax.inject.Inject;
 
 public class CityListFragment extends BaseFragment implements CityListView {
 
-  @Inject CityListPresenter cityListPresenter;
-  @Inject CityListAdapter cityListAdapter;
+  @Inject   CityListPresenter cityListPresenter;
+  @Inject   CityListAdapter cityListAdapter;
 
-  @BindView(R.id.rv_cities) RecyclerView rvCities;
-  @BindView(R.id.progress_bar) ProgressBar progressBar;
+  @BindView(R.id.rv_cities)   RecyclerView rvCities;
+  @BindView(R.id.progress_bar)   ProgressBar progressBar;
 
   private Disposable cityClickDisposable;
 
@@ -58,7 +58,7 @@ public class CityListFragment extends BaseFragment implements CityListView {
 
   private Consumer<CityModel> cityClickObs;
 
-  void setActivityConsumerCityClick(Context context) {
+  private void setActivityConsumerCityClick(Context context) {
     if (context instanceof CityListActivity) {
       cityClickObs = ((CityListActivity) context).getOnCityClickObserver();
     }

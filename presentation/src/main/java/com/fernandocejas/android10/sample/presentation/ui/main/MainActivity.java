@@ -17,7 +17,7 @@ public class MainActivity extends BaseActivity {
     finish();
   }
 
-  void navigateToUserList() {
+  private void navigateToUserList() {
     this.navigator.navigateToCityList(this);
   }
 }

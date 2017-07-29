@@ -52,7 +52,7 @@ import javax.inject.Singleton;
  * Dagger module that provides objects which will live during the application lifecycle.
  */
 @Module public class ApplicationModule {
-  public static final String CITIES_FILE_NAME = "cities.txt";
+  private static final String CITIES_FILE_NAME = "cities.txt";
   private final AndroidApplication application;
 
   public ApplicationModule(AndroidApplication application) {

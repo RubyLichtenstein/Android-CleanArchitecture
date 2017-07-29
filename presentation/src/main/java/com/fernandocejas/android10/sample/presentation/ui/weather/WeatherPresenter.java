@@ -44,7 +44,7 @@ import javax.inject.Inject;
     this.initializeViewObservers();
   }
 
-  public void initializeViewObservers() {
+  private void initializeViewObservers() {
     this.weatherView.fahrenheitBtnClick().subscribe(new Consumer<Object>() {
       @Override public void accept(Object o) throws Exception {
         onFahrenheitClick();
@@ -105,7 +105,7 @@ import javax.inject.Inject;
     }
   }
 
-  public void onFahrenheitClick() {
+  private void onFahrenheitClick() {
     showWeatherInView(this.celsius = false, this.weatherModel);
   }
 

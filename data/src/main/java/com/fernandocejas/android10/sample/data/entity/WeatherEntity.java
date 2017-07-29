@@ -14,16 +14,16 @@ import java.util.List;
 
 public class WeatherEntity {
   public Coord coord;
-  public List<WeatherEntityInernal> weather = null;
-  public String base;
-  public Main main;
+  private List<WeatherEntityInernal> weather = null;
+  private String base;
+  private Main main;
   public float visibility;
   public Wind wind;
   public Clouds clouds;
   public float dt;
   public Sys sys;
-  public Integer id;
-  public String name;
+  private Integer id;
+  private String name;
   public Integer cod;
 
   public List<WeatherEntityInernal> getWeather() {

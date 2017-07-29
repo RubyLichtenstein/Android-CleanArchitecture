@@ -45,7 +45,7 @@ public class CityListActivity extends BaseActivity implements HasComponent<CityL
     return cityListComponent;
   }
 
-  public void onCityClicked(CityModel cityModel) {
+  private void onCityClicked(CityModel cityModel) {
     this.navigator.navigateToWeather(this, cityModel.getId());
   }
 
