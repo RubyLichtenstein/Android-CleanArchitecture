@@ -54,15 +54,14 @@ import javax.inject.Inject;
    */
   public void initialize() {
     this.loadCityList();
-    this.subscribeToViewWeather();
+    this.subscribeToCityClick();
   }
 
-  //todo rename
-  private void subscribeToViewWeather() {
+  private void subscribeToCityClick() {
     //todo dispose
-    this.cityListView.getCityClickObs().subscribe(new Consumer<CityModel>() {
+    this.cityListView.cityClickObs().subscribe(new Consumer<CityModel>() {
       @Override public void accept(CityModel cityModel) throws Exception {
-        CityListPresenter.this.cityListView.getCityClickObs(cityModel);
+        //CityListPresenter.this.cityListView.cityClickObs(cityModel);
       }
     });
   }

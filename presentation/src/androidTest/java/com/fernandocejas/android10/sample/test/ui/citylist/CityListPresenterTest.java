@@ -43,7 +43,7 @@ import static org.mockito.Mockito.verify;
   @SuppressWarnings("unchecked")
   public void testUserListPresenterInitialize() {
     given(mockCityListView.context()).willReturn(mockContext);
-    given(mockCityListView.getCityClickObs()).willReturn(new Observable<CityModel>() {
+    given(mockCityListView.cityClickObs()).willReturn(new Observable<CityModel>() {
       @Override protected void subscribeActual(Observer<? super CityModel> observer) {
 
       }
@@ -54,7 +54,7 @@ import static org.mockito.Mockito.verify;
 
     verify(mockCityListView).hideRetry();
     verify(mockCityListView).showLoading();
-    verify(mockCityListView).getCityClickObs();
+    verify(mockCityListView).cityClickObs();
     verify(mockGetCityList).execute(any(DisposableObserver.class), any(Void.class));
   }
 

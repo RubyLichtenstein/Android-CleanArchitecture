@@ -18,7 +18,9 @@ package com.fernandocejas.android10.sample.presentation.internal.di.components;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ActivityModule;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.UserModule;
+import com.fernandocejas.android10.sample.presentation.ui.citylist.CityListActivity;
 import com.fernandocejas.android10.sample.presentation.ui.citylist.CityListFragment;
+import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherActivity;
 import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherFragment;
 import dagger.Component;
 
@@ -30,6 +32,8 @@ import dagger.Component;
 @Component(dependencies = ApplicationComponent.class, modules = {ActivityModule.class, UserModule.class})
 public interface UserComponent extends ActivityComponent {
   //todo rename component name
+  void inject(CityListActivity cityListActivity);
   void inject(CityListFragment cityListFragment);
+  void inject(WeatherActivity weatherActivity);
   void inject(WeatherFragment weatherFragment);
-}
+ }

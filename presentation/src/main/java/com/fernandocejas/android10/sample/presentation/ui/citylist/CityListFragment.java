@@ -58,7 +58,7 @@ public class CityListFragment extends BaseFragment implements CityListView {
   void setActivityObserveCityClick(Context context) {
     if (context instanceof CityListActivity) {
       Consumer<CityModel> cityClickObs = ((CityListActivity) context).getOnCityClickObserver();
-      cityClickDisposable = getCityClickObs().subscribe(cityClickObs);
+      cityClickDisposable = cityClickObs().subscribe(cityClickObs);
     }
   }
 
@@ -134,11 +134,8 @@ public class CityListFragment extends BaseFragment implements CityListView {
     }
   }
 
-  @Override public void getCityClickObs(CityModel cityModel) {
 
-  }
-
-  @Override public Observable<CityModel> getCityClickObs() {
+  @Override public Observable<CityModel> cityClickObs() {
     return citiesAdapter.getCityClickObs();
   }
 }

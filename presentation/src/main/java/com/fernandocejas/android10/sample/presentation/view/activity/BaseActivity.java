@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.widget.Toast;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.ApplicationComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ActivityModule;
@@ -50,5 +51,9 @@ public abstract class BaseActivity extends Activity {
    */
   protected ActivityModule getActivityModule() {
     return new ActivityModule(this);
+  }
+
+  protected void showToastMessage(String message) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
   }
 }

@@ -10,21 +10,10 @@ import java.util.Collection;
  */
 
 public interface CityListView extends LoadDataView {
-  /**
-   * Render a city list in the UI.
-   *
-   * @param cityModelCollection The collection of {@link CityModel} that will be shown.
-   */
+
   void renderCityList(Collection<CityModel> cityModelCollection);
 
   void renderCity(CityModel cityModel);
 
-  /**
-   * View a {@link CityModel} name.
-   *
-   * @param cityModel The city that will be shown.
-   */
-  void getCityClickObs(CityModel cityModel);
-
-  Observable<CityModel> getCityClickObs();
+  Observable<CityModel> cityClickObs();
 }

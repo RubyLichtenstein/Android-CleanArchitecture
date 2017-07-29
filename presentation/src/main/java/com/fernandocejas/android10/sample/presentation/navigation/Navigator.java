@@ -20,12 +20,13 @@ import android.content.Intent;
 import com.fernandocejas.android10.sample.presentation.ui.citylist.CityListActivity;
 import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherActivity;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * Class used to navigate through the application.
  */
-@Singleton public class Navigator {
+/*@Singleton*/
+//todo fix scopes issue
+public class Navigator {
 
   @Inject public Navigator() {
   }
