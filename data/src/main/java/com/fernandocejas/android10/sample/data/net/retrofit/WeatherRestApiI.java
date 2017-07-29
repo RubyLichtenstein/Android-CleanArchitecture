@@ -20,15 +20,12 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-/**
- * RestApi for retrieving data from the network.
- */
 public interface WeatherRestApiI {
-  /**
-   * Retrieves an {@link Observable} which will emit a {@link WeatherEntity}.
-   *
-   * @param cityId The city id used to get weather data.
-   */
-  @GET(Config.GET_WEATHER_PATH) Observable<WeatherEntity> WeatherEntityByCityId(
-      @Query("id") String cityId, @Query("units") String units, @Query("APPID") String appId);
+
+  String ID = "id";
+  String UNITS = "units";
+  String APPID = "APPID";
+
+  @GET(Config.GET_WEATHER_PATH) Observable<WeatherEntity> weatherEntityByCityId(
+      @Query(ID) String cityId, @Query(UNITS) String units, @Query(APPID) String appId);
 }

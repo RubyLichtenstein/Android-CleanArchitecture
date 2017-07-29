@@ -27,5 +27,5 @@ public interface WeatherRestApi {
    *
    * @param cityId The city id used to get weather data.
    */
-  Observable<WeatherEntity> WeatherEntityByCityId(final String cityId);
+  Observable<WeatherEntity> weatherEntityByCityId(final String cityId);
 }

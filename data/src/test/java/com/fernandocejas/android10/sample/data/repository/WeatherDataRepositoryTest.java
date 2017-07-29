@@ -5,12 +5,13 @@ import com.fernandocejas.android10.sample.data.entity.mapper.WeatherEntityDataMa
 import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
 import com.fernandocejas.android10.sample.domain.Weather;
 import io.reactivex.Observable;
+import io.reactivex.observers.TestObserver;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -36,15 +37,16 @@ import static org.mockito.Mockito.verify;
     WeatherEntity weatherEntity = new WeatherEntity();
     Weather weather = new Weather();
 
-    given(mockWeatherRestApi.WeatherEntityByCityId(FAKE_CITY_ID)).willReturn(
+    given(mockWeatherRestApi.weatherEntityByCityId(FAKE_CITY_ID)).willReturn(
         Observable.just(weatherEntity));
     given(mockWeatherEntityDataMapper.transform(weatherEntity)).willReturn(weather);
 
-    weatherDataRepository.weather(FAKE_CITY_ID).subscribe(weatherItem -> {
-      assertThat(weatherItem).isEqualTo(weather);
-    });
+    TestObserver<Weather> testObserver = new TestObserver<>();
+    weatherDataRepository.weather(FAKE_CITY_ID).subscribe(testObserver);
 
-    verify(mockWeatherRestApi).WeatherEntityByCityId(FAKE_CITY_ID);
+    assertThat(testObserver.values().get(0)).isEqualTo(weather);
+
+    verify(mockWeatherRestApi).weatherEntityByCityId(FAKE_CITY_ID);
     verify(mockWeatherEntityDataMapper).transform(weatherEntity);
   }
 }

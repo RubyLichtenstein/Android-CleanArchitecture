@@ -25,9 +25,10 @@ import com.fernandocejas.android10.sample.data.disk.StreamReaderImpl;
 import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityJsonMapper;
 import com.fernandocejas.android10.sample.data.executor.JobExecutor;
 import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
-import com.fernandocejas.android10.sample.data.net.WeatherRestApiFactory;
 import com.fernandocejas.android10.sample.data.net.WeatherRestApiImpl;
 import com.fernandocejas.android10.sample.data.net.retrofit.Config;
+import com.fernandocejas.android10.sample.data.net.retrofit.WeatherRestApiFactory;
+import com.fernandocejas.android10.sample.data.net.retrofit.WeatherRestApiI;
 import com.fernandocejas.android10.sample.data.repository.CityDataRepository;
 import com.fernandocejas.android10.sample.data.repository.WeatherDataRepository;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
@@ -87,8 +88,8 @@ import javax.inject.Singleton;
     return cityDataRepository;
   }
 
-  @Provides @Singleton WeatherRestApiFactory provideWeatherRestApiFactory() {
-    return new WeatherRestApiFactory(Config.API_BASE_URL);
+  @Provides @Singleton WeatherRestApiI provideWeatherRestApiI() {
+    return new WeatherRestApiFactory(Config.API_BASE_URL).get();
   }
 
   @Provides @Singleton WeatherRestApi provideWeatherRestApi(WeatherRestApiImpl weatherRestApi) {

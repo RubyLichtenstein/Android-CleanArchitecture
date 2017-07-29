@@ -1,6 +1,6 @@
 package com.fernandocejas.android10.sample.data.entity.weather;
 
-public class Weather {
+public class WeatherEntityInernal {
   public Integer id;
   public String main;
   public String description;

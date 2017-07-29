@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.data.entity.mapper;
 
+import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.data.entity.CityListEntity;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.google.gson.JsonSyntaxException;
@@ -46,6 +47,7 @@ public class CityEntityJsonMapperTest {
   @Test public void testTransformCityEntityCollectionHappyCase() {
     Collection<CityEntity> cityEntityCollection =
         cityEntityJsonMapper.transformCitiesEntity(JSON_CITIES);
+
     CityEntity london = (CityEntity) cityEntityCollection.toArray()[0];
     CityEntity paris = (CityEntity) cityEntityCollection.toArray()[1];
 
@@ -58,25 +60,31 @@ public class CityEntityJsonMapperTest {
     assertThat(cityEntityCollection.size(), is(NUM_OF_CITIES));
   }
 
-  @Test public void testMapCitiesEntityToCityEntityListHappyCase() {
-    CityListEntity cityListEntity = new CityListEntity();
+  @Test public void testMapCityListEntityToCityEntityListHappyCase() {
+    CityListEntity cityListEntity = createCityListEntity();
+
     ArrayList<CityEntity> cityEntities = new ArrayList<>();
     cityEntities.add(new CityEntity(LONDON, LONDON_ID));
     cityEntities.add(new CityEntity(PARIS, PARIS_ID));
+
     cityListEntity.setCities(cityEntities);
 
-    List<CityEntity> mappedCityEntities =
+    List<CityEntity> CityEntityList =
         cityEntityJsonMapper.mapCitiesEntityToCityEntityList(cityListEntity);
 
-    assertThat(mappedCityEntities, is(cityEntities));
+    assertThat(CityEntityList, is(cityEntities));
   }
 
-  @Test public void testTransformCityEntityNotValidResponse() {
+  @NonNull private CityListEntity createCityListEntity() {
+    return new CityListEntity();
+  }
+
+  @Test public void testTransformCityEntityNotValidInput() {
     expectedException.expect(JsonSyntaxException.class);
     cityEntityJsonMapper.transformCitiesEntity("ironman");
   }
 
-  @Test public void testTransformCityEntityCollectionNotValidResponse() {
+  @Test public void testTransformCityEntityCollectionNotValidInput() {
     expectedException.expect(JsonSyntaxException.class);
     cityEntityJsonMapper.transformCitiesEntity("Tony Stark");
   }

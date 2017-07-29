@@ -1,8 +1,8 @@
 package com.fernandocejas.android10.sample.data.entity.mapper;
 
+import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.fernandocejas.android10.sample.domain.City;
-import com.fernandocejas.android10.sample.domain.logic.CitySorter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -10,8 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
@@ -27,9 +26,6 @@ import static org.mockito.Mockito.mock;
   private final String LONDON_ID = "2643743";
 
   @InjectMocks private CityEntityDataMapper cityEntityDataMapper;
-
-  //todo
-  @Mock CitySorter mockCitySorter;
 
   @Before public void setUp() throws Exception {
 
@@ -59,11 +55,7 @@ import static org.mockito.Mockito.mock;
     assertThat(cityCollection.size(), is(2));
   }
 
-  private CityEntity createFakeCityEntity() {
-    CityEntity cityEntity = new CityEntity();
-    cityEntity.setCity(LONDON);
-    cityEntity.setId(LONDON_ID);
-
-    return cityEntity;
+  @NonNull private CityEntity createFakeCityEntity() {
+    return new CityEntity(LONDON, LONDON_ID);
   }
 }

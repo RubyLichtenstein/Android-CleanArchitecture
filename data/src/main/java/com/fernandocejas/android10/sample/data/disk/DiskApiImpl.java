@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.data.disk;
 
+import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityJsonMapper;
 import io.reactivex.Observable;
@@ -18,34 +19,25 @@ import javax.inject.Singleton;
   private final AssetsReader assetsReader;
   private final CityEntityJsonMapper cityEntityJsonMapper;
 
-  @Inject public DiskApiImpl(String fileName, AssetsReader assetsReader,
-      CityEntityJsonMapper cityEntityJsonMapper) {
-
-    //todo test nulp
-    // TODO: 7/26/2017 use predictions? or nonull
-    if (cityEntityJsonMapper == null || assetsReader == null) {
-      // TODO: 7/26/2017 to string resource!
-      throw new IllegalArgumentException("The constructor parameters cannot be null!!!");
-    }
-
+  @Inject public DiskApiImpl(@NonNull String fileName, @NonNull AssetsReader assetsReader,
+      @NonNull CityEntityJsonMapper cityEntityJsonMapper) {
     this.fileName = fileName;
     this.assetsReader = assetsReader;
     this.cityEntityJsonMapper = cityEntityJsonMapper;
   }
 
-  @Override public Observable<CityEntity> cityEntityList() {
+  @NonNull @Override public Observable<CityEntity> cityEntityList() {
     return Observable.create(e -> {
-      String citiesJson = null;
       try {
-        citiesJson = assetsReader.readFromAssets(fileName);
+        String citiesJson = assetsReader.readFromAssets(fileName);
+        List<CityEntity> cityEntities = cityEntityJsonMapper.transformCitiesEntity(citiesJson);
+        for (CityEntity cityEntity : cityEntities) {
+          e.onNext(cityEntity);
+        }
+        e.onComplete();
       } catch (IOException exc) {
         e.onError(exc);
       }
-      List<CityEntity> cityEntities = cityEntityJsonMapper.transformCitiesEntity(citiesJson);
-      for (CityEntity cityEntity : cityEntities) {
-        e.onNext(cityEntity);
-      }
-      e.onComplete();
     });
   }
 }

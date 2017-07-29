@@ -30,7 +30,7 @@ public class CityEntityJsonMapper {
     return mapCitiesEntityToCityEntityList(cityListEntity);
   }
 
-  public List<CityEntity> mapCitiesEntityToCityEntityList(CityListEntity cityListEntity) {
+  public List<CityEntity> mapCitiesEntityToCityEntityList(@NonNull CityListEntity cityListEntity) {
     return cityListEntity.getCities();
   }
 }

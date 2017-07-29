@@ -1,7 +1,5 @@
-package com.fernandocejas.android10.sample.data.net;
+package com.fernandocejas.android10.sample.data.net.retrofit;
 
-import com.fernandocejas.android10.sample.data.net.retrofit.HttpClient;
-import com.fernandocejas.android10.sample.data.net.retrofit.WeatherRestApiI;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 

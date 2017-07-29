@@ -8,10 +8,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Ruby on 7/27/2017.
+ * Created by Ruby on 7/27/2017
  */
 
-//todo test?
 public class HttpClient<T> {
   private T client;
 

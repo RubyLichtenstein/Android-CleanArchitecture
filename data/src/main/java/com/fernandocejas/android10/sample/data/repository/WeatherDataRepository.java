@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.data.repository;
 
+import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.data.entity.mapper.WeatherEntityDataMapper;
 import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
 import com.fernandocejas.android10.sample.domain.Weather;
@@ -17,13 +18,13 @@ import javax.inject.Singleton;
   private final WeatherRestApi weatherRestApi;
   private final WeatherEntityDataMapper weatherEntityDataMapper;
 
-  @Inject public WeatherDataRepository(WeatherRestApi weatherRestApi,
-      WeatherEntityDataMapper weatherEntityDataMapper) {
+  @Inject public WeatherDataRepository(@NonNull WeatherRestApi weatherRestApi,
+      @NonNull WeatherEntityDataMapper weatherEntityDataMapper) {
     this.weatherRestApi = weatherRestApi;
     this.weatherEntityDataMapper = weatherEntityDataMapper;
   }
 
   @Override public Observable<Weather> weather(String cityId) {
-    return weatherRestApi.WeatherEntityByCityId(cityId).map(weatherEntityDataMapper::transform);
+    return weatherRestApi.weatherEntityByCityId(cityId).map(weatherEntityDataMapper::transform);
   }
 }

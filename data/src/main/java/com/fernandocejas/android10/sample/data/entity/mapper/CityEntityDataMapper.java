@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.data.entity.mapper;
 
+import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.data.entity.CityEntity;
 import com.fernandocejas.android10.sample.domain.City;
 import io.reactivex.Observable;
@@ -17,15 +18,11 @@ import javax.inject.Singleton;
   @Inject CityEntityDataMapper() {
   }
 
-  public City transform(CityEntity cityEntity) {
-    City city = null;
-    if (cityEntity != null) {
-      city = new City(cityEntity.getCity(), cityEntity.getId());
-    }
-    return city;
+  @NonNull public City transform(@NonNull CityEntity cityEntity) {
+    return new City(cityEntity.getCity(), cityEntity.getId());
   }
 
-  public List<City> transform(Collection<CityEntity> cityEntityCollection) {
+  public List<City> transform(@NonNull Collection<CityEntity> cityEntityCollection) {
     return Observable.fromIterable(cityEntityCollection)
         .map(this::transform)
         .toList()

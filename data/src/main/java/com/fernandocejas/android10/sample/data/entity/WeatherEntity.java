@@ -4,7 +4,7 @@ import com.fernandocejas.android10.sample.data.entity.weather.Clouds;
 import com.fernandocejas.android10.sample.data.entity.weather.Coord;
 import com.fernandocejas.android10.sample.data.entity.weather.Main;
 import com.fernandocejas.android10.sample.data.entity.weather.Sys;
-import com.fernandocejas.android10.sample.data.entity.weather.Weather;
+import com.fernandocejas.android10.sample.data.entity.weather.WeatherEntityInernal;
 import com.fernandocejas.android10.sample.data.entity.weather.Wind;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class WeatherEntity {
   public Coord coord;
-  public List<Weather> weather = null;
+  public List<WeatherEntityInernal> weather = null;
   public String base;
   public Main main;
   public float visibility;
@@ -26,19 +26,11 @@ public class WeatherEntity {
   public String name;
   public Integer cod;
 
-  public Coord getCoord() {
-    return coord;
-  }
-
-  public void setCoord(Coord coord) {
-    this.coord = coord;
-  }
-
-  public List<Weather> getWeather() {
+  public List<WeatherEntityInernal> getWeather() {
     return weather;
   }
 
-  public void setWeather(List<Weather> weather) {
+  public void setWeather(List<WeatherEntityInernal> weather) {
     this.weather = weather;
   }
 
@@ -52,50 +44,6 @@ public class WeatherEntity {
 
   public Main getMain() {
     return main;
-  }
-
-  public void setMain(Main main) {
-    this.main = main;
-  }
-
-  public float getVisibility() {
-    return visibility;
-  }
-
-  public void setVisibility(Integer visibility) {
-    this.visibility = visibility;
-  }
-
-  public Wind getWind() {
-    return wind;
-  }
-
-  public void setWind(Wind wind) {
-    this.wind = wind;
-  }
-
-  public Clouds getClouds() {
-    return clouds;
-  }
-
-  public void setClouds(Clouds clouds) {
-    this.clouds = clouds;
-  }
-
-  public float getDt() {
-    return dt;
-  }
-
-  public void setDt(Integer dt) {
-    this.dt = dt;
-  }
-
-  public Sys getSys() {
-    return sys;
-  }
-
-  public void setSys(Sys sys) {
-    this.sys = sys;
   }
 
   public Integer getId() {
@@ -112,13 +60,5 @@ public class WeatherEntity {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public Integer getCod() {
-    return cod;
-  }
-
-  public void setCod(Integer cod) {
-    this.cod = cod;
   }
 }

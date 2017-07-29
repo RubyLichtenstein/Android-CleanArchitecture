@@ -1,11 +1,11 @@
 package com.fernandocejas.android10.sample.data.repository;
 
+import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.data.disk.DiskApi;
 import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityDataMapper;
 import com.fernandocejas.android10.sample.domain.City;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import io.reactivex.Observable;
-import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -18,8 +18,8 @@ import javax.inject.Singleton;
   private final DiskApi diskApi;
   private final CityEntityDataMapper cityEntityDataMapper;
 
-  @Inject public CityDataRepository(DiskApi diskApi, CityEntityDataMapper cityEntityDataMapper) {
-    //todo null check or nonull
+  @Inject public CityDataRepository(@NonNull DiskApi diskApi,
+      @NonNull CityEntityDataMapper cityEntityDataMapper) {
     this.diskApi = diskApi;
     this.cityEntityDataMapper = cityEntityDataMapper;
   }

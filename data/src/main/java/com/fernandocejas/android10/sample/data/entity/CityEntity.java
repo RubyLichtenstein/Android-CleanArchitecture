@@ -23,16 +23,4 @@ public class CityEntity {
   public String getId() {
     return id;
   }
-
-  public void setCity(String city) {
-    this.city = city;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  @Override public String toString() {
-    return "CityEntity{" + "city='" + city + '\'' + ", id='" + id + '\'' + '}';
-  }
 }

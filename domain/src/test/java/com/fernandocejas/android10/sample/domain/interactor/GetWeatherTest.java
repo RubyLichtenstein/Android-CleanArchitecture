@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class) public class GetWeatherTest {
 
-  private static final int CITY_ID = 123;
+  private static final String CITY_ID = "123";
 
   private GetWeather getWeather;
 
@@ -32,8 +32,7 @@ import static org.mockito.Mockito.verifyZeroInteractions;
   @Rule public ExpectedException expectedException = ExpectedException.none();
 
   @Before public void setUp() {
-    getWeather = new GetWeather(mockWeatherRepository, mockThreadExecutor, mockPostExecutionThread,
-        weatherTempCalc);
+    getWeather = new GetWeather(mockWeatherRepository, mockThreadExecutor, mockPostExecutionThread);
   }
 
   @Test public void testGetUserDetailsUseCaseObservableHappyCase() {

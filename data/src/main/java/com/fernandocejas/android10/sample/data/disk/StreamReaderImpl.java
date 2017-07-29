@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.data.disk;
 
+import android.support.annotation.NonNull;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +17,7 @@ import javax.inject.Singleton;
   @Inject public StreamReaderImpl() {
   }
 
-  public String read(InputStream in) throws IOException {
+  @NonNull public String read(@NonNull InputStream in) throws IOException {
     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
     StringBuilder sb = new StringBuilder();

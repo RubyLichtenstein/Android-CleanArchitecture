@@ -1,6 +1,7 @@
 package com.fernandocejas.android10.sample.data.disk;
 
 import android.content.res.AssetManager;
+import android.support.annotation.NonNull;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.inject.Inject;
@@ -15,7 +16,8 @@ import javax.inject.Singleton;
   private final AssetManager assetManager;
   private final StreamReader fileManager;
 
-  @Inject public AssetsReaderImpl(AssetManager assetManager, StreamReader fileManager) {
+  @Inject
+  public AssetsReaderImpl(@NonNull AssetManager assetManager, @NonNull StreamReader fileManager) {
     this.assetManager = assetManager;
     this.fileManager = fileManager;
   }
