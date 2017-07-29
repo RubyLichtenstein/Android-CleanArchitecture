@@ -3,7 +3,7 @@
  *
  * @author Fernando Cejas (the android10 coder)
  */
-package com.fernandocejas.android10.sample.presentation.view;
+package com.fernandocejas.android10.sample.presentation.ui.base;
 
 import android.content.Context;
 

@@ -8,7 +8,7 @@ import com.fernandocejas.android10.sample.domain.interactor.GetWeather;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
-import com.fernandocejas.android10.sample.presentation.presenter.Presenter;
+import com.fernandocejas.android10.sample.presentation.ui.base.Presenter;
 import io.reactivex.functions.Consumer;
 import javax.inject.Inject;
 

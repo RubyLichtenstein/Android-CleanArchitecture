@@ -10,7 +10,7 @@ import com.fernandocejas.android10.sample.presentation.exception.ErrorMessageFac
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.CityModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
-import com.fernandocejas.android10.sample.presentation.presenter.Presenter;
+import com.fernandocejas.android10.sample.presentation.ui.base.Presenter;
 import io.reactivex.functions.Consumer;
 import java.util.Collection;
 import javax.inject.Inject;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.presentation.presenter;
+package com.fernandocejas.android10.sample.presentation.ui.base;
 
 /**
  * Interface representing a Presenter in a model view presenter (MVP) pattern.

@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
-import com.fernandocejas.android10.sample.presentation.view.fragment.BaseFragment;
+import com.fernandocejas.android10.sample.presentation.ui.base.BaseFragment;
 import com.fernandocejas.arrow.checks.Preconditions;
 import com.jakewharton.rxbinding2.view.RxView;
 import io.reactivex.Observable;

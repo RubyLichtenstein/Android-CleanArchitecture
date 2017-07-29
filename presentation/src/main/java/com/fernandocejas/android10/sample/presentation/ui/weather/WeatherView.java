@@ -1,6 +1,6 @@
 package com.fernandocejas.android10.sample.presentation.ui.weather;
 
-import com.fernandocejas.android10.sample.presentation.view.LoadDataView;
+import com.fernandocejas.android10.sample.presentation.ui.base.LoadDataView;
 import io.reactivex.Observable;
 
 /**

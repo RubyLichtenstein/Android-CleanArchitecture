@@ -3,7 +3,7 @@
  *
  * @author Fernando Cejas (the android10 coder)
  */
-package com.fernandocejas.android10.sample.presentation.view.fragment;
+package com.fernandocejas.android10.sample.presentation.ui.base;
 
 import android.app.Fragment;
 import android.widget.Toast;

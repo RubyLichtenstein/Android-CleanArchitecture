@@ -21,7 +21,7 @@ import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ApplicationModule;
-import com.fernandocejas.android10.sample.presentation.view.activity.BaseActivity;
+import com.fernandocejas.android10.sample.presentation.ui.base.BaseActivity;
 import dagger.Component;
 import javax.inject.Singleton;
 
