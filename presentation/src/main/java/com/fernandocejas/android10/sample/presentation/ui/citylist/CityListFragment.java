@@ -1,6 +1,9 @@
 package com.fernandocejas.android10.sample.presentation.ui.citylist;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,11 +29,11 @@ import javax.inject.Inject;
 
 public class CityListFragment extends BaseFragment implements CityListView {
 
-  @Inject   CityListPresenter cityListPresenter;
-  @Inject   CityListAdapter cityListAdapter;
+  @Inject CityListPresenter cityListPresenter;
+  @Inject CityListAdapter cityListAdapter;
 
-  @BindView(R.id.rv_cities)   RecyclerView rvCities;
-  @BindView(R.id.progress_bar)   ProgressBar progressBar;
+  @BindView(R.id.rv_cities) RecyclerView rvCities;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
 
   private Disposable cityClickDisposable;
 
@@ -51,22 +54,39 @@ public class CityListFragment extends BaseFragment implements CityListView {
     return fragmentView;
   }
 
-  @Override public void onAttach(Context context) {
+  @TargetApi(23) @Override public void onAttach(Context context) {
+    //This method avoid to call super.onAttach(context) if I'm not using api 23 or more
+    //if (Build.VERSION.SDK_INT >= 23) {
     super.onAttach(context);
+    onAttachToContext(context);
+  }
+
+  private void onAttachToContext(Context context) {
     setActivityConsumerCityClick(context);
   }
 
-  private Consumer<CityModel> cityClickObs;
+  /*
+   * Deprecated on API 23
+   * Use onAttachToContext instead
+   */
+  @SuppressWarnings("deprecation") @Override public void onAttach(Activity activity) {
+    super.onAttach(activity);
+    if (Build.VERSION.SDK_INT < 23) {
+      onAttachToContext(activity);
+    }
+  }
+
+  private Consumer<CityModel> activityCityClickObs;
 
   private void setActivityConsumerCityClick(Context context) {
     if (context instanceof CityListActivity) {
-      cityClickObs = ((CityListActivity) context).getOnCityClickObserver();
+      activityCityClickObs = ((CityListActivity) context).getOnCityClickObserver();
     }
   }
 
   @Override public void onDetach() {
     super.onDetach();
-    cityClickObs = null;
+    activityCityClickObs = null;
     if (cityClickDisposable != null) {
       cityClickDisposable.dispose();
     }
@@ -75,7 +95,7 @@ public class CityListFragment extends BaseFragment implements CityListView {
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     this.cityListPresenter.setView(this);
-    this.cityClickDisposable = getCityClickObs().subscribe(cityClickObs);
+    this.cityClickDisposable = getCityClickObs().subscribe(activityCityClickObs);
     if (savedInstanceState == null) {
       this.loadCityList();
     }
@@ -137,11 +157,12 @@ public class CityListFragment extends BaseFragment implements CityListView {
     }
   }
 
+  //todo not used!
   @Override public void getCityClickObs(CityModel cityModel) {
 
   }
 
-  @Override public Observable<CityModel> getCityClickObs() {
+  public Observable<CityModel> getCityClickObs() {
     return cityListAdapter.getCityClickObs();
   }
 }
