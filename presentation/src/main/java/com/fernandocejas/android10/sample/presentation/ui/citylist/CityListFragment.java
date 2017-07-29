@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
-import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.CityListComponent;
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.ui.base.BaseFragment;
 import io.reactivex.Observable;
@@ -40,7 +40,7 @@ public class CityListFragment extends BaseFragment implements CityListView {
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.getComponent(UserComponent.class).inject(this);
+    this.getComponent(CityListComponent.class).inject(this);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,

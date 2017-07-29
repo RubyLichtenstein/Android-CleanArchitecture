@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
-import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUserComponent;
-import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.CityListComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerCityListComponent;
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.ui.base.BaseActivity;
 import io.reactivex.functions.Consumer;
@@ -15,13 +15,13 @@ import io.reactivex.functions.Consumer;
  * Created by Ruby on 7/28/2017.
  */
 
-public class CityListActivity extends BaseActivity implements HasComponent<UserComponent> {
+public class CityListActivity extends BaseActivity implements HasComponent<CityListComponent> {
 
   public static Intent getCallingIntent(Context context) {
     return new Intent(context, CityListActivity.class);
   }
 
-  private UserComponent userComponent;
+  private CityListComponent cityListComponent;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -35,14 +35,14 @@ public class CityListActivity extends BaseActivity implements HasComponent<UserC
   }
 
   private void initializeInjector() {
-    this.userComponent = DaggerUserComponent.builder()
+    this.cityListComponent = DaggerCityListComponent.builder()
         .applicationComponent(getApplicationComponent())
         .activityModule(getActivityModule())
         .build();
   }
 
-  @Override public UserComponent getComponent() {
-    return userComponent;
+  @Override public CityListComponent getComponent() {
+    return cityListComponent;
   }
 
   public void onCityClicked(CityModel cityModel) {

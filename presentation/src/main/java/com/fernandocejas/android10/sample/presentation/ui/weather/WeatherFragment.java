@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.fernandocejas.android10.sample.presentation.R;
-import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.WeatherComponent;
 import com.fernandocejas.android10.sample.presentation.ui.base.BaseFragment;
 import com.fernandocejas.arrow.checks.Preconditions;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -58,7 +58,7 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
-    this.getComponent(UserComponent.class).inject(this);
+    this.getComponent(WeatherComponent.class).inject(this);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,

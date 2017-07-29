@@ -5,15 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
-import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUserComponent;
-import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerWeatherComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.WeatherComponent;
 import com.fernandocejas.android10.sample.presentation.ui.base.BaseActivity;
 
 /**
  * Created by Ruby on 7/28/2017.
  */
 
-public class WeatherActivity extends BaseActivity implements HasComponent<UserComponent> {
+public class WeatherActivity extends BaseActivity implements HasComponent<WeatherComponent> {
 
   private static final String INTENT_EXTRA_PARAM_CITY_ID = "org.android10.INTENT_PARAM_CITY_ID";
   private static final String INSTANCE_STATE_PARAM_CITY_ID = "org.android10.STATE_PARAM_CITY_ID";
@@ -25,7 +25,7 @@ public class WeatherActivity extends BaseActivity implements HasComponent<UserCo
   }
 
   private String cityId;
-  private UserComponent userComponent;
+  private WeatherComponent weatherComponent;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -56,13 +56,13 @@ public class WeatherActivity extends BaseActivity implements HasComponent<UserCo
   }
 
   private void initializeInjector() {
-    this.userComponent = DaggerUserComponent.builder()
+    this.weatherComponent = DaggerWeatherComponent.builder()
         .applicationComponent(getApplicationComponent())
         .activityModule(getActivityModule())
         .build();
   }
 
-  @Override public UserComponent getComponent() {
-    return userComponent;
+  @Override public WeatherComponent getComponent() {
+    return weatherComponent;
   }
 }

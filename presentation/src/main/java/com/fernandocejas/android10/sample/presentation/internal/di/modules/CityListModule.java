@@ -21,7 +21,7 @@ import dagger.Module;
  * Dagger module that provides user related collaborators.
  */
 @Module
-public class UserModule {
+public class CityListModule {
 
-  public UserModule() {}
+  public CityListModule() {}
 }

@@ -33,9 +33,6 @@ import com.fernandocejas.android10.sample.data.repository.WeatherDataRepository;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.interactor.GetCityList;
-import com.fernandocejas.android10.sample.domain.logic.CitySorter;
-import com.fernandocejas.android10.sample.domain.logic.CitySorterImpl;
-import com.fernandocejas.android10.sample.domain.logic.WeatherTempCalc;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
@@ -67,15 +64,15 @@ import javax.inject.Singleton;
     return uiThread;
   }
 
-  //todo bug!
-  @Provides CitySorter provideCitySorter(CitySorterImpl citySorter) {
-    return citySorter;
-  }
-
-  //todo bug!
-  @Provides WeatherTempCalc provideWeatherTempCalc(WeatherTempCalc weatherTempCalc) {
-    return weatherTempCalc;
-  }
+  ////todo bug!
+  //@Provides CitySorter provideCitySorter(CitySorterImpl citySorter) {
+  //  return citySorter;
+  //}
+  //
+  ////todo bug!
+  //@Provides WeatherTempCalc provideWeatherTempCalc(WeatherTempCalc weatherTempCalc) {
+  //  return weatherTempCalc;
+  //}
 
   @Provides GetCityList provideGetCityList(GetCityList getCityList) {
     return getCityList;
