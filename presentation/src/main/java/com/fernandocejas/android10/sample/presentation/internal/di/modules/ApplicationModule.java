@@ -72,6 +72,7 @@ import javax.inject.Singleton;
     return citySorter;
   }
 
+  //todo bug!
   @Provides WeatherTempCalc provideWeatherTempCalc(WeatherTempCalc weatherTempCalc) {
     return weatherTempCalc;
   }

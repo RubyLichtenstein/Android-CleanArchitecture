@@ -15,15 +15,13 @@ import javax.inject.Inject;
  * Created by Ruby on 7/28/2017.
  */
 
-@PerActivity
-public class WeatherPresenter implements Presenter {
+@PerActivity public class WeatherPresenter implements Presenter {
   private WeatherView weatherView;
 
   private final GetWeather getWeatherUseCase;
   private final WeatherModelDataMapper weatherModelDataMapper;
 
-  @Inject
-  public WeatherPresenter(WeatherModelDataMapper weatherModelDataMapper,
+  @Inject public WeatherPresenter(WeatherModelDataMapper weatherModelDataMapper,
       GetWeather getWeatherUseCase) {
     this.weatherModelDataMapper = weatherModelDataMapper;
     this.getWeatherUseCase = getWeatherUseCase;
@@ -38,23 +36,18 @@ public class WeatherPresenter implements Presenter {
    * and retrieving user details.
    */
   public void initialize(String cityId) {
-    this.hideViewRetry();
     this.showViewLoading();
     this.getWeather(cityId);
   }
 
   private void showViewLoading() {
-    //todo
-  }
-
-  private void hideViewRetry() {
-    //todo
+    this.weatherView.showLoading(true);
   }
 
   private void getWeather(String cityId) {
     this.getWeatherUseCase.execute(new WeatherObserver(), GetWeather.Params.forCity(cityId));
   }
-  
+
   @Override public void resume() {
 
   }
@@ -68,16 +61,12 @@ public class WeatherPresenter implements Presenter {
     this.weatherView = null;
   }
 
-  private void showViewRetry() {
-    //todo
-  }
-
   private void hideViewLoading() {
-    //todo
+    this.weatherView.showLoading(false);
   }
 
   private void showErrorMessage(DefaultErrorBundle defaultErrorBundle) {
-    //todo
+    this.weatherView.showError(defaultErrorBundle.getErrorMessage());
   }
 
   private void showWeatherInView(Weather weather) {
@@ -86,7 +75,6 @@ public class WeatherPresenter implements Presenter {
   }
 
   private final class WeatherObserver extends DefaultObserver<Weather> {
-
     @Override public void onComplete() {
       WeatherPresenter.this.hideViewLoading();
     }
@@ -94,7 +82,6 @@ public class WeatherPresenter implements Presenter {
     @Override public void onError(Throwable e) {
       WeatherPresenter.this.hideViewLoading();
       WeatherPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
-      WeatherPresenter.this.showViewRetry();
     }
 
     @Override public void onNext(Weather weather) {

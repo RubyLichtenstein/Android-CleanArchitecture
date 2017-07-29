@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2014 android10.org. All rights reserved.
+ *
  * @author Fernando Cejas (the android10 coder)
  */
 package com.fernandocejas.android10.sample.presentation.view;
@@ -11,14 +12,9 @@ import android.content.Context;
  */
 public interface LoadDataView {
   /**
-   * Show a view with a progress bar indicating a loading process.
+   * Show or hide view with a progress bar indicating a loading process.
    */
-  void showLoading();
-
-  /**
-   * Hide a loading view.
-   */
-  void hideLoading();
+  void showLoading(boolean show);
 
   /**
    * Show an error message

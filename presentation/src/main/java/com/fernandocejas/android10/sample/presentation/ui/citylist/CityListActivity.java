@@ -3,7 +3,6 @@ package com.fernandocejas.android10.sample.presentation.ui.citylist;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUserComponent;
@@ -26,7 +25,6 @@ public class CityListActivity extends BaseActivity implements HasComponent<UserC
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.activity_layout);
 
     this.initializeInjector();

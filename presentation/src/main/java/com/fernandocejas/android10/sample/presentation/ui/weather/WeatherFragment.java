@@ -88,7 +88,6 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
     this.weatherPresenter.destroy();
   }
 
-  //todo use view model ???
   @Override public void renderWeather(WeatherModel weather) {
     if (weather != null) {
       this.tvCityName.setText(weather.getCityName());
@@ -117,12 +116,8 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
     }
   }
 
-  @Override public void showLoading() {
-
-  }
-
-  @Override public void hideLoading() {
-
+  @Override public void showLoading(boolean show) {
+    this.progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
   }
 
   @Override public void showError(String message) {

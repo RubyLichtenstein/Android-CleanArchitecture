@@ -72,16 +72,12 @@ import javax.inject.Inject;
     this.getCityList();
   }
 
-  public void onCityClicked(CityModel cityModel) {
-    this.cityListView.getCityClickObs(cityModel);
-  }
-
   private void showViewLoading() {
-    this.cityListView.showLoading();
+    this.cityListView.showLoading(true);
   }
 
   private void hideViewLoading() {
-    this.cityListView.hideLoading();
+    this.cityListView.showLoading(false);
   }
 
   private void showErrorMessage(ErrorBundle errorBundle) {

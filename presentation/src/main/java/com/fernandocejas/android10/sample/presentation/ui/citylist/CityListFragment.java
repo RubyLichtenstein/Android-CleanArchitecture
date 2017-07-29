@@ -97,12 +97,8 @@ public class CityListFragment extends BaseFragment implements CityListView {
     this.cityListPresenter.destroy();
   }
 
-  @Override public void showLoading() {
-    this.progressBar.setVisibility(View.VISIBLE);
-  }
-
-  @Override public void hideLoading() {
-    this.progressBar.setVisibility(View.GONE);
+  @Override public void showLoading(boolean show) {
+    this.progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
   }
 
   @Override public void showError(String message) {
