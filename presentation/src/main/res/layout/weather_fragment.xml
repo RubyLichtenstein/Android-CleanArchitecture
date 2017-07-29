@@ -4,47 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     >
 
   <TextView
       android:id="@+id/tv_city_name"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_parent_top"
+      android:textSize="@dimen/text_size_extra_large"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       tools:text="@string/london"
       />
 
   <TextView
-      android:id="@+id/tv_description"
+      android:id="@+id/tv_weather_description"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:textSize="@dimen/text_size_small"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/tv_city_name"
       tools:text="@string/clear_sky"
       />
 
   <ImageView
       android:id="@+id/imv_icon"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:layout_constraintTop_toBottomOf="@+id/tv_description"
+      android:layout_width="@dimen/weather_icon_size"
+      android:layout_height="@dimen/weather_icon_size"
+      android:contentDescription="@string/weather_icon"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tv_weather_description"
       tools:src="@drawable/clear_sky"
       />
 
   <TextView
-      android:id="@+id/tv_temp"
+      android:id="@+id/tv_current_temp"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:textSize="@dimen/text_size_large"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/imv_icon"
       tools:text="@string/currently_19"
 
       />
 
   <TextView
-      android:id="@+id/tv_temp_min_max"
+      android:id="@+id/tv_today_temp_range"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:layout_constraintTop_toBottomOf="@+id/tv_temp"
+      android:textSize="@dimen/text_size_medium"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tv_current_temp"
       tools:text="@string/today_15_22"
       />
 
@@ -52,17 +67,23 @@
       android:id="@+id/btn_celsius"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/margin_parent_top"
       android:text="@string/celsius"
-      app:layout_constraintTop_toBottomOf="@+id/tv_temp_min_max"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/btn_fahrenheit"
+      app:layout_constraintHorizontal_chainStyle="packed"
+      app:layout_constraintStart_toStartOf="parent"
       />
 
   <Button
       android:id="@+id/btn_fahrenheit"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/margin_parent_top"
       android:text="@string/fahrenheit"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toEndOf="@id/btn_celsius"
-      app:layout_constraintTop_toTopOf="@+id/btn_celsius"
       />
 
   <ProgressBar

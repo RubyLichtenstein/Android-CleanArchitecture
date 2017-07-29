@@ -8,8 +8,8 @@ public class WeatherModel {
   private String cityName;
   private String description;
   private String iconUrl;
-  private String currentlyTempCelsius;
-  private String currentlyTempFahrenheit;
+  private String currentTempCelsius;
+  private String currentTempFahrenheit;
   private String todayTempRangeCelsius;
   private String todayTempRangeFahrenheit;
 
@@ -37,20 +37,20 @@ public class WeatherModel {
     this.iconUrl = iconUrl;
   }
 
-  public String getCurrentlyTempCelsius() {
-    return currentlyTempCelsius;
+  public String getCurrentTempCelsius() {
+    return currentTempCelsius;
   }
 
-  public void setCurrentlyTempCelsius(String currentlyTempCelsius) {
-    this.currentlyTempCelsius = currentlyTempCelsius;
+  public void setCurrentTempCelsius(String currentTempCelsius) {
+    this.currentTempCelsius = currentTempCelsius;
   }
 
-  public String getCurrentlyTempFahrenheit() {
-    return currentlyTempFahrenheit;
+  public String getCurrentTempFahrenheit() {
+    return currentTempFahrenheit;
   }
 
-  public void setCurrentlyTempFahrenheit(String currentlyTempFahrenheit) {
-    this.currentlyTempFahrenheit = currentlyTempFahrenheit;
+  public void setCurrentTempFahrenheit(String currentTempFahrenheit) {
+    this.currentTempFahrenheit = currentTempFahrenheit;
   }
 
   public String getTodayTempRangeCelsius() {

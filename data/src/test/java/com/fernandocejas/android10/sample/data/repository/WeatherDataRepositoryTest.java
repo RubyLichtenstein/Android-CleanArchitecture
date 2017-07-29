@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
  */
 
 @RunWith(MockitoJUnitRunner.class) public class WeatherDataRepositoryTest {
-  private static final int FAKE_CITY_ID = 1234;
+  private static final String FAKE_CITY_ID = "1234";
 
   @InjectMocks private WeatherDataRepository weatherDataRepository;
 

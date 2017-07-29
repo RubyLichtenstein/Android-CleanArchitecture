@@ -23,8 +23,8 @@ import javax.inject.Inject;
     weatherModel.setCityName(weather.getName());
     weatherModel.setDescription(weather.getDescription());
     weatherModel.setIconUrl(prepareIconUrl(weather.getIcon()));
-    weatherModel.setCurrentlyTempCelsius(prepareCurrentlyTemp(weather.getTempCelsius()));
-    weatherModel.setCurrentlyTempFahrenheit(prepareCurrentlyTemp(weather.getTempCelsius()));
+    weatherModel.setCurrentTempCelsius(prepareCurrentlyTemp(weather.getTempCelsius()));
+    weatherModel.setCurrentTempFahrenheit(prepareCurrentlyTemp(weather.getTempCelsius()));
     weatherModel.setTodayTempRangeCelsius(
         prepareTempRange(weather.getTempCelsiusLow(), weather.getTempCelsiusHigh()));
     weatherModel.setTodayTempRangeFahrenheit(
@@ -33,7 +33,7 @@ import javax.inject.Inject;
   }
 
   private String prepareIconUrl(String icon) {
-    return String.format("http://openweathermap.org/img/w/%s", icon);
+    return String.format("http://openweathermap.org/img/w/%s%s", icon, ".png");
   }
 
   private String prepareCurrentlyTemp(float temp) {

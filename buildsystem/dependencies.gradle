@@ -18,6 +18,7 @@ ext {
   daggerVersion = '2.11'
   butterKnifeVersion = '8.7.0'
   recyclerViewVersion = '25.1.1'
+  androidSupportV4Version = '25.3.1'
   rxJavaVersion = '2.1.2'
   rxAndroidVersion = '2.0.1'
   javaxAnnotationVersion = '1.0'
@@ -29,6 +30,7 @@ ext {
   retrofitVersion = '2.3.0'
   constraintLayoutVersion = '1.0.2'
   rxBindingVersion = '2.0.0'
+  glideVersion = '4.0.0-RC1'
 
   //Testing
   robolectricVersion = '3.1.1'
@@ -47,6 +49,9 @@ ext {
       dagger:             "com.google.dagger:dagger:${daggerVersion}",
       butterKnife:         "com.jakewharton:butterknife:${butterKnifeVersion}",
       butterKnifeCompiler: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+      glide:               "com.github.bumptech.glide:glide:${glideVersion}",
+      glideCompiler:       "com.github.bumptech.glide:compiler:${glideVersion}",
+      androidSupportV4:    "com.android.support:support-v4:${androidSupportV4Version}",
       recyclerView:        "com.android.support:recyclerview-v7:${recyclerViewVersion}",
       rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
       rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",

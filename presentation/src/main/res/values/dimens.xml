@@ -13,4 +13,20 @@
   <dimen name="lv_row_text_size">20sp</dimen>
   <dimen name="lv_row_icon_width">50dp</dimen>
   <dimen name="lv_row_icon_padding">5dp</dimen>
+
+  <!--Text size-->
+  <dimen name="text_size_micro">14sp</dimen>
+  <dimen name="text_size_small">16sp</dimen>
+  <dimen name="text_size_medium">20sp</dimen>
+  <dimen name="text_size_large">24sp</dimen>
+  <dimen name="text_size_extra_large">34sp</dimen>
+
+  <!--Margin-->
+  <dimen name="margin_parent_top">24dp</dimen>
+  <dimen name="margin_parent_bottom">64dp</dimen>
+  <dimen name="weather_icon_size">96dp</dimen>
+
+  <!--Padding-->
+  <dimen name="default_padding">16dp</dimen>
+
 </resources>

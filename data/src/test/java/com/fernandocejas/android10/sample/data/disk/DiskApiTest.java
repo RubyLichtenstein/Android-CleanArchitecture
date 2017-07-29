@@ -48,7 +48,7 @@ import static org.mockito.Mockito.when;
     when(mockCityEntityJsonMapper.transformCitiesEntity(FAKE_FILE_CONTENT)).thenReturn(
         cityEntityToEmit);
 
-    TestObserver<List<CityEntity>> testObserver = new TestObserver<>();
+    TestObserver<CityEntity> testObserver = new TestObserver<>();
     diskApi.cityEntityList().subscribe(testObserver);
     testObserver.assertComplete();
     testObserver.assertNoErrors();
@@ -70,7 +70,7 @@ import static org.mockito.Mockito.when;
 
     when(mockAssetsReader.readFromAssets(FAKE_FILE_NAME)).thenThrow(ioException);
 
-    TestObserver<List<CityEntity>> testObserver = new TestObserver<>();
+    TestObserver<CityEntity> testObserver = new TestObserver<>();
     diskApi.cityEntityList().subscribe(testObserver);
 
     testObserver.assertError(ioException);

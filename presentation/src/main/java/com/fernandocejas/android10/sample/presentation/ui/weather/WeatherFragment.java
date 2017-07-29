@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.bumptech.glide.Glide;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
@@ -28,10 +29,10 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
   @Inject WeatherPresenter weatherPresenter;
 
   @BindView(R.id.tv_city_name) TextView tvCityName;
-  @BindView(R.id.tv_description) TextView tvDescription;
+  @BindView(R.id.tv_weather_description) TextView tvWeatherDescription;
   @BindView(R.id.imv_icon) ImageView imvIcon;
-  @BindView(R.id.tv_temp) TextView tvTemp;
-  @BindView(R.id.tv_temp_min_max) TextView tvTempMinMax;
+  @BindView(R.id.tv_current_temp) TextView tvCurrentTemp;
+  @BindView(R.id.tv_today_temp_range) TextView tvTodayTempRange;
   @BindView(R.id.btn_celsius) Button btnCelsius;
   @BindView(R.id.btn_fahrenheit) Button btnFahrenheit;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
@@ -44,21 +45,12 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
     return weatherFragment;
   }
 
-  @Override public void onAttach(Context context) {
-    super.onAttach(context);
-  }
-
-  @Override public void onDetach() {
-    super.onDetach();
-  }
-
   public WeatherFragment() {
     setRetainInstance(true);
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    //todo
     this.getComponent(UserComponent.class).inject(this);
   }
 
@@ -100,8 +92,10 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
   @Override public void renderWeather(WeatherModel weather) {
     if (weather != null) {
       this.tvCityName.setText(weather.getCityName());
-      this.tvDescription.setText(weather.getDescription());
-      // TODO: 7/28/2017
+      this.tvWeatherDescription.setText(weather.getDescription());
+      this.tvCurrentTemp.setText(weather.getCurrentTempCelsius());
+      this.tvTodayTempRange.setText(weather.getTodayTempRangeCelsius());
+      Glide.with(getActivity()).load(weather.getIconUrl()).into(this.imvIcon);
     }
   }
 
