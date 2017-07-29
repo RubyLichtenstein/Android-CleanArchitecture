@@ -14,9 +14,10 @@ import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
-import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
 import com.fernandocejas.android10.sample.presentation.view.fragment.BaseFragment;
 import com.fernandocejas.arrow.checks.Preconditions;
+import com.jakewharton.rxbinding2.view.RxView;
+import io.reactivex.Observable;
 import javax.inject.Inject;
 
 /**
@@ -88,14 +89,22 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
     this.weatherPresenter.destroy();
   }
 
-  @Override public void renderWeather(WeatherModel weather) {
+  @Override public void renderWeather(WeatherViewModel weather) {
     if (weather != null) {
       this.tvCityName.setText(weather.getCityName());
       this.tvWeatherDescription.setText(weather.getDescription());
-      this.tvCurrentTemp.setText(weather.getCurrentTempCelsius());
-      this.tvTodayTempRange.setText(weather.getTodayTempRangeCelsius());
+      this.tvCurrentTemp.setText(weather.getCurrentTemp());
+      this.tvTodayTempRange.setText(weather.getTodayTempRange());
       Glide.with(getActivity()).load(weather.getIconUrl()).into(this.imvIcon);
     }
+  }
+
+  @Override public Observable<Object> celsiusBtnClick() {
+    return RxView.clicks(btnCelsius);
+  }
+
+  @Override public Observable<Object> fahrenheitBtnClick() {
+    return RxView.clicks(btnFahrenheit);
   }
 
   /**

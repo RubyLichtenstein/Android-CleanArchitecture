@@ -3,6 +3,7 @@ package com.fernandocejas.android10.sample.presentation.mapper;
 import com.fernandocejas.android10.sample.domain.Weather;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
+import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherViewModel;
 import javax.inject.Inject;
 
 /**
@@ -24,12 +25,24 @@ import javax.inject.Inject;
     weatherModel.setDescription(weather.getDescription());
     weatherModel.setIconUrl(prepareIconUrl(weather.getIcon()));
     weatherModel.setCurrentTempCelsius(prepareCurrentlyTemp(weather.getTempCelsius()));
-    weatherModel.setCurrentTempFahrenheit(prepareCurrentlyTemp(weather.getTempCelsius()));
+    weatherModel.setCurrentTempFahrenheit(prepareCurrentlyTemp(weather.getTempFahrenheit()));
     weatherModel.setTodayTempRangeCelsius(
         prepareTempRange(weather.getTempCelsiusLow(), weather.getTempCelsiusHigh()));
     weatherModel.setTodayTempRangeFahrenheit(
         prepareTempRange(weather.getTempFahrenheitLow(), weather.getTempFahrenheitHigh()));
     return weatherModel;
+  }
+
+  //todo test
+  public WeatherViewModel transform(boolean celsius, final WeatherModel wm) {
+    WeatherViewModel wvm = new WeatherViewModel();
+    wvm.setCityName(wm.getCityName());
+    wvm.setDescription(wm.getDescription());
+    wvm.setIconUrl(wm.getIconUrl());
+    wvm.setCurrentTemp(celsius ? wm.getCurrentTempCelsius() : wm.getCurrentTempFahrenheit());
+    wvm.setTodayTempRange(
+        celsius ? wm.getTodayTempRangeCelsius() : wm.getTodayTempRangeFahrenheit());
+    return wvm;
   }
 
   private String prepareIconUrl(String icon) {

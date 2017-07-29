@@ -26,22 +26,18 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class) public class CityListPresenterTest {
 
-  @InjectMocks
-  private CityListPresenter cityListPresenter;
+  @InjectMocks private CityListPresenter cityListPresenter;
 
   @Mock private Context mockContext;
   @Mock private CityListView mockCityListView;
   @Mock private GetCityList mockGetCityList;
   @Mock private CityModelDataMapper mockCityModelDataMapper;
 
-  @Before
-  public void setUp() {
+  @Before public void setUp() {
     cityListPresenter.setView(mockCityListView);
   }
 
-  @Test
-  @SuppressWarnings("unchecked")
-  public void testUserListPresenterInitialize() {
+  @Test @SuppressWarnings("unchecked") public void testUserListPresenterInitialize() {
     given(mockCityListView.context()).willReturn(mockContext);
     given(mockCityListView.getCityClickObs()).willReturn(new Observable<CityModel>() {
       @Override protected void subscribeActual(Observer<? super CityModel> observer) {
@@ -51,9 +47,7 @@ import static org.mockito.Mockito.verify;
 
     cityListPresenter.initialize();
 
-
-    verify(mockCityListView).hideRetry();
-    verify(mockCityListView).showLoading();
+    verify(mockCityListView).showLoading(true);
     verify(mockCityListView).getCityClickObs();
     verify(mockGetCityList).execute(any(DisposableObserver.class), any(Void.class));
   }

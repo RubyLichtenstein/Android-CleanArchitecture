@@ -9,6 +9,7 @@ import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
 import com.fernandocejas.android10.sample.presentation.presenter.Presenter;
+import io.reactivex.functions.Consumer;
 import javax.inject.Inject;
 
 /**
@@ -17,6 +18,8 @@ import javax.inject.Inject;
 
 @PerActivity public class WeatherPresenter implements Presenter {
   private WeatherView weatherView;
+  private WeatherModel weatherModel;
+  private boolean celsius = true;
 
   private final GetWeather getWeatherUseCase;
   private final WeatherModelDataMapper weatherModelDataMapper;
@@ -38,6 +41,21 @@ import javax.inject.Inject;
   public void initialize(String cityId) {
     this.showViewLoading();
     this.getWeather(cityId);
+    this.initializeViewObservers();
+  }
+
+  public void initializeViewObservers() {
+    this.weatherView.fahrenheitBtnClick().subscribe(new Consumer<Object>() {
+      @Override public void accept(Object o) throws Exception {
+        onFahrenheitClick();
+      }
+    });
+
+    this.weatherView.celsiusBtnClick().subscribe(new Consumer<Object>() {
+      @Override public void accept(Object o) throws Exception {
+        onCelsiusClick();
+      }
+    });
   }
 
   private void showViewLoading() {
@@ -69,9 +87,23 @@ import javax.inject.Inject;
     this.weatherView.showError(defaultErrorBundle.getErrorMessage());
   }
 
-  private void showWeatherInView(Weather weather) {
-    final WeatherModel weatherModel = this.weatherModelDataMapper.transform(weather);
-    this.weatherView.renderWeather(weatherModel);
+  private void showWeatherInView(boolean celsius, WeatherModel weatherModel) {
+    this.weatherView.renderWeather(weatherModelDataMapper.transform(celsius, weatherModel));
+  }
+
+  private void setWeatherModel(Weather weather) {
+    this.weatherModel = this.weatherModelDataMapper.transform(weather);
+    showWeatherInView(celsius, this.weatherModel);
+  }
+
+  private void onCelsiusClick() {
+    this.celsius = true;
+    showWeatherInView(this.celsius, this.weatherModel);
+  }
+
+  private void onFahrenheitClick() {
+    this.celsius = false;
+    showWeatherInView(this.celsius, this.weatherModel);
   }
 
   private final class WeatherObserver extends DefaultObserver<Weather> {
@@ -85,7 +117,7 @@ import javax.inject.Inject;
     }
 
     @Override public void onNext(Weather weather) {
-      WeatherPresenter.this.showWeatherInView(weather);
+      setWeatherModel(weather);
     }
   }
 }
