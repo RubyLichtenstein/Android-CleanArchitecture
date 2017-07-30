@@ -87,9 +87,7 @@ public class CityListFragment extends BaseFragment implements CityListView {
   @Override public void onDetach() {
     super.onDetach();
     activityCityClickObs = null;
-    if (cityClickDisposable != null) {
-      cityClickDisposable.dispose();
-    }
+    unsubsidised();
   }
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -114,11 +112,19 @@ public class CityListFragment extends BaseFragment implements CityListView {
   @Override public void onDestroyView() {
     super.onDestroyView();
     rvCities.setAdapter(null);
+
   }
 
   @Override public void onDestroy() {
     super.onDestroy();
     this.cityListPresenter.destroy();
+
+  }
+
+  public void unsubsidised() {
+    if (cityClickDisposable != null) {
+      cityClickDisposable.dispose();
+    }
   }
 
   @Override public void showLoading(boolean show) {

@@ -9,6 +9,7 @@ import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
 import com.fernandocejas.android10.sample.presentation.ui.base.Presenter;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import javax.inject.Inject;
 
@@ -20,6 +21,8 @@ import javax.inject.Inject;
   private WeatherView weatherView;
   private WeatherModel weatherModel;
   private boolean celsius = true;
+  private Disposable disposableCClick;
+  private Disposable disposableFClick;
 
   private final GetWeather getWeatherUseCase;
   private final WeatherModelDataMapper weatherModelDataMapper;
@@ -32,6 +35,14 @@ import javax.inject.Inject;
 
   public void setView(@NonNull WeatherView view) {
     this.weatherView = view;
+    this.updateView();
+    this.observeView();
+  }
+
+  private void updateView() {
+    if (weatherModel != null) {
+      showWeatherInView(celsius, weatherModel);
+    }
   }
 
   /**
@@ -41,21 +52,6 @@ import javax.inject.Inject;
   public void initialize(String cityId) {
     this.showViewLoading();
     this.getWeather(cityId);
-    this.initializeViewObservers();
-  }
-
-  private void initializeViewObservers() {
-    this.weatherView.fahrenheitBtnClick().subscribe(new Consumer<Object>() {
-      @Override public void accept(Object o) throws Exception {
-        onFahrenheitClick();
-      }
-    });
-
-    this.weatherView.celsiusBtnClick().subscribe(new Consumer<Object>() {
-      @Override public void accept(Object o) throws Exception {
-        onCelsiusClick();
-      }
-    });
   }
 
   private void showViewLoading() {
@@ -75,6 +71,8 @@ import javax.inject.Inject;
   }
 
   @Override public void destroy() {
+    this.disposableCClick.dispose();
+    this.disposableFClick.dispose();
     this.getWeatherUseCase.dispose();
     this.weatherView = null;
   }
@@ -107,6 +105,20 @@ import javax.inject.Inject;
 
   private void onFahrenheitClick() {
     showWeatherInView(this.celsius = false, this.weatherModel);
+  }
+
+  public void observeView() {
+    disposableFClick = this.weatherView.fahrenheitBtnClick().subscribe(new Consumer<Object>() {
+      @Override public void accept(Object o) throws Exception {
+        onFahrenheitClick();
+      }
+    });
+
+    disposableCClick = this.weatherView.celsiusBtnClick().subscribe(new Consumer<Object>() {
+      @Override public void accept(Object o) throws Exception {
+        onCelsiusClick();
+      }
+    });
   }
 
   private final class WeatherObserver extends DefaultObserver<Weather> {

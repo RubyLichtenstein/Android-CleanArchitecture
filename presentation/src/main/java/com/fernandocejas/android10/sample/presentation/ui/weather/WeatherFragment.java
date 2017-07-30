@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.bumptech.glide.Glide;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.WeatherComponent;
 import com.fernandocejas.android10.sample.presentation.ui.base.BaseFragment;
@@ -23,11 +22,10 @@ import javax.inject.Inject;
 /**
  * Created by Ruby on 7/28/2017
  */
-
 public class WeatherFragment extends BaseFragment implements WeatherView {
   private static final String PARAM_CITY_ID = "param_city_id";
 
-  @Inject   WeatherPresenter weatherPresenter;
+  @Inject WeatherPresenter weatherPresenter;
 
   @BindView(R.id.tv_city_name) TextView tvCityName;
   @BindView(R.id.tv_weather_description) TextView tvWeatherDescription;
@@ -36,7 +34,7 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
   @BindView(R.id.tv_today_temp_range) TextView tvTodayTempRange;
   @BindView(R.id.btn_celsius) Button btnCelsius;
   @BindView(R.id.btn_fahrenheit) Button btnFahrenheit;
-  @BindView(R.id.progress_bar) ProgressBar progressBar;
+  @BindView(R.id.progress_bar_weather) ProgressBar progressBar;
 
   public static WeatherFragment forCity(String cityId) {
     final WeatherFragment weatherFragment = new WeatherFragment();
@@ -52,12 +50,12 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
 
   public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    setRetainInstance(true);
+    //setRetainInstance(true);
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setRetainInstance(true);
+    //setRetainInstance(true);
     this.getComponent(WeatherComponent.class).inject(this);
   }
 
@@ -101,7 +99,8 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
       this.tvWeatherDescription.setText(weather.getDescription());
       this.tvCurrentTemp.setText(weather.getCurrentTemp());
       this.tvTodayTempRange.setText(weather.getTodayTempRange());
-      Glide.with(getActivity()).load(weather.getIconUrl()).into(this.imvIcon);
+      this.progressBar.setVisibility(View.GONE);
+      ImageLoader.fromUrl(getActivity(), this.imvIcon, weather.getIconUrl());
     }
   }
 
