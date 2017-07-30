@@ -7,9 +7,7 @@ import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.CityListComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerCityListComponent;
-import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.ui.base.BaseActivity;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by Ruby on 7/28/2017.
@@ -43,19 +41,5 @@ public class CityListActivity extends BaseActivity implements HasComponent<CityL
 
   @Override public CityListComponent getComponent() {
     return cityListComponent;
-  }
-
-  private void onCityClicked(CityModel cityModel) {
-    this.navigator.navigateToWeather(this, cityModel.getId());
-  }
-
-  private Consumer<CityModel> onCityClickObs = new Consumer<CityModel>() {
-    @Override public void accept(CityModel cityModel) throws Exception {
-      onCityClicked(cityModel);
-    }
-  };
-
-  public Consumer<CityModel> getOnCityClickObserver() {
-    return onCityClickObs;
   }
 }

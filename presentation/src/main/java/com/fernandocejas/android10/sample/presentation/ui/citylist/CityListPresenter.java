@@ -10,7 +10,8 @@ import com.fernandocejas.android10.sample.presentation.exception.ErrorMessageFac
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.CityModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
-import com.fernandocejas.android10.sample.presentation.ui.base.Presenter;
+import com.fernandocejas.android10.sample.presentation.navigation.Navigator;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import javax.inject.Inject;
 
@@ -18,29 +19,34 @@ import javax.inject.Inject;
  * Created by Ruby on 7/28/2017.
  */
 
-@PerActivity public class CityListPresenter implements Presenter {
+@PerActivity public class CityListPresenter implements CityListMvpContract.Presenter {
 
-  private CityListView cityListView;
+  private CityListMvpContract.View cityListView;
 
   private final GetCityList getCityListUseCase;
   private final CityModelDataMapper cityModelDataMapper;
+  private final Navigator navigator;
 
-  @Inject public CityListPresenter(GetCityList getCityListUseCase,
-      CityModelDataMapper cityModelDataMapper) {
+  private Disposable cityClickDisposable;
+
+  @Inject
+  public CityListPresenter(GetCityList getCityListUseCase, CityModelDataMapper cityModelDataMapper,
+      Navigator navigator) {
     this.getCityListUseCase = getCityListUseCase;
     this.cityModelDataMapper = cityModelDataMapper;
+    this.navigator = navigator;
   }
 
-  public void setView(@NonNull CityListView view) {
+  public void setView(@NonNull CityListMvpContract.View view) {
     this.cityListView = view;
   }
 
   @Override public void resume() {
-
+    bindViewIntents();
   }
 
   @Override public void pause() {
-
+    this.cityClickDisposable.dispose();
   }
 
   @Override public void destroy() {
@@ -53,16 +59,6 @@ import javax.inject.Inject;
    */
   public void initialize() {
     this.loadCityList();
-    this.subscribeToCityClick();
-  }
-
-  private void subscribeToCityClick() {
-    //todo dispose?
-    this.cityListView.getCityClickObs().subscribe(new Consumer<CityModel>() {
-      @Override public void accept(CityModel cityModel) throws Exception {
-        CityListPresenter.this.cityListView.getCityClickObs(cityModel);
-      }
-    });
   }
 
   private void loadCityList() {
@@ -91,6 +87,18 @@ import javax.inject.Inject;
 
   private void getCityList() {
     this.getCityListUseCase.execute(new CityListObserver(), null);
+  }
+
+  @Override public void onCityClick(CityModel cityModel) {
+    navigator.navigateToWeather(cityListView.context(), cityModel.getId());
+  }
+
+  @Override public void bindViewIntents() {
+    cityClickDisposable = cityListView.cityClick().subscribe(new Consumer<CityModel>() {
+      @Override public void accept(CityModel cityModel) throws Exception {
+        onCityClick(cityModel);
+      }
+    });
   }
 
   private final class CityListObserver extends DefaultObserver<City> {

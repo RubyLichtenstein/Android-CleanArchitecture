@@ -24,6 +24,7 @@ import com.fernandocejas.android10.sample.domain.logic.WeatherTransformer;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ApplicationModule;
+import com.fernandocejas.android10.sample.presentation.navigation.Navigator;
 import com.fernandocejas.android10.sample.presentation.ui.base.BaseActivity;
 import dagger.Component;
 import javax.inject.Singleton;
@@ -45,4 +46,5 @@ public interface ApplicationComponent {
   CitySorting citySorting();
   TempConverter tempConverter();
   WeatherTransformer weatherTransformer();
+  Navigator navigator();
 }

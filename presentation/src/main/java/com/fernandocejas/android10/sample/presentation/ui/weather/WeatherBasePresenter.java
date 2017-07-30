@@ -8,7 +8,8 @@ import com.fernandocejas.android10.sample.domain.interactor.GetWeather;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
-import com.fernandocejas.android10.sample.presentation.ui.base.Presenter;
+import com.fernandocejas.android10.sample.presentation.ui.base.BasePresenter;
+import com.fernandocejas.android10.sample.presentation.ui.base.BasePresenterContract;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import javax.inject.Inject;
@@ -17,7 +18,8 @@ import javax.inject.Inject;
  * Created by Ruby on 7/28/2017.
  */
 
-@PerActivity public class WeatherPresenter implements Presenter {
+@PerActivity public class WeatherBasePresenter extends BasePresenter
+    implements BasePresenterContract {
   private WeatherView weatherView;
   private WeatherModel weatherModel;
   private boolean celsius = true;
@@ -27,8 +29,9 @@ import javax.inject.Inject;
   private final GetWeather getWeatherUseCase;
   private final WeatherModelDataMapper weatherModelDataMapper;
 
-  @Inject public WeatherPresenter(WeatherModelDataMapper weatherModelDataMapper,
+  @Inject public WeatherBasePresenter(WeatherModelDataMapper weatherModelDataMapper,
       GetWeather getWeatherUseCase) {
+    super();
     this.weatherModelDataMapper = weatherModelDataMapper;
     this.getWeatherUseCase = getWeatherUseCase;
   }
@@ -121,14 +124,18 @@ import javax.inject.Inject;
     });
   }
 
+  @Override protected void bindViewIntents() {
+
+  }
+
   private final class WeatherObserver extends DefaultObserver<Weather> {
     @Override public void onComplete() {
-      WeatherPresenter.this.hideViewLoading();
+      WeatherBasePresenter.this.hideViewLoading();
     }
 
     @Override public void onError(Throwable e) {
-      WeatherPresenter.this.hideViewLoading();
-      WeatherPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
+      WeatherBasePresenter.this.hideViewLoading();
+      WeatherBasePresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
     }
 
     @Override public void onNext(Weather weather) {

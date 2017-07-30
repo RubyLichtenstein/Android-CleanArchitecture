@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.presentation.mapper;
 
+import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.domain.Weather;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
@@ -16,10 +17,7 @@ import javax.inject.Inject;
   @Inject public WeatherModelDataMapper() {
   }
 
-  public WeatherModel transform(Weather weather) {
-    if (weather == null) {
-      throw new IllegalArgumentException("Cannot transform a null value");
-    }
+  public WeatherModel transform(@NonNull Weather weather) {
     final WeatherModel weatherModel = new WeatherModel();
     weatherModel.setCityName(weather.getName());
     weatherModel.setDescription(weather.getDescription());
@@ -34,11 +32,8 @@ import javax.inject.Inject;
   }
 
   //todo test
-  public WeatherViewModel transform(boolean celsius, final WeatherModel wm) {
-    if (wm == null) {
-      throw new IllegalArgumentException("Cannot transform a null value");
-    }
-    WeatherViewModel wvm = new WeatherViewModel();
+  public WeatherViewModel transform(boolean celsius, @NonNull final WeatherModel wm) {
+    final WeatherViewModel wvm = new WeatherViewModel();
     wvm.setCityName(wm.getCityName());
     wvm.setDescription(wm.getDescription());
     wvm.setIconUrl(wm.getIconUrl());

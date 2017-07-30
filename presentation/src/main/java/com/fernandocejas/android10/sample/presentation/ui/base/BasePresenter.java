@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,24 +16,12 @@
 package com.fernandocejas.android10.sample.presentation.ui.base;
 
 /**
- * Interface representing a Presenter in a model view presenter (MVP) pattern.
+ * Base presenter in a model view presenter (MVP) pattern.
  */
-public interface Presenter {
-  /**
-   * Method that control the lifecycle of the view. It should be called in the view's
-   * (Activity or Fragment) onResume() method.
-   */
-  void resume();
+public abstract class BasePresenter {
 
-  /**
-   * Method that control the lifecycle of the view. It should be called in the view's
-   * (Activity or Fragment) onPause() method.
-   */
-  void pause();
+  public BasePresenter() {
+  }
 
-  /**
-   * Method that control the lifecycle of the view. It should be called in the view's
-   * (Activity or Fragment) onDestroy() method.
-   */
-  void destroy();
+  protected abstract void bindViewIntents();
 }

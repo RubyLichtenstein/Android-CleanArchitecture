@@ -7,9 +7,10 @@ import com.fernandocejas.android10.sample.domain.Weather;
 import com.fernandocejas.android10.sample.domain.interactor.GetWeather;
 import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
-import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherPresenter;
+import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherBasePresenter;
 import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherView;
 import io.reactivex.observers.DisposableObserver;
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,27 +25,25 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by Ruby on 7/29/2017.
  */
-@SmallTest
-@RunWith(MockitoJUnitRunner.class) public class WeatherPresenterTest {
+@SmallTest @RunWith(MockitoJUnitRunner.class) public class WeatherBasePresenterTest extends TestCase {
 
   private static final String FAKE_CITY_ID = "1234";
 
-  @InjectMocks private WeatherPresenter weatherPresenter;
+  @InjectMocks private WeatherBasePresenter weatherPresenter;
 
   @Mock private Context mockContext;
   @Mock private WeatherView mockWeatherView;
   @Mock private GetWeather mockGetWeatherUseCase;
   @Mock private WeatherModelDataMapper mockWeatherModelDataMapper;
 
-  public WeatherPresenterTest() {
+  public WeatherBasePresenterTest() {
   }
 
   @Before public void setUp() {
     weatherPresenter.setView(mockWeatherView);
   }
 
-  @Test
-  @SuppressWarnings("unchecked") public void testPresenterInitialize() {
+  @Test @SuppressWarnings("unchecked") public void testPresenterInitialize() {
     given(mockWeatherView.context()).willReturn(mockContext);
 
     weatherPresenter.initialize(FAKE_CITY_ID);
@@ -54,8 +53,7 @@ import static org.mockito.Mockito.verify;
         GetWeather.Params.forCity(FAKE_CITY_ID));
   }
 
-  @Test
-  @SuppressWarnings("unchecked") public void testOnCelsiusClick() {
+  @Test @SuppressWarnings("unchecked") public void testOnCelsiusClick() {
     WeatherModel weatherModel = createWeatherModel();
     Weather weather = createWeather();
 

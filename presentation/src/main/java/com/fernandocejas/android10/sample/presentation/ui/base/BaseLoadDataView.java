@@ -10,7 +10,8 @@ import android.content.Context;
 /**
  * Interface representing a View that will use to load data.
  */
-public interface LoadDataView {
+public interface BaseLoadDataView {
+
   /**
    * Show or hide view with a progress bar indicating a loading process.
    */

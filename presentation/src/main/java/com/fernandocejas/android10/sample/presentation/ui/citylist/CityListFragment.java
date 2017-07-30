@@ -1,9 +1,6 @@
 package com.fernandocejas.android10.sample.presentation.ui.citylist;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,24 +15,19 @@ import com.fernandocejas.android10.sample.presentation.internal.di.components.Ci
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.ui.base.BaseFragment;
 import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import java.util.Collection;
 import javax.inject.Inject;
 
 /**
  * Created by Ruby on 7/28/2017
  */
 
-public class CityListFragment extends BaseFragment implements CityListView {
+public class CityListFragment extends BaseFragment implements CityListMvpContract.View {
 
   @Inject CityListPresenter cityListPresenter;
   @Inject CityListAdapter cityListAdapter;
 
   @BindView(R.id.rv_cities) RecyclerView rvCities;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
-
-  private Disposable cityClickDisposable;
 
   public CityListFragment() {
     setRetainInstance(true);
@@ -54,46 +46,9 @@ public class CityListFragment extends BaseFragment implements CityListView {
     return fragmentView;
   }
 
-  @TargetApi(23) @Override public void onAttach(Context context) {
-    //This method avoid to call super.onAttach(context) if I'm not using api 23 or more
-    //if (Build.VERSION.SDK_INT >= 23) {
-    super.onAttach(context);
-    onAttachToContext(context);
-  }
-
-  private void onAttachToContext(Context context) {
-    setActivityConsumerCityClick(context);
-  }
-
-  /*
-   * Deprecated on API 23
-   * Use onAttachToContext instead
-   */
-  @SuppressWarnings("deprecation") @Override public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    if (Build.VERSION.SDK_INT < 23) {
-      onAttachToContext(activity);
-    }
-  }
-
-  private Consumer<CityModel> activityCityClickObs;
-
-  private void setActivityConsumerCityClick(Context context) {
-    if (context instanceof CityListActivity) {
-      activityCityClickObs = ((CityListActivity) context).getOnCityClickObserver();
-    }
-  }
-
-  @Override public void onDetach() {
-    super.onDetach();
-    activityCityClickObs = null;
-    unsubsidised();
-  }
-
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     this.cityListPresenter.setView(this);
-    this.cityClickDisposable = getCityClickObs().subscribe(activityCityClickObs);
     if (savedInstanceState == null) {
       this.loadCityList();
     }
@@ -112,19 +67,11 @@ public class CityListFragment extends BaseFragment implements CityListView {
   @Override public void onDestroyView() {
     super.onDestroyView();
     rvCities.setAdapter(null);
-
   }
 
   @Override public void onDestroy() {
     super.onDestroy();
     this.cityListPresenter.destroy();
-
-  }
-
-  public void unsubsidised() {
-    if (cityClickDisposable != null) {
-      cityClickDisposable.dispose();
-    }
   }
 
   @Override public void showLoading(boolean show) {
@@ -144,17 +91,8 @@ public class CityListFragment extends BaseFragment implements CityListView {
     this.rvCities.setAdapter(cityListAdapter);
   }
 
-  /**
-   * Loads all cities.
-   */
   private void loadCityList() {
     this.cityListPresenter.initialize();
-  }
-
-  @Override public void renderCityList(Collection<CityModel> cityModelCollection) {
-    if (cityModelCollection != null) {
-      this.cityListAdapter.setCitiesCollection(cityModelCollection);
-    }
   }
 
   @Override public void renderCity(CityModel cityModel) {
@@ -163,12 +101,7 @@ public class CityListFragment extends BaseFragment implements CityListView {
     }
   }
 
-  //todo not used!
-  @Override public void getCityClickObs(CityModel cityModel) {
-
-  }
-
-  public Observable<CityModel> getCityClickObs() {
+  @Override public Observable<CityModel> cityClick() {
     return cityListAdapter.getCityClickObs();
   }
 }
