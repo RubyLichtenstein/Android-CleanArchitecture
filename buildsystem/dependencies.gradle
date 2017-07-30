@@ -63,6 +63,7 @@ ext {
 
   presentationTestDependencies = [
       mockito:            "org.mockito:mockito-core:${mockitoVersion}",
+      mockitoAndroid:     "org.mockito:mockito-android:${mockitoVersion}",
       dexmaker:           "com.google.dexmaker:dexmaker:${dexmakerVersion}",
       dexmakerMockito:    "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
       espresso:           "com.android.support.test.espresso:espresso-core:${espressoVersion}",

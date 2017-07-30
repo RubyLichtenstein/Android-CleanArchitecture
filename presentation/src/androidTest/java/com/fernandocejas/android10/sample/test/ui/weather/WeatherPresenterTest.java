@@ -9,6 +9,7 @@ import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMa
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
 import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherMvpContract;
 import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherPresenter;
+import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherViewModel;
 import io.reactivex.observers.DisposableObserver;
 import junit.framework.TestCase;
 import org.junit.Before;
@@ -23,7 +24,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 
 /**
- * Created by Ruby on 7/29/2017.
+ * Created by Ruby on 7/29/2017
  */
 @SmallTest @RunWith(MockitoJUnitRunner.class) public class WeatherPresenterTest extends TestCase {
 
@@ -55,7 +56,7 @@ import static org.mockito.Mockito.verify;
         GetWeather.Params.forCity(FAKE_CITY_ID));
   }
 
-  @Test @SuppressWarnings("unchecked") public void testOnCelsiusClick() {
+  @Test public void testOnCelsiusClick() {
     WeatherModel weatherModel = createWeatherModel();
     Weather weather = createWeather();
 
@@ -67,16 +68,22 @@ import static org.mockito.Mockito.verify;
     verify(weatherPresenter).showWeatherInView(true, weatherModel);
   }
 
-  @Test @SuppressWarnings("unchecked") public void testOnFahrenheitClick() {
+  @Test public void testOnFahrenheitClick() {
     WeatherModel weatherModel = createWeatherModel();
     Weather weather = createWeather();
+    WeatherViewModel weatherViewModel = createWeatherViewModel();
 
     given(mockWeatherModelDataMapper.transform(weather)).willReturn(weatherModel);
+    given(mockWeatherModelDataMapper.transform(false, weatherModel)).willReturn(weatherViewModel);
 
-    weatherPresenter.setWeatherModel(weather);
     weatherPresenter.onCelsiusClick();
 
-    verify(weatherPresenter).showWeatherInView(false, weatherModel);
+    verify(mockWeatherView).renderWeather(weatherViewModel);
+    verify(mockWeatherModelDataMapper).transform(false, weatherModel);
+  }
+
+  @NonNull private WeatherViewModel createWeatherViewModel() {
+    return new WeatherViewModel();
   }
 
   @NonNull private Weather createWeather() {

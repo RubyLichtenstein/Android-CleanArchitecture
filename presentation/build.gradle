@@ -96,10 +96,9 @@ dependencies {
   provided presentationDependencies.javaxAnnotation
   annotationProcessor presentationDependencies.glideCompiler
 
-//  androidTestCompile presentationTestDependencies.mockito
-  testCompile        presentationTestDependencies.mockito
-  androidTestCompile presentationTestDependencies.dexmaker
-  androidTestCompile presentationTestDependencies.dexmakerMockito
+  androidTestCompile presentationTestDependencies.mockitoAndroid
+//  androidTestCompile presentationTestDependencies.dexmaker
+//  androidTestCompile presentationTestDependencies.dexmakerMockito
   androidTestCompile presentationTestDependencies.espresso
   androidTestCompile presentationTestDependencies.espressoContrib
   androidTestCompile presentationTestDependencies.espressoIntents

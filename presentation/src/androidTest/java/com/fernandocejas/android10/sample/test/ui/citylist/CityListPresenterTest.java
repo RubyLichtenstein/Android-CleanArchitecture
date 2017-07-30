@@ -27,8 +27,8 @@ import static org.mockito.Mockito.verify;
 
 @SmallTest @RunWith(MockitoJUnitRunner.class) public class CityListPresenterTest {
 
-  public static final String NAME = "name";
-  public static final String ID = "id";
+  public static final String CITY_NAME = "name";
+  public static final String CITY_ID = "id";
 
   @InjectMocks private CityListPresenter cityListPresenter;
 
@@ -54,17 +54,17 @@ import static org.mockito.Mockito.verify;
     cityListPresenter.initialize();
 
     verify(mockCityListView).showLoading(true);
-    verify(mockGetCityList).execute(any(DisposableObserver.class), any(Void.class));
+    verify(mockGetCityList).execute(any(DisposableObserver.class), any());
   }
 
   @Test public void testOnCityClick() {
     CityModel cityModel = createCityModel();
     cityListPresenter.onCityClick(cityModel);
 
-    verify(mockNavigator).navigateToWeather(mockContext, ID);
+    verify(mockNavigator).navigateToWeather(mockContext, CITY_ID);
   }
 
   private CityModel createCityModel() {
-    return new CityModel(NAME, ID);
+    return new CityModel(CITY_NAME, CITY_ID);
   }
 }
