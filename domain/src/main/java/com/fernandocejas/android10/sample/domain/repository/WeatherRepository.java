@@ -1,6 +1,6 @@
 package com.fernandocejas.android10.sample.domain.repository;
 
-import com.fernandocejas.android10.sample.domain.Weather;
+import com.fernandocejas.android10.sample.domain.WeatherIn;
 import io.reactivex.Observable;
 
 /**
@@ -8,5 +8,5 @@ import io.reactivex.Observable;
  */
 
 public interface WeatherRepository {
-  Observable<Weather> weather(final String cityId);
+  Observable<WeatherIn> weather(final String cityId);
 }

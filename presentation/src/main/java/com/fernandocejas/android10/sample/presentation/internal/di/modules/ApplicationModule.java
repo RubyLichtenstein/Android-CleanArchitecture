@@ -26,7 +26,6 @@ import com.fernandocejas.android10.sample.data.entity.mapper.CityEntityJsonMappe
 import com.fernandocejas.android10.sample.data.executor.JobExecutor;
 import com.fernandocejas.android10.sample.domain.logic.CitySortingImpl;
 import com.fernandocejas.android10.sample.domain.logic.TempConverterImpl;
-import com.fernandocejas.android10.sample.domain.logic.WeatherTempCalcImpl;
 import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
 import com.fernandocejas.android10.sample.data.net.WeatherRestApiImpl;
 import com.fernandocejas.android10.sample.data.net.retrofit.Config;
@@ -39,7 +38,8 @@ import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.interactor.GetCityList;
 import com.fernandocejas.android10.sample.domain.logic.CitySorting;
 import com.fernandocejas.android10.sample.domain.logic.TempConverter;
-import com.fernandocejas.android10.sample.domain.logic.WeatherTempCalc;
+import com.fernandocejas.android10.sample.domain.logic.WeatherTransformer;
+import com.fernandocejas.android10.sample.domain.logic.WeatherTransformerImpl;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
@@ -79,8 +79,8 @@ import javax.inject.Singleton;
     return tempConverter;
   }
 
-  @Provides WeatherTempCalc provideWeatherTempCalc(WeatherTempCalcImpl weatherTempCalc) {
-    return weatherTempCalc;
+  @Provides WeatherTransformer provideWeatherTempCalc(WeatherTransformerImpl weatherTransformer) {
+    return weatherTransformer;
   }
 
   @Provides GetCityList provideGetCityList(GetCityList getCityList) {

@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import com.fernandocejas.android10.sample.data.entity.WeatherEntity;
 import com.fernandocejas.android10.sample.data.entity.weather.WeatherEntityInernal;
-import com.fernandocejas.android10.sample.domain.Weather;
+import com.fernandocejas.android10.sample.domain.WeatherIn;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -18,8 +18,8 @@ import javax.inject.Singleton;
   @Inject public WeatherEntityDataMapper() {
   }
 
-  @Nullable public Weather transform(@NonNull WeatherEntity weatherEntity) {
-    Weather weather = new Weather();
+  @Nullable public WeatherIn transform(@NonNull WeatherEntity weatherEntity) {
+    WeatherIn weather = new WeatherIn();
     weather.setName(weatherEntity.getName());
     weather.setTempCelsius(weatherEntity.getMain().getTemp());
     weather.setTempCelsiusHigh(weatherEntity.getMain().getTempMax());

@@ -20,7 +20,7 @@ import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.logic.CitySorting;
 import com.fernandocejas.android10.sample.domain.logic.TempConverter;
-import com.fernandocejas.android10.sample.domain.logic.WeatherTempCalc;
+import com.fernandocejas.android10.sample.domain.logic.WeatherTransformer;
 import com.fernandocejas.android10.sample.domain.repository.CityRepository;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ApplicationModule;
@@ -44,5 +44,5 @@ public interface ApplicationComponent {
   CityRepository cityRepository();
   CitySorting citySorting();
   TempConverter tempConverter();
-  WeatherTempCalc weatherTempCalc();
+  WeatherTransformer weatherTransformer();
 }

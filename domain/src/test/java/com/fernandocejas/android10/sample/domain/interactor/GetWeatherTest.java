@@ -1,9 +1,10 @@
 package com.fernandocejas.android10.sample.domain.interactor;
 
 import com.fernandocejas.android10.sample.domain.Weather;
+import com.fernandocejas.android10.sample.domain.WeatherIn;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
-import com.fernandocejas.android10.sample.domain.logic.WeatherTempCalc;
+import com.fernandocejas.android10.sample.domain.logic.WeatherTransformer;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -37,7 +38,7 @@ import static org.mockito.Mockito.when;
   @Mock private WeatherRepository mockWeatherRepository;
   @Mock private ThreadExecutor mockThreadExecutor;
   @Mock private PostExecutionThread mockPostExecutionThread;
-  @Mock private WeatherTempCalc mockWeatherTempCalc;
+  @Mock private WeatherTransformer mockWeatherTransformer;
 
   @Rule public ExpectedException expectedException = ExpectedException.none();
 
@@ -46,11 +47,12 @@ import static org.mockito.Mockito.when;
 
   @Test public void testGetUserDetailsUseCaseObservableHappyCase() {
     final Observable<Weather> observable = createWeatherObservable();
-    ObservableTransformer<Weather, Weather> observableTransformer =
+    final Observable<WeatherIn> observableIn = createWeatherInObservable();
+    ObservableTransformer<WeatherIn, Weather> observableTransformer =
         createObservableTransformer(observable);
 
-    when(mockWeatherRepository.weather(CITY_ID)).thenReturn(observable);
-    when(mockWeatherTempCalc.apply()).thenReturn(observableTransformer);
+    when(mockWeatherRepository.weather(CITY_ID)).thenReturn(observableIn);
+    when(mockWeatherTransformer.apply()).thenReturn(observableTransformer);
 
     getWeather.buildUseCaseObservable(GetWeather.Params.forCity(CITY_ID));
 
@@ -60,7 +62,15 @@ import static org.mockito.Mockito.when;
     verifyZeroInteractions(mockThreadExecutor);
 
     verify(mockWeatherRepository).weather(CITY_ID);
-    verify(mockWeatherTempCalc).apply();
+    verify(mockWeatherTransformer).apply();
+  }
+
+  private Observable<WeatherIn> createWeatherInObservable() {
+    return new Observable<WeatherIn>() {
+      @Override protected void subscribeActual(Observer<? super WeatherIn> observer) {
+
+      }
+    };
   }
 
   @Test public void testShouldFailWhenNoOrEmptyParameters() {
@@ -68,11 +78,10 @@ import static org.mockito.Mockito.when;
     getWeather.buildUseCaseObservable(null);
   }
 
-  public ObservableTransformer<Weather, Weather> createObservableTransformer(
+  public ObservableTransformer<WeatherIn, Weather> createObservableTransformer(
       final Observable<Weather> observable) {
-    return new ObservableTransformer<Weather, Weather>() {
-      @Override public ObservableSource<Weather> apply(@NonNull Observable<Weather> upstream) {
-
+    return new ObservableTransformer<WeatherIn, Weather>() {
+      @Override public ObservableSource<Weather> apply(@NonNull Observable<WeatherIn> upstream) {
         return observable;
       }
     };

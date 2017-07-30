@@ -2,6 +2,7 @@ package com.fernandocejas.android10.sample.data.entity.mapper;
 
 import com.fernandocejas.android10.sample.data.entity.WeatherEntity;
 import com.fernandocejas.android10.sample.domain.Weather;
+import com.fernandocejas.android10.sample.domain.WeatherIn;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
@@ -106,7 +107,7 @@ import static org.hamcrest.Matchers.is;
 
   public void assertTransformWeatherEntity(final String weatherJson) {
     WeatherEntity weatherEntity = createWeatherEntity(weatherJson);
-    Weather weather = weatherEntityDataMapper.transform(weatherEntity);
+    WeatherIn weather = weatherEntityDataMapper.transform(weatherEntity);
 
     assertThat(weather, is(instanceOf(Weather.class)));
     assertThat(weather.getMain(), is(weatherEntity.getWeather().get(0).getMain()));
