@@ -20,8 +20,8 @@
   <string name="clear_sky">Clear sky</string>
   <string name="currently_19">Currently 19°</string>
   <string name="today_15_22">Today 15°-22°</string>
-  <string name="celsius">Celsius</string>
-  <string name="fahrenheit">Fahrenheit</string>
+  <string name="celsius">°C</string>
+  <string name="fahrenheit">°F</string>
   <string name="fragment_args_cannot_be_null">Fragment arguments cannot be null</string>
   <string name="weather_icon">Weather icon</string>
 </resources>

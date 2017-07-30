@@ -1,6 +1,5 @@
 package com.fernandocejas.android10.sample.domain.logic;
 
-import com.fernandocejas.android10.sample.domain.logic.TempConverter;
 import java.text.DecimalFormat;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -12,20 +11,20 @@ import javax.inject.Singleton;
   private static final float F32 = 32f;
   private static final float F5 = 5f;
   private static final float F9 = 9f;
-  private DecimalFormat oneDecimalPlaceFormat;
+  private DecimalFormat twoDecimalPlaceFormat;
 
   @Inject public TempConverterImpl() {
-    oneDecimalPlaceFormat = new DecimalFormat("#.#");
+    twoDecimalPlaceFormat = new DecimalFormat("#.##");
   }
 
   @Override public float toCelsius(float fahrenheit) {
     float celsius = ((F5 / F9) * (fahrenheit - F32));
-    return format(celsius, oneDecimalPlaceFormat);
+    return format(celsius, twoDecimalPlaceFormat);
   }
 
   @Override public float toFahrenheit(float celsius) {
     float fahrenheit = (F9 / F5) * celsius + F32;
-    return format(fahrenheit, oneDecimalPlaceFormat);
+    return format(fahrenheit, twoDecimalPlaceFormat);
   }
 
   private float format(float in, DecimalFormat decimalFormat) {
