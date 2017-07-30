@@ -17,6 +17,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by Ruby on 7/29/2017
  */
@@ -39,12 +40,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
   }
 
   @Test public void testViewsDisplayed() {
-    onView(withId(R.id.tv_city_name)).check(matches(isDisplayed()));
-    onView(withId(R.id.tv_weather_description)).check(matches(isDisplayed()));
-    onView(withId(R.id.imv_icon)).check(matches(isDisplayed()));
-    onView(withId(R.id.tv_current_temp)).check(matches(isDisplayed()));
-    onView(withId(R.id.tv_today_temp_range)).check(matches(isDisplayed()));
-
     onView(withId(R.id.btn_celsius)).check(matches(isDisplayed()));
     onView(withId(R.id.btn_celsius)).check(matches(isDisplayed()));
   }

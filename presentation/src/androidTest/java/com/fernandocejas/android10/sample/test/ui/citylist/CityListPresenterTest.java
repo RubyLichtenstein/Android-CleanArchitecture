@@ -10,7 +10,6 @@ import com.fernandocejas.android10.sample.presentation.ui.citylist.CityListMvpCo
 import com.fernandocejas.android10.sample.presentation.ui.citylist.CityListPresenter;
 import io.reactivex.Observable;
 import io.reactivex.observers.DisposableObserver;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +25,7 @@ import static org.mockito.Mockito.verify;
  * Created by Ruby on 7/28/2017
  */
 
-@SmallTest @RunWith(MockitoJUnitRunner.class) public class CityListPresenterTest extends TestCase {
+@SmallTest @RunWith(MockitoJUnitRunner.class) public class CityListPresenterTest {
 
   public static final String NAME = "name";
   public static final String ID = "id";
@@ -40,10 +39,11 @@ import static org.mockito.Mockito.verify;
   @Mock private Navigator mockNavigator;
 
   public CityListPresenterTest() throws Exception {
-    super.setUp();
+    super();
   }
 
   @Before public void setUp() {
+
     cityListPresenter.setView(mockCityListView);
     given(mockCityListView.context()).willReturn(mockContext);
     given(mockCityListView.cityClick()).willReturn(Observable.just(createCityModel()));

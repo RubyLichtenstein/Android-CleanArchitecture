@@ -37,9 +37,11 @@ import static org.mockito.Mockito.verify;
   @Mock private WeatherModelDataMapper mockWeatherModelDataMapper;
 
   public WeatherPresenterTest() {
+    super();
   }
 
-  @Before public void setUp() {
+  @Before public void setUp() throws Exception {
+    super.setUp();
     weatherPresenter.setView(mockWeatherView);
   }
 
