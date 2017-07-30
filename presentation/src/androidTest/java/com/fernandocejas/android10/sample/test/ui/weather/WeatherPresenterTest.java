@@ -7,7 +7,7 @@ import com.fernandocejas.android10.sample.domain.Weather;
 import com.fernandocejas.android10.sample.domain.interactor.GetWeather;
 import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
-import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherBasePresenter;
+import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherPresenter;
 import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherView;
 import io.reactivex.observers.DisposableObserver;
 import junit.framework.TestCase;
@@ -25,18 +25,18 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by Ruby on 7/29/2017.
  */
-@SmallTest @RunWith(MockitoJUnitRunner.class) public class WeatherBasePresenterTest extends TestCase {
+@SmallTest @RunWith(MockitoJUnitRunner.class) public class WeatherPresenterTest extends TestCase {
 
   private static final String FAKE_CITY_ID = "1234";
 
-  @InjectMocks private WeatherBasePresenter weatherPresenter;
+  @InjectMocks private WeatherPresenter weatherPresenter;
 
   @Mock private Context mockContext;
   @Mock private WeatherView mockWeatherView;
   @Mock private GetWeather mockGetWeatherUseCase;
   @Mock private WeatherModelDataMapper mockWeatherModelDataMapper;
 
-  public WeatherBasePresenterTest() {
+  public WeatherPresenterTest() {
   }
 
   @Before public void setUp() {

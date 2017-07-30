@@ -8,8 +8,7 @@ import com.fernandocejas.android10.sample.domain.interactor.GetWeather;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
-import com.fernandocejas.android10.sample.presentation.ui.base.BasePresenter;
-import com.fernandocejas.android10.sample.presentation.ui.base.BasePresenterContract;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import javax.inject.Inject;
@@ -18,33 +17,31 @@ import javax.inject.Inject;
  * Created by Ruby on 7/28/2017.
  */
 
-@PerActivity public class WeatherBasePresenter extends BasePresenter
-    implements BasePresenterContract {
-  private WeatherView weatherView;
+@PerActivity public class WeatherPresenter implements WeatherMvpContract.Presenter {
+  private WeatherMvpContract.View weatherView;
   private WeatherModel weatherModel;
   private boolean celsius = true;
-  private Disposable disposableCClick;
-  private Disposable disposableFClick;
+  private CompositeDisposable compositeDisposable;
 
   private final GetWeather getWeatherUseCase;
   private final WeatherModelDataMapper weatherModelDataMapper;
 
-  @Inject public WeatherBasePresenter(WeatherModelDataMapper weatherModelDataMapper,
+  @Inject public WeatherPresenter(WeatherModelDataMapper weatherModelDataMapper,
       GetWeather getWeatherUseCase) {
-    super();
     this.weatherModelDataMapper = weatherModelDataMapper;
     this.getWeatherUseCase = getWeatherUseCase;
+    this.compositeDisposable = new CompositeDisposable();
   }
 
-  public void setView(@NonNull WeatherView view) {
+  public void setView(@NonNull WeatherMvpContract.View view) {
     this.weatherView = view;
     this.updateView();
-    this.observeView();
   }
 
   private void updateView() {
     if (weatherModel != null) {
       showWeatherInView(celsius, weatherModel);
+      bindViewIntents();
     }
   }
 
@@ -66,16 +63,17 @@ import javax.inject.Inject;
   }
 
   @Override public void resume() {
-
+    bindViewIntents();
   }
 
   @Override public void pause() {
-
+    if (this.compositeDisposable != null) {
+      this.compositeDisposable.clear();
+    }
   }
 
   @Override public void destroy() {
-    this.disposableCClick.dispose();
-    this.disposableFClick.dispose();
+    this.compositeDisposable.dispose();
     this.getWeatherUseCase.dispose();
     this.weatherView = null;
   }
@@ -100,47 +98,47 @@ import javax.inject.Inject;
     }
   }
 
-  public void onCelsiusClick() {
+  @Override public void onCelsiusClick() {
     if (this.weatherModel != null) {
       showWeatherInView(this.celsius = true, this.weatherModel);
     }
   }
 
-  private void onFahrenheitClick() {
+  @Override public void onFahrenheitClick() {
     showWeatherInView(this.celsius = false, this.weatherModel);
   }
 
-  public void observeView() {
-    disposableFClick = this.weatherView.fahrenheitBtnClick().subscribe(new Consumer<Object>() {
-      @Override public void accept(Object o) throws Exception {
-        onFahrenheitClick();
-      }
-    });
+  @Override public void bindViewIntents() {
+    Disposable fahrenheitClickDisposable =
+        this.weatherView.fahrenheitClick().subscribe(new Consumer<Object>() {
+          @Override public void accept(Object o) throws Exception {
+            onFahrenheitClick();
+          }
+        });
 
-    disposableCClick = this.weatherView.celsiusBtnClick().subscribe(new Consumer<Object>() {
-      @Override public void accept(Object o) throws Exception {
-        onCelsiusClick();
-      }
-    });
-  }
-
-  @Override protected void bindViewIntents() {
-
+    Disposable celsiusClickDisposable =
+        this.weatherView.celsiusClick().subscribe(new Consumer<Object>() {
+          @Override public void accept(Object o) throws Exception {
+            onCelsiusClick();
+          }
+        });
+    compositeDisposable.add(celsiusClickDisposable);
+    compositeDisposable.add(fahrenheitClickDisposable);
   }
 
   private final class WeatherObserver extends DefaultObserver<Weather> {
     @Override public void onComplete() {
-      WeatherBasePresenter.this.hideViewLoading();
+      WeatherPresenter.this.hideViewLoading();
     }
 
     @Override public void onError(Throwable e) {
-      WeatherBasePresenter.this.hideViewLoading();
-      WeatherBasePresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
+      WeatherPresenter.this.hideViewLoading();
+      WeatherPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
     }
 
     @Override public void onNext(Weather weather) {
       setWeatherModel(weather);
-      showWeatherInView(celsius, weatherModel);
+      updateView();
     }
   }
 }

@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.WeatherComponent;
 import com.fernandocejas.android10.sample.presentation.ui.base.BaseFragment;
+import com.fernandocejas.android10.sample.presentation.ui.common.ImageLoader;
 import com.fernandocejas.arrow.checks.Preconditions;
 import com.jakewharton.rxbinding2.view.RxView;
 import io.reactivex.Observable;
@@ -22,10 +23,10 @@ import javax.inject.Inject;
 /**
  * Created by Ruby on 7/28/2017
  */
-public class WeatherFragment extends BaseFragment implements WeatherView {
+public class WeatherFragment extends BaseFragment implements WeatherMvpContract.View {
   private static final String PARAM_CITY_ID = "param_city_id";
 
-  @Inject WeatherBasePresenter weatherPresenter;
+  @Inject WeatherPresenter weatherPresenter;
 
   @BindView(R.id.tv_city_name) TextView tvCityName;
   @BindView(R.id.tv_weather_description) TextView tvWeatherDescription;
@@ -104,11 +105,11 @@ public class WeatherFragment extends BaseFragment implements WeatherView {
     }
   }
 
-  @Override public Observable<Object> celsiusBtnClick() {
+  @Override public Observable<Object> celsiusClick() {
     return RxView.clicks(btnCelsius);
   }
 
-  @Override public Observable<Object> fahrenheitBtnClick() {
+  @Override public Observable<Object> fahrenheitClick() {
     return RxView.clicks(btnFahrenheit);
   }
 
