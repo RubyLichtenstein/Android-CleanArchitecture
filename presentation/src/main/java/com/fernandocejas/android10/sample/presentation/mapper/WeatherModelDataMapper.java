@@ -13,6 +13,10 @@ import javax.inject.Inject;
 @PerActivity public class WeatherModelDataMapper {
 
   private static final String DEGREES = "°";
+  public static final String CURRENTLY = "Currently ";
+  public static final String TODAY = "Today ";
+  public static final String HYPHEN = "-";
+  public static final String ICON_URL = "http://openweathermap.org/img/w/";
 
   @Inject public WeatherModelDataMapper() {
   }
@@ -31,7 +35,6 @@ import javax.inject.Inject;
     return weatherModel;
   }
 
-  //todo test
   public WeatherViewModel transform(boolean celsius, @NonNull final WeatherModel wm) {
     final WeatherViewModel wvm = new WeatherViewModel();
     wvm.setCityName(wm.getCityName());
@@ -44,14 +47,14 @@ import javax.inject.Inject;
   }
 
   private String prepareIconUrl(String icon) {
-    return String.format("http://openweathermap.org/img/w/%s%s", icon, ".png");
+    return ICON_URL + icon + ".png";
   }
 
   private String prepareCurrentlyTemp(float temp) {
-    return "Currently " + String.valueOf(temp) + DEGREES;
+    return CURRENTLY + String.valueOf(temp) + DEGREES;
   }
 
   private String prepareTempRange(float low, float high) {
-    return "Today " + String.valueOf(low) + DEGREES + "-" + String.valueOf(high) + DEGREES;
+    return TODAY + String.valueOf(low) + DEGREES + HYPHEN + String.valueOf(high) + DEGREES;
   }
 }

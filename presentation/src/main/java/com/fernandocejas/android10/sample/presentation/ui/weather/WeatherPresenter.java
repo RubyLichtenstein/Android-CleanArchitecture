@@ -10,7 +10,6 @@ import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMa
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import javax.inject.Inject;
 
 /**
@@ -110,18 +109,11 @@ import javax.inject.Inject;
 
   @Override public void bindViewIntents() {
     Disposable fahrenheitClickDisposable =
-        this.weatherView.fahrenheitClick().subscribe(new Consumer<Object>() {
-          @Override public void accept(Object o) throws Exception {
-            onFahrenheitClick();
-          }
-        });
+        this.weatherView.fahrenheitClick().subscribe(o -> onFahrenheitClick());
 
     Disposable celsiusClickDisposable =
-        this.weatherView.celsiusClick().subscribe(new Consumer<Object>() {
-          @Override public void accept(Object o) throws Exception {
-            onCelsiusClick();
-          }
-        });
+        this.weatherView.celsiusClick().subscribe(o -> onCelsiusClick());
+
     compositeDisposable.add(celsiusClickDisposable);
     compositeDisposable.add(fahrenheitClickDisposable);
   }

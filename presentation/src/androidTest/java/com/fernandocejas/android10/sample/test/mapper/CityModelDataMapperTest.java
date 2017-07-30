@@ -11,7 +11,6 @@ import junit.framework.TestCase;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.mock;
 
 /**
  * Created by Ruby on 7/28/2017.
@@ -39,8 +38,8 @@ public class CityModelDataMapperTest extends TestCase {
   }
 
   public void testTransformCityCollection() {
-    City mockCityOne = mock(City.class);
-    City mockCityTwo = mock(City.class);
+    City mockCityOne = createFakeCity();
+    City mockCityTwo = createFakeCity();
 
     List<City> cityList = new ArrayList<City>(5);
     cityList.add(mockCityOne);

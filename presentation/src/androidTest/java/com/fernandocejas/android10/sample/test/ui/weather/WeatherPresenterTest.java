@@ -7,8 +7,8 @@ import com.fernandocejas.android10.sample.domain.Weather;
 import com.fernandocejas.android10.sample.domain.interactor.GetWeather;
 import com.fernandocejas.android10.sample.presentation.mapper.WeatherModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.WeatherModel;
+import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherMvpContract;
 import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherPresenter;
-import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherView;
 import io.reactivex.observers.DisposableObserver;
 import junit.framework.TestCase;
 import org.junit.Before;
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.verify;
   @InjectMocks private WeatherPresenter weatherPresenter;
 
   @Mock private Context mockContext;
-  @Mock private WeatherView mockWeatherView;
+  @Mock private WeatherMvpContract.View mockWeatherView;
   @Mock private GetWeather mockGetWeatherUseCase;
   @Mock private WeatherModelDataMapper mockWeatherModelDataMapper;
 

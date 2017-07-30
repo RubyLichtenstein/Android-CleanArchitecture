@@ -7,8 +7,7 @@ import io.reactivex.Observable;
 /**
  * Created by Ruby on 7/29/2017.
  */
-
-interface WeatherMvpContract {
+public interface WeatherMvpContract {
   interface View extends BaseLoadDataView {
     void renderWeather(WeatherViewModel weatherViewModel);
 

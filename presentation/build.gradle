@@ -1,5 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'me.tatarka:gradle-retrolambda:3.2.3'
+  }
+}
 
 android {
   def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -18,10 +28,15 @@ android {
     testApplicationId globalConfiguration.getAt("testApplicationId")
     multiDexEnabled true
   }
+//
+//  compileOptions {
+//    sourceCompatibility JavaVersion.VERSION_1_7
+//    targetCompatibility JavaVersion.VERSION_1_7
+//  }
 
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_7
-    targetCompatibility JavaVersion.VERSION_1_7
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
   }
 
   packagingOptions {

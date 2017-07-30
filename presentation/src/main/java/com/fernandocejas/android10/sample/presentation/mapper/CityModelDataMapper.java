@@ -1,10 +1,10 @@
 package com.fernandocejas.android10.sample.presentation.mapper;
 
+import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.domain.City;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import io.reactivex.Observable;
-import io.reactivex.functions.Function;
 import java.util.Collection;
 import java.util.Collections;
 import javax.inject.Inject;
@@ -18,11 +18,7 @@ import javax.inject.Inject;
   @Inject public CityModelDataMapper() {
   }
 
-  public CityModel transform(City city) {
-    if (city == null) {
-      throw new IllegalArgumentException("Cannot transform a null value");
-    }
-
+  public CityModel transform(@NonNull City city) {
     return new CityModel(city.getName(), city.getId());
   }
 
@@ -31,11 +27,7 @@ import javax.inject.Inject;
 
     if (citysCollection != null && !citysCollection.isEmpty()) {
       cityModelsCollection =
-          Observable.fromIterable(citysCollection).map(new Function<City, CityModel>() {
-            @Override public CityModel apply(City city) throws Exception {
-              return transform(city);
-            }
-          }).toList().blockingGet();
+          Observable.fromIterable(citysCollection).map(this::transform).toList().blockingGet();
     } else {
       cityModelsCollection = Collections.emptyList();
     }

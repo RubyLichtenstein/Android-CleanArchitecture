@@ -39,8 +39,8 @@ import static org.mockito.Mockito.verify;
   @Mock private CityModelDataMapper mockCityModelDataMapper;
   @Mock private Navigator mockNavigator;
 
-  public CityListPresenterTest() {
-
+  public CityListPresenterTest() throws Exception {
+    super.setUp();
   }
 
   @Before public void setUp() {
