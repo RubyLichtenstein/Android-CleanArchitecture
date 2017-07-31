@@ -1,8 +1,37 @@
-Android-CleanArchitecture [![Build Status](https://travis-ci.org/android10/Android-CleanArchitecture.svg?branch=master)](https://travis-ci.org/android10/Android-CleanArchitecture)
+WeatherApp-CleanArchitecture 
 =========================
+WeatherApp let you check the current weather for selected cities around the world, By using Open weather map API
+The application was built with Uncle Bob's clean architecture approach, and deeply inspired by
+android10/Android-CleanArchitecture sample.
 
-This is a sample app that is part of a blog post I have written about how to architect android application using the Uncle Bob's clean architecture approach. 
+Libraries used on this project
+------------------------------------
+**Development**
+* RxJava & RxAndroid
+* RxBinding
+* Dagger 2
+* Retrofit 2
+* OkHttp 3
+* AndroidAnnotations
+* ButterKnife
+* Glide
+* LeakCanary
+* ConstraintLayout
+* RecyclerView
 
+**Testing**
+* Junit
+* Mockito
+* Hamcrest
+* Espresso
+* AssertJ
+
+Architecture
+------------------------------------
+
+
+  
+  
 [Architecting Android…The clean way?](http://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/)
 
 [Architecting Android…The evolution](http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/)
