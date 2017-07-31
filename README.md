@@ -6,7 +6,7 @@ WeatherApp let you check the current weather for selected cities around the worl
 The application was built with Uncle Bob's clean architecture approach, and deeply inspired by
 android10/Android-CleanArchitecture sample.
 
-![](./art/screen1r.png) ![](./art/screen2r.png)
+![](./art/screen3r.png) ![](./art/screen2r.png)
 
 Libraries used on this project
 ------------------------------------
