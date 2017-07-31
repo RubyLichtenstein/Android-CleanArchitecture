@@ -5,7 +5,7 @@ WeatherApp-CleanArchitecture
 WeatherApp let you check the current weather for selected cities around the world, by using [Open Weather Map API](http://openweathermap.org/api).
 
 The application was built with Uncle Bob's clean architecture approach, and deeply inspired by
-android10/Android-CleanArchitecture sample.
+[Fernando Cejas Android-CleanArchitecture](https://github.com/android10/Android-CleanArchitecture) sample.
 
 Screenshots
 ------------------------------------
