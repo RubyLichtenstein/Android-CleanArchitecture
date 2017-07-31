@@ -1,7 +1,7 @@
 package com.fernandocejas.android10.sample.domain.logic;
 
 import com.fernandocejas.android10.sample.domain.Weather;
-import com.fernandocejas.android10.sample.domain.WeatherIn;
+import com.fernandocejas.android10.sample.domain.WeatherRaw;
 import io.reactivex.Observable;
 import io.reactivex.observers.TestObserver;
 import org.junit.Before;
@@ -42,8 +42,8 @@ public class WeatherTransformerTest {
     when(mockTempConverter.toFahrenheit(TEMP_CELSIUS_HIGH)).thenReturn(TEMP_FAHRENHEIT_HIGH);
     when(mockTempConverter.toFahrenheit(TEMP_CELSIUS_LOW)).thenReturn(TEMP_FAHRENHEIT_LOW);
 
-    WeatherIn weatherIn = createWeatherIn();
-    Observable<WeatherIn> weatherInObservable = Observable.just(weatherIn);
+    WeatherRaw weatherRaw = createWeatherIn();
+    Observable<WeatherRaw> weatherInObservable = Observable.just(weatherRaw);
 
     TestObserver<Weather> testObserver = new TestObserver<>();
     weatherInObservable.compose(weatherTransformer.apply()).subscribe(testObserver);
@@ -65,15 +65,15 @@ public class WeatherTransformerTest {
     assertThat(weather.getTempFahrenheitLow()).isEqualTo(TEMP_FAHRENHEIT_LOW);
   }
 
-  public WeatherIn createWeatherIn() {
-    WeatherIn weatherIn = new WeatherIn();
-    weatherIn.setDescription(DESCRIPTION);
-    weatherIn.setIcon(ICON);
-    weatherIn.setMain(MAIN);
-    weatherIn.setName(NAME);
-    weatherIn.setTempCelsius(TEMP_CELSIUS);
-    weatherIn.setTempCelsiusHigh(TEMP_CELSIUS_HIGH);
-    weatherIn.setTempCelsiusLow(TEMP_CELSIUS_LOW);
-    return weatherIn;
+  public WeatherRaw createWeatherIn() {
+    WeatherRaw weatherRaw = new WeatherRaw();
+    weatherRaw.setDescription(DESCRIPTION);
+    weatherRaw.setIcon(ICON);
+    weatherRaw.setMain(MAIN);
+    weatherRaw.setName(NAME);
+    weatherRaw.setTempCelsius(TEMP_CELSIUS);
+    weatherRaw.setTempCelsiusHigh(TEMP_CELSIUS_HIGH);
+    weatherRaw.setTempCelsiusLow(TEMP_CELSIUS_LOW);
+    return weatherRaw;
   }
 }

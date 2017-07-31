@@ -3,7 +3,7 @@ package com.fernandocejas.android10.sample.data.repository;
 import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.data.entity.mapper.WeatherEntityDataMapper;
 import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
-import com.fernandocejas.android10.sample.domain.WeatherIn;
+import com.fernandocejas.android10.sample.domain.WeatherRaw;
 import com.fernandocejas.android10.sample.domain.repository.WeatherRepository;
 import io.reactivex.Observable;
 import javax.inject.Inject;
@@ -24,7 +24,7 @@ import javax.inject.Singleton;
     this.weatherEntityDataMapper = weatherEntityDataMapper;
   }
 
-  @Override public Observable<WeatherIn> weather(String cityId) {
+  @Override public Observable<WeatherRaw> weather(String cityId) {
     return weatherRestApi.weatherEntityByCityId(cityId).map(weatherEntityDataMapper::transform);
   }
 }

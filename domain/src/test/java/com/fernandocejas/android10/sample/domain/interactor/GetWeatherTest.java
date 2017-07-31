@@ -1,7 +1,7 @@
 package com.fernandocejas.android10.sample.domain.interactor;
 
 import com.fernandocejas.android10.sample.domain.Weather;
-import com.fernandocejas.android10.sample.domain.WeatherIn;
+import com.fernandocejas.android10.sample.domain.WeatherRaw;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.logic.WeatherTransformer;
@@ -47,8 +47,8 @@ import static org.mockito.Mockito.when;
 
   @Test public void testGetUserDetailsUseCaseObservableHappyCase() {
     final Observable<Weather> observable = createWeatherObservable();
-    final Observable<WeatherIn> observableIn = createWeatherInObservable();
-    ObservableTransformer<WeatherIn, Weather> observableTransformer =
+    final Observable<WeatherRaw> observableIn = createWeatherInObservable();
+    ObservableTransformer<WeatherRaw, Weather> observableTransformer =
         createObservableTransformer(observable);
 
     when(mockWeatherRepository.weather(CITY_ID)).thenReturn(observableIn);
@@ -65,9 +65,9 @@ import static org.mockito.Mockito.when;
     verify(mockWeatherTransformer).apply();
   }
 
-  private Observable<WeatherIn> createWeatherInObservable() {
-    return new Observable<WeatherIn>() {
-      @Override protected void subscribeActual(Observer<? super WeatherIn> observer) {
+  private Observable<WeatherRaw> createWeatherInObservable() {
+    return new Observable<WeatherRaw>() {
+      @Override protected void subscribeActual(Observer<? super WeatherRaw> observer) {
 
       }
     };
@@ -78,10 +78,10 @@ import static org.mockito.Mockito.when;
     getWeather.buildUseCaseObservable(null);
   }
 
-  public ObservableTransformer<WeatherIn, Weather> createObservableTransformer(
+  public ObservableTransformer<WeatherRaw, Weather> createObservableTransformer(
       final Observable<Weather> observable) {
-    return new ObservableTransformer<WeatherIn, Weather>() {
-      @Override public ObservableSource<Weather> apply(@NonNull Observable<WeatherIn> upstream) {
+    return new ObservableTransformer<WeatherRaw, Weather>() {
+      @Override public ObservableSource<Weather> apply(@NonNull Observable<WeatherRaw> upstream) {
         return observable;
       }
     };

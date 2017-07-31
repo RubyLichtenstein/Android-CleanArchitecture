@@ -1,7 +1,7 @@
 package com.fernandocejas.android10.sample.domain.logic;
 
 import com.fernandocejas.android10.sample.domain.Weather;
-import com.fernandocejas.android10.sample.domain.WeatherIn;
+import com.fernandocejas.android10.sample.domain.WeatherRaw;
 import io.reactivex.ObservableTransformer;
 
 /**
@@ -9,5 +9,5 @@ import io.reactivex.ObservableTransformer;
  */
 
 public interface WeatherTransformer {
-  ObservableTransformer<WeatherIn, Weather> apply();
+  ObservableTransformer<WeatherRaw, Weather> apply();
 }

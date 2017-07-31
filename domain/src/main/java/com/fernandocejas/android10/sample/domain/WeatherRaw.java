@@ -5,9 +5,10 @@ package com.fernandocejas.android10.sample.domain;
  */
 
 /**
- * Weather object need for domain from presenter
+ * Weather raw object from DataRepository
  */
-public class WeatherIn {
+
+public class WeatherRaw {
   private String name;
   private String main;
   private String description;

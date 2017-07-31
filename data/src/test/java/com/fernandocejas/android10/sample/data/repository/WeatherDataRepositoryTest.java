@@ -3,7 +3,7 @@ package com.fernandocejas.android10.sample.data.repository;
 import com.fernandocejas.android10.sample.data.entity.WeatherEntity;
 import com.fernandocejas.android10.sample.data.entity.mapper.WeatherEntityDataMapper;
 import com.fernandocejas.android10.sample.data.net.WeatherRestApi;
-import com.fernandocejas.android10.sample.domain.WeatherIn;
+import com.fernandocejas.android10.sample.domain.WeatherRaw;
 import io.reactivex.Observable;
 import io.reactivex.observers.TestObserver;
 import org.junit.Before;
@@ -35,13 +35,13 @@ import static org.mockito.Mockito.verify;
 
   @Test public void testGetWeatherHappyCase() {
     WeatherEntity weatherEntity = new WeatherEntity();
-    WeatherIn weather = new WeatherIn();
+    WeatherRaw weather = new WeatherRaw();
 
     given(mockWeatherRestApi.weatherEntityByCityId(FAKE_CITY_ID)).willReturn(
         Observable.just(weatherEntity));
     given(mockWeatherEntityDataMapper.transform(weatherEntity)).willReturn(weather);
 
-    TestObserver<WeatherIn> testObserver = new TestObserver<>();
+    TestObserver<WeatherRaw> testObserver = new TestObserver<>();
     weatherDataRepository.weather(FAKE_CITY_ID).subscribe(testObserver);
 
     assertThat(testObserver.values().get(0)).isEqualTo(weather);

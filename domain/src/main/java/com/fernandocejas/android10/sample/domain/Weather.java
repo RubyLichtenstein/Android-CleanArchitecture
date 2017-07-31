@@ -1,7 +1,11 @@
 package com.fernandocejas.android10.sample.domain;
 
+import com.fernandocejas.android10.sample.domain.logic.WeatherTransformer;
+
 /**
  * Created by Ruby on 7/26/2017.
+ * {@link Weather} for use case, create from {@link WeatherRaw} after applying {@link
+ * WeatherTransformer}
  */
 
 public class Weather {
