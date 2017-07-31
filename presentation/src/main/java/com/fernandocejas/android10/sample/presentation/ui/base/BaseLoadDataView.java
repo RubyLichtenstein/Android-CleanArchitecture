@@ -6,6 +6,7 @@
 package com.fernandocejas.android10.sample.presentation.ui.base;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 /**
  * Interface representing a View that will use to load data.
@@ -22,7 +23,7 @@ public interface BaseLoadDataView {
    *
    * @param message A string representing an error.
    */
-  void showError(String message);
+  void showError(@Nullable String message);
 
   /**
    * Get a {@link android.content.Context}.

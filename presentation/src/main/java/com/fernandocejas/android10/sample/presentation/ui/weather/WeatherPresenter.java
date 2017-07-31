@@ -17,11 +17,17 @@ import javax.inject.Inject;
  */
 
 @PerActivity public class WeatherPresenter implements WeatherMvpContract.Presenter {
+  private String cityId;
+
+  //the initial state is to show temp in celsius
+  private boolean celsius = true;
+
+  //remember error state for screen rotation
+  private boolean errorState;
+
   private WeatherMvpContract.View weatherView;
   private WeatherModel weatherModel;
-  private boolean celsius = true;
   private CompositeDisposable compositeDisposable;
-
   private final GetWeather getWeatherUseCase;
   private final WeatherModelDataMapper weatherModelDataMapper;
 
@@ -38,9 +44,12 @@ import javax.inject.Inject;
   }
 
   private void updateView() {
-    if (weatherModel != null) {
+    if (weatherModel != null && !errorState) {
       showWeatherInView(celsius, weatherModel);
       bindViewIntents();
+    } else {
+      //since i am not showing the user the exact reason
+      weatherView.showError(null);
     }
   }
 
@@ -49,6 +58,7 @@ import javax.inject.Inject;
    * and retrieving user details.
    */
   public void initialize(String cityId) {
+    this.cityId = cityId;
     this.showViewLoading();
     this.getWeather(cityId);
   }
@@ -82,7 +92,7 @@ import javax.inject.Inject;
   }
 
   private void showErrorMessage(DefaultErrorBundle defaultErrorBundle) {
-    this.weatherView.showError(defaultErrorBundle.getErrorMessage());
+    this.weatherView.showError(null);
   }
 
   public void showWeatherInView(boolean celsius, WeatherModel weatherModel) {
@@ -107,6 +117,10 @@ import javax.inject.Inject;
     showWeatherInView(this.celsius = false, this.weatherModel);
   }
 
+  @Override public void onRefresh() {
+    this.getWeather(cityId);
+  }
+
   @Override public void bindViewIntents() {
     Disposable fahrenheitClickDisposable =
         this.weatherView.fahrenheitClick().subscribe(o -> onFahrenheitClick());
@@ -114,6 +128,9 @@ import javax.inject.Inject;
     Disposable celsiusClickDisposable =
         this.weatherView.celsiusClick().subscribe(o -> onCelsiusClick());
 
+    Disposable refreshDisposabl = this.weatherView.refresh().subscribe(o -> onRefresh());
+
+    compositeDisposable.add(refreshDisposabl);
     compositeDisposable.add(celsiusClickDisposable);
     compositeDisposable.add(fahrenheitClickDisposable);
   }
@@ -121,14 +138,18 @@ import javax.inject.Inject;
   private final class WeatherObserver extends DefaultObserver<Weather> {
     @Override public void onComplete() {
       WeatherPresenter.this.hideViewLoading();
+      weatherView.setRefreshing(false);
     }
 
     @Override public void onError(Throwable e) {
+      errorState = true;
+      weatherView.setRefreshing(false);
       WeatherPresenter.this.hideViewLoading();
       WeatherPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
     }
 
     @Override public void onNext(Weather weather) {
+      errorState = false;
       setWeatherModel(weather);
       updateView();
     }

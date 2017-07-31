@@ -2,6 +2,7 @@ package com.fernandocejas.android10.sample.presentation.ui.weather;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.fernandocejas.android10.sample.presentation.internal.di.components.We
 import com.fernandocejas.android10.sample.presentation.ui.base.BaseFragment;
 import com.fernandocejas.android10.sample.presentation.ui.common.ImageLoader;
 import com.fernandocejas.arrow.checks.Preconditions;
+import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.jakewharton.rxbinding2.view.RxView;
 import io.reactivex.Observable;
 import javax.inject.Inject;
@@ -35,7 +37,9 @@ public class WeatherFragment extends BaseFragment implements WeatherMvpContract.
   @BindView(R.id.tv_today_temp_range) TextView tvTodayTempRange;
   @BindView(R.id.btn_celsius) Button btnCelsius;
   @BindView(R.id.btn_fahrenheit) Button btnFahrenheit;
+  @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipeRefresh;
   @BindView(R.id.progress_bar_weather) ProgressBar progressBar;
+  @BindView(R.id.tv_error_message) TextView tvErrorMessage;
 
   public static WeatherFragment forCity(String cityId) {
     final WeatherFragment weatherFragment = new WeatherFragment();
@@ -51,12 +55,10 @@ public class WeatherFragment extends BaseFragment implements WeatherMvpContract.
 
   public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    //setRetainInstance(true);
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    //setRetainInstance(true);
     this.getComponent(WeatherComponent.class).inject(this);
   }
 
@@ -95,6 +97,8 @@ public class WeatherFragment extends BaseFragment implements WeatherMvpContract.
   }
 
   @Override public void renderWeather(WeatherViewModel weather) {
+    showAllNonErrorViews(true);
+    tvErrorMessage.setVisibility(View.GONE);
     if (weather != null) {
       this.tvCityName.setText(weather.getCityName());
       this.tvWeatherDescription.setText(weather.getDescription());
@@ -105,12 +109,32 @@ public class WeatherFragment extends BaseFragment implements WeatherMvpContract.
     }
   }
 
+  @Override public void setRefreshing(boolean refreshing) {
+    swipeRefresh.setRefreshing(refreshing);
+  }
+
+  public void showAllNonErrorViews(boolean show) {
+    int visibility = show ? View.VISIBLE : View.GONE;
+    btnCelsius.setVisibility(visibility);
+    btnFahrenheit.setVisibility(visibility);
+    tvCityName.setVisibility(visibility);
+    tvWeatherDescription.setVisibility(visibility);
+    imvIcon.setVisibility(visibility);
+    tvCurrentTemp.setVisibility(visibility);
+    tvTodayTempRange.setVisibility(visibility);
+    progressBar.setVisibility(visibility);
+  }
+
   @Override public Observable<Object> celsiusClick() {
     return RxView.clicks(btnCelsius);
   }
 
   @Override public Observable<Object> fahrenheitClick() {
     return RxView.clicks(btnFahrenheit);
+  }
+
+  @Override public Observable<Object> refresh() {
+    return RxSwipeRefreshLayout.refreshes(swipeRefresh);
   }
 
   /**
@@ -129,11 +153,14 @@ public class WeatherFragment extends BaseFragment implements WeatherMvpContract.
   }
 
   @Override public void showLoading(boolean show) {
+    tvErrorMessage.setVisibility(View.GONE);
+    showAllNonErrorViews(!show);
     this.progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
   }
 
-  @Override public void showError(String message) {
-    this.showToastMessage(message);
+  @Override public void showError(String s) {
+    showAllNonErrorViews(false);
+    tvErrorMessage.setVisibility(View.VISIBLE);
   }
 
   @Override public Context context() {

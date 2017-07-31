@@ -24,4 +24,5 @@
   <string name="fahrenheit">°F</string>
   <string name="fragment_args_cannot_be_null">Fragment arguments cannot be null</string>
   <string name="weather_icon">Weather icon</string>
+  <string name="some_error_occurred_pull_to_refresh">Some Error Occurred :(\nPull to refresh.</string>
 </resources>

@@ -78,8 +78,8 @@ public class CityListFragment extends BaseFragment implements CityListMvpContrac
     this.progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
   }
 
-  @Override public void showError(String message) {
-    this.showToastMessage(message);
+  @Override public void showError(String s) {
+    this.showToastMessage(s);
   }
 
   @Override public Context context() {

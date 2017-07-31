@@ -90,6 +90,7 @@ dependencies {
   compile presentationDependencies.rxJava
   compile presentationDependencies.rxAndroid
   compile presentationDependencies.rxBinding
+  compile presentationDependencies.rxBindingSupportV4
   compile presentationDependencies.constraintLayout
   compile presentationDependencies.glide
   compile presentationDependencies.androidSupportV4
