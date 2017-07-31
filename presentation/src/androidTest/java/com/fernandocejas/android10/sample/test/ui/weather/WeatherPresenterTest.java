@@ -11,7 +11,6 @@ import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherMvpCont
 import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherPresenter;
 import com.fernandocejas.android10.sample.presentation.ui.weather.WeatherViewModel;
 import io.reactivex.observers.DisposableObserver;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +25,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by Ruby on 7/29/2017
  */
-@SmallTest @RunWith(MockitoJUnitRunner.class) public class WeatherPresenterTest extends TestCase {
+@SmallTest @RunWith(MockitoJUnitRunner.class) public class WeatherPresenterTest {
 
   private static final String FAKE_CITY_ID = "1234";
 
@@ -38,11 +37,9 @@ import static org.mockito.Mockito.verify;
   @Mock private WeatherModelDataMapper mockWeatherModelDataMapper;
 
   public WeatherPresenterTest() {
-    super();
   }
 
   @Before public void setUp() throws Exception {
-    super.setUp();
     weatherPresenter.setView(mockWeatherView);
   }
 
@@ -52,34 +49,43 @@ import static org.mockito.Mockito.verify;
     weatherPresenter.initialize(FAKE_CITY_ID);
 
     verify(mockWeatherView).showLoading(true);
-    verify(mockGetWeatherUseCase).execute(any(DisposableObserver.class),
-        GetWeather.Params.forCity(FAKE_CITY_ID));
+    verify(mockGetWeatherUseCase).execute(any(DisposableObserver.class), any());
   }
 
   @Test public void testOnCelsiusClick() {
-    WeatherModel weatherModel = createWeatherModel();
-    Weather weather = createWeather();
-
-    given(mockWeatherModelDataMapper.transform(weather)).willReturn(weatherModel);
-
-    weatherPresenter.setWeatherModel(weather);
-    weatherPresenter.onCelsiusClick();
-
-    verify(weatherPresenter).showWeatherInView(true, weatherModel);
-  }
-
-  @Test public void testOnFahrenheitClick() {
+    //setup
+    boolean celsius = true;
     WeatherModel weatherModel = createWeatherModel();
     Weather weather = createWeather();
     WeatherViewModel weatherViewModel = createWeatherViewModel();
-
     given(mockWeatherModelDataMapper.transform(weather)).willReturn(weatherModel);
-    given(mockWeatherModelDataMapper.transform(false, weatherModel)).willReturn(weatherViewModel);
+    given(mockWeatherModelDataMapper.transform(celsius, weatherModel)).willReturn(weatherViewModel);
 
+    //run
+    weatherPresenter.setWeatherModel(weather);
     weatherPresenter.onCelsiusClick();
 
+    //assert
+    verify(mockWeatherModelDataMapper).transform(celsius, weatherModel);
     verify(mockWeatherView).renderWeather(weatherViewModel);
-    verify(mockWeatherModelDataMapper).transform(false, weatherModel);
+  }
+
+  @Test public void testOnFahrenheitClick() {
+    //setup
+    boolean celsius = false;
+    WeatherModel weatherModel = createWeatherModel();
+    Weather weather = createWeather();
+    WeatherViewModel weatherViewModel = createWeatherViewModel();
+    given(mockWeatherModelDataMapper.transform(weather)).willReturn(weatherModel);
+    given(mockWeatherModelDataMapper.transform(celsius, weatherModel)).willReturn(weatherViewModel);
+
+    //run
+    weatherPresenter.setWeatherModel(weather);
+    weatherPresenter.onFahrenheitClick();
+
+    //assert
+    verify(mockWeatherModelDataMapper).transform(celsius, weatherModel);
+    verify(mockWeatherView).renderWeather(weatherViewModel);
   }
 
   @NonNull private WeatherViewModel createWeatherViewModel() {
