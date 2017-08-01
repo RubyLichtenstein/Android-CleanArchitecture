@@ -10,10 +10,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -37,10 +33,5 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
     assertThat(actualTitle,
         is(mActivityRule.getActivity().getString(R.string.activity_title_weather)));
-  }
-
-  @Test public void testViewsDisplayed() {
-    onView(withId(R.id.btn_celsius)).check(matches(isDisplayed()));
-    onView(withId(R.id.btn_celsius)).check(matches(isDisplayed()));
   }
 }

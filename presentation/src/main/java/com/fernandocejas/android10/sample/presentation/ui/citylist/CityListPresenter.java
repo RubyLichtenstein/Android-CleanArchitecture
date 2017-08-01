@@ -12,7 +12,6 @@ import com.fernandocejas.android10.sample.presentation.mapper.CityModelDataMappe
 import com.fernandocejas.android10.sample.presentation.model.CityModel;
 import com.fernandocejas.android10.sample.presentation.navigation.Navigator;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import javax.inject.Inject;
 
 /**
@@ -94,11 +93,7 @@ import javax.inject.Inject;
   }
 
   @Override public void bindViewIntents() {
-    cityClickDisposable = cityListView.cityClick().subscribe(new Consumer<CityModel>() {
-      @Override public void accept(CityModel cityModel) throws Exception {
-        onCityClick(cityModel);
-      }
-    });
+    cityClickDisposable = cityListView.cityClick().subscribe(this::onCityClick);
   }
 
   private final class CityListObserver extends DefaultObserver<City> {

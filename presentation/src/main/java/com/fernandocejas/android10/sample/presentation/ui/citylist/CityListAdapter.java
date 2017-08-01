@@ -52,11 +52,8 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityVi
   @Override public void onBindViewHolder(CityViewHolder holder, final int position) {
     final CityModel cityModel = this.citiesCollection.get(position);
     holder.textViewTitle.setText(cityModel.getName());
-    RxView.clicks(holder.itemView).subscribe(new Consumer<Object>() {
-      @Override public void accept(Object o) throws Exception {
-        CityListAdapter.this.onItemClickSubject.onNext(cityModel);
-      }
-    });
+    RxView.clicks(holder.itemView).subscribe(
+        o -> CityListAdapter.this.onItemClickSubject.onNext(cityModel));
   }
 
   @Override public long getItemId(int position) {

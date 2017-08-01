@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.startsWith;
  * Created by Ruby on 7/29/2017
  */
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class AppFlowTest {
+@RunWith(AndroidJUnit4.class) @LargeTest public class UseCase1Test {
   private static final String CURRENTLY = "Currently ";
   private static final String TODAY = "Today ";
 

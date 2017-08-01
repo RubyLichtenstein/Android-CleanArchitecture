@@ -41,7 +41,7 @@ public class CityModelDataMapperTest extends TestCase {
     City mockCityOne = createFakeCity();
     City mockCityTwo = createFakeCity();
 
-    List<City> cityList = new ArrayList<City>(5);
+    List<City> cityList = new ArrayList<>(5);
     cityList.add(mockCityOne);
     cityList.add(mockCityTwo);
 
