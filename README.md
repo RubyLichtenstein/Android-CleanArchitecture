@@ -71,19 +71,6 @@ Here are some useful Gradle/adb commands for executing this example:
  * `./gradlew runUnitTests` - Execute domain and data layer tests (both unit and integration).
  * `./gradlew runAcceptanceTests` - Execute espresso and instrumentation acceptance tests.
  
-Discussions
------------------
-
-Refer to the issues section: https://github.com/android10/Android-CleanArchitecture/issues
- 
-
-Code style
------------
-
-Here you can download and install the java codestyle.
-https://github.com/android10/java-code-styles
-
-
 License
 --------
 
@@ -100,8 +87,4 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-
-![http://www.fernandocejas.com](https://github.com/android10/Sample-Data/blob/master/android10/android10_logo_big.png)
-
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--CleanArchitecture-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/909)
+ 
