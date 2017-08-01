@@ -2,7 +2,7 @@
 
 WeatherApp-CleanArchitecture 
 =========================
-WeatherApp is an android app that let you check the current weather for selected cities around the world using [Open Weather Map API](http://openweathermap.org/api).
+WeatherApp is an android app that lets you check the current weather for selected cities around the world using [Open Weather Map API](http://openweathermap.org/api).
 
 The application was built with Uncle Bob's clean architecture approach, and deeply inspired by
 [Fernando Cejas Android-CleanArchitecture](https://github.com/android10/Android-CleanArchitecture) sample.
@@ -33,22 +33,6 @@ Libraries used on this project
 * Espresso
 * AssertJ
 
-Architecture
-------------------------------------
-
-
-  
-  
-[Architecting Android…The clean way?](http://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/)
-
-[Architecting Android…The evolution](http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/)
-
-[Tasting Dagger 2 on Android](http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/)
-
-[Clean Architecture…Dynamic Parameters in Use Cases](http://fernandocejas.com/2016/12/24/clean-architecture-dynamic-parameters-in-use-cases/)
-
-[Demo video of this sample](http://youtu.be/XSjV4sG3ni0)
-
 Clean architecture
 -----------------
 ![http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture/clean_architecture.png)
@@ -71,19 +55,6 @@ Here are some useful Gradle/adb commands for executing this example:
  * `./gradlew runUnitTests` - Execute domain and data layer tests (both unit and integration).
  * `./gradlew runAcceptanceTests` - Execute espresso and instrumentation acceptance tests.
  
-Discussions
------------------
-
-Refer to the issues section: https://github.com/android10/Android-CleanArchitecture/issues
- 
-
-Code style
------------
-
-Here you can download and install the java codestyle.
-https://github.com/android10/java-code-styles
-
-
 License
 --------
 
@@ -100,8 +71,4 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-
-![http://www.fernandocejas.com](https://github.com/android10/Sample-Data/blob/master/android10/android10_logo_big.png)
-
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--CleanArchitecture-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/909)
+ 
